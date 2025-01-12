@@ -1,5 +1,6 @@
 __version__ = (9, 0, 2)
 # meta developer: @Foxy437
+# meta reklama: @devjmodules
 # change-log: venom
 
 #             ███████╗██╗  ██╗███████╗████████╗█████╗ 
