@@ -590,6 +590,7 @@ class FHeta(loader.Module):
         yz_doc="(соруо) - модулларыты көҥүлүүр."
     )
     async def fheta(self, query):
+        '''(query) - search modules.'''        
         if not query.args:
             return {
                 "title": self.strings["inline_no_query"],
@@ -649,6 +650,7 @@ class FHeta(loader.Module):
         yz_doc="(соруо) - модулларыты көҥүлүүр."
     )
     async def fhetacmd(self, message):
+        '''(query) - search modules.'''        
         query = utils.get_args_raw(message)
         
         if not query:
@@ -718,6 +720,7 @@ class FHeta(loader.Module):
         yz_doc="- жаңыртылыларды тексэр."
     )
     async def fupdate(self, message):
+        ''' - check update.'''
         module = inspect.getmodule(self.lookup("FHeta"))
         current_version = ".".join(map(str, module.__version__))
 
