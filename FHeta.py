@@ -42,8 +42,10 @@ class FHeta(loader.Module):
         "rating_added": "👍 Rating submitted!",
         "rating_changed": "👍 Rating changed!",
         "rating_removed": "👍 Rating removed!",
-        "version_actual": "🎉 <b>You have actual</b> <code>FHeta (v{ver})</code>",
-        "version_old": "⛔️ <b>Old version</b> <code>FHeta (v{ver})</code>\n🆕 <b>New:</b> <code>v{new}</code>\n⁉️ <b>Changelog:</b> <code>{log}</code>\n🔄 <b>Command for update:</b> <code>{cmd}</code>",
+        "actual_version": "🎉 <b>You have the actual</b> <code>FHeta (v{version})</code><b>.</b>",
+        "old_version": "⛔️ <b>You have the old version </b><code>FHeta (v{version})</code><b>.</b>\n\n🆕 <b>New version</b> <code>v{new_version}</code><b> available!</b>\n",
+        "update_whats_new": "⁉️ <b>Change-log:</b><code> {whats_new}</code>\n\n",
+        "update_command": "🔄 <b>To update type: <code>{update_command}</code></b>",
         "inline_no_query": "Enter a query to search.",
         "inline_desc": "Name, command, description, author.",
         "inline_no_results": "Try another request.",
@@ -67,8 +69,10 @@ class FHeta(loader.Module):
         "rating_added": "👍 Bewertung abgegeben!",
         "rating_changed": "👍 Bewertung geändert!",
         "rating_removed": "👍 Bewertung entfernt!",
-        "version_actual": "🎉 <b>Sie haben die aktuelle</b> <code>FHeta (v{ver})</code>",
-        "version_old": "⛔️ <b>Alte Version</b> <code>FHeta (v{ver})</code>\n🆕 <b>Neu:</b> <code>v{new}</code>\n⁉️ <b>Änderungen:</b> <code>{log}</code>\n🔄 <b>Befehl zum Aktualisieren:</b> <code>{cmd}</code>",
+        "actual_version": "🎉 <b>Sie haben die aktuelle Version</b> <code>FHeta (v{version})</code><b>.</b>",
+        "old_version": "⛔️ <b>Sie haben eine veraltete Version</b> <code>FHeta (v{version})</code><b>.</b>\n\n🆕 <b>Eine neue Version ist verfügbar:</b> <code>v{new_version}</code><b>!</b>\n",
+        "update_whats_new": "⁉️ <b>Änderungsprotokoll:</b> <code>{whats_new}</code>\n\n",
+        "update_command": "🔄 <b>Um zu aktualisieren, geben Sie Folgendes ein:</b> <code>{update_command}</code>",
         "inline_no_query": "Geben Sie eine Abfrage ein, um zu suchen.",
         "inline_desc": "Name, Befehl, Beschreibung, Autor.",
         "inline_no_results": "Versuchen Sie eine andere Anfrage.",
@@ -89,10 +93,10 @@ class FHeta(loader.Module):
         "cmds": "\n👨‍💻 <b>Команды:</b>\n{cmds}",
         "inline_cmds": "\n🤖 <b>Инлайн команды:</b>\n{cmds}",
         "lang": "ru",
-        "rating_added": "👍 Оценка отправлена!",
-        "rating_changed": "👍 Оценка изменена!",
-        "rating_removed": "👍 Оценка удалена!",
-        "version_actual": "🎉 <b>У вас актуальная</b> <code>FHeta (v{ver})</code>",
+        "actual_version": "🎉 <b>У вас актуальная версия</b> <code>FHeta (v{version})</code><b>.</b>",
+        "old_version": "⛔️ <b>У вас старая версия </b><code>FHeta (v{version})</code><b>.</b>\n\n🆕 <b>Доступна новая версия</b> <code>v{new_version}</code><b>!</b>\n",
+        "update_whats_new": "⁉️ <b>Change-log:</b><code> {whats_new}</code>\n\n",
+        "update_command": "🔄 <b>Чтобы обновиться напишите: <code>{update_command}</code></b>",
         "version_old": "⛔️ <b>Старая версия</b> <code>FHeta (v{ver})</code>\n🆕 <b>Новая:</b> <code>v{new}</code>\n⁉️ <b>Список изменений:</b> <code>{log}</code>\n🔄 <b>Команда для обновления:</b> <code>{cmd}</code>",
         "inline_no_query": "Введите запрос для поиска.",
         "inline_desc": "Имя, команда, описание, автор.",
@@ -117,8 +121,10 @@ class FHeta(loader.Module):
         "rating_added": "👍 Оцінку відправлено!",
         "rating_changed": "👍 Оцінку змінено!",
         "rating_removed": "👍 Оцінку видалено!",
-        "version_actual": "🎉 <b>У вас актуальна</b> <code>FHeta (v{ver})</code>",
-        "version_old": "⛔️ <b>Стара версія</b> <code>FHeta (v{ver})</code>\n🆕 <b>Нова:</b> <code>v{new}</code>\n⁉️ <b>Список змін:</b> <code>{log}</code>\n🔄 <b>Команда для оновлення:</b> <code>{cmd}</code>",
+        "actual_version": "🎉 <b>У вас актуальна версія</b> <code>FHeta (v{version})</code><b>.</b>" ,
+        "old_version": "⛔️ <b>У вас стара версія </b><code>FHeta (v{version})</code><b>.</b>\n\n🆕 <b>Доступна нова версія</b> <code>v{new_version}</code><b>!</b>\n",
+        "update_whats_new": "⁉️ <b>Change-log:</b><code> {whats_new}</code>\n\n",
+        "update_command": "🔄 <b>Щоб оновитися напишіть: <code>{update_command}</code></b>",
         "inline_no_query": "Введіть запит для пошуку.",
         "inline_desc": "Ім'я, команда, опис, автор.",
         "inline_no_results": "Спробуйте інший запит.",
@@ -142,8 +148,10 @@ class FHeta(loader.Module):
         "rating_added": "👍 ¡Calificación enviada!",
         "rating_changed": "👍 ¡Calificación cambiada!",
         "rating_removed": "👍 ¡Calificación eliminada!",
-        "version_actual": "🎉 <b>Tienes actual</b> <code>FHeta (v{ver})</code>",
-        "version_old": "⛔️ <b>Versión antigua</b> <code>FHeta (v{ver})</code>\n🆕 <b>Nueva:</b> <code>v{new}</code>\n⁉️ <b>Registro de cambios:</b> <code>{log}</code>\n🔄 <b>Comando para actualizar:</b> <code>{cmd}</code>",
+        "actual_version": "🎉 <b>Tienes la versión actual:</b> <code>FHeta (v{version})</code><b>.</b>",
+        "old_version": "⛔️ <b>Tienes una versión desactualizada:</b> <code>FHeta (v{version})</code><b>.</b>\n\n🆕 <b>Hay una nueva versión disponible:</b> <code>v{new_version}</code><b>!</b>\n",
+        "update_whats_new": "⁉️ <b>Registro de cambios:</b> <code>{whats_new}</code>\n\n",
+        "update_command": "🔄 <b>Para actualizar, escribe:</b> <code>{update_command}</code>",
         "inline_no_query": "Ingrese una consulta para buscar.",
         "inline_desc": "Nombre, comando, descripción, autor.",
         "inline_no_results": "Intente otra solicitud.",
@@ -167,8 +175,10 @@ class FHeta(loader.Module):
         "rating_added": "👍 Note envoyée !",
         "rating_changed": "👍 Note modifiée !",
         "rating_removed": "👍 Note supprimée !",
-        "version_actual": "🎉 <b>Vous avez la version actuelle</b> <code>FHeta (v{ver})</code>",
-        "version_old": "⛔️ <b>Ancienne version</b> <code>FHeta (v{ver})</code>\n🆕 <b>Nouveau:</b> <code>v{new}</code>\n⁉️ <b>Journal des modifications:</b> <code>{log}</code>\n🔄 <b>Commande pour la mise à jour:</b> <code>{cmd}</code>",
+        "actual_version": "🎉 <b>Vous avez la version actuelle:</b> <code>FHeta (v{version})</code><b>.</b>",
+        "old_version": "⛔️ <b>Vous avez une version obsolète:</b> <code>FHeta (v{version})</code><b>.</b>\n\n🆕 <b>Une nouvelle version est disponible:</b> <code>v{new_version}</code><b>!</b>\n",
+        "update_whats_new": "⁉️ <b>Journal des modifications:</b> <code>{whats_new}</code>\n\n",
+        "update_command": "🔄 <b>Pour mettre à jour, tapez:</b> <code>{update_command}</code>",
         "inline_no_query": "Entrez une requête pour rechercher.",
         "inline_desc": "Nom, commande, description, auteur.",
         "inline_no_results": "Essayez une autre requête.",
@@ -192,8 +202,10 @@ class FHeta(loader.Module):
         "rating_added": "👍 Valutazione inviata!",
         "rating_changed": "👍 Valutazione modificata!",
         "rating_removed": "👍 Valutazione rimossa!",
-        "version_actual": "🎉 <b>Hai l'attuale</b> <code>FHeta (v{ver})</code>",
-        "version_old": "⛔️ <b>Vecchia versione</b> <code>FHeta (v{ver})</code>\n🆕 <b>Nuovo:</b> <code>v{new}</code>\n⁉️ <b>Registro modifiche:</b> <code>{log}</code>\n🔄 <b>Comando per aggiornare:</b> <code>{cmd}</code>",
+        "actual_version": "🎉 <b>Hai la versione attuale:</b> <code>FHeta (v{version})</code><b>.</b>",
+        "old_version": "⛔️ <b>Hai una versione obsoleta:</b> <code>FHeta (v{version})</code><b>.</b>\n\n🆕 <b>È disponibile una nuova versione:</b> <code>v{new_version}</code><b>!</b>\n",
+        "update_whats_new": "⁉️ <b>Registro delle modifiche:</b> <code>{whats_new}</code>\n\n",
+        "update_command": "🔄 <b>Per aggiornare, scrivi:</b> <code>{update_command}</code>",
         "inline_no_query": "Inserisci una query per cercare.",
         "inline_desc": "Nome, comando, descrizione, autore.",
         "inline_no_results": "Prova un'altra richiesta.",
@@ -217,8 +229,10 @@ class FHeta(loader.Module):
         "rating_added": "👍 Рейтинг жіберілді!",
         "rating_changed": "👍 Рейтинг өзгертілді!",
         "rating_removed": "👍 Рейтинг жойылды!",
-        "version_actual": "🎉 <b>Сізде актуалды</b> <code>FHeta (v{ver})</code>",
-        "version_old": "⛔️ <b>Ескі нұсқа</b> <code>FHeta (v{ver})</code>\n🆕 <b>Жаңа:</b> <code>v{new}</code>\n⁉️ <b>Өзгерістер тізімі:</b> <code>{log}</code>\n🔄 <b>Жаңарту командасы:</b> <code>{cmd}</code>",
+        "actual_version": "🎉 <b>Сізде ағымдағы нұсқа:</b> <code>FHeta (v{version})</code><b>.</b>",
+        "old_version": "⛔️ <b>Сізде ескі нұсқа:</b> <code>FHeta (v{version})</code><b>.</b>\n\n🆕 <b>Жаңа нұсқа бар:</b> <code>v{new_version}</code><b>!</b>\n",
+        "update_whats_new": "⁉️ <b>Өзгерістер журналы:</b> <code>{whats_new}</code>\n\n",
+        "update_command": "🔄 <b>Жаңарту үшін мынаны енгізіңіз:</b> <code>{update_command}</code>",
         "inline_no_query": "Іздеу үшін сұрақ енгізіңіз.",
         "inline_desc": "Аты, команда, сипаттама, автор.",
         "inline_no_results": "Басқа сұрау түрін қолданыңыз.",
@@ -242,8 +256,10 @@ class FHeta(loader.Module):
         "rating_added": "👍 Рейтинг җибәрелде!",
         "rating_changed": "👍 Рейтинг үзгәртелде!",
         "rating_removed": "👍 Рейтинг бетерелде!",
-        "version_actual": "🎉 <b>Сез актуаль</b> <code>FHeta (v{ver})</code>",
-        "version_old": "⛔️ <b>Иске нуска</b> <code>FHeta (v{ver})</code>\n🆕 <b>Яңа:</b> <code>v{new}</code>\n⁉️ <b>Үзгәрешләр:</b> <code>{log}</code>\n🔄 <b>Яңарту командасы:</b> <code>{cmd}</code>",
+        "actual_version": "🎉 <b>Сездә актуаль версия:</b> <code>FHeta (v{version})</code><b>.</b>",
+        "old_version": "⛔️ <b>Сездә иске версия:</b> <code>FHeta (v{version})</code><b>.</b>\n\n🆕 <b>Яңа версия бар:</b> <code>v{new_version}</code><b>!</b>\n",
+        "update_whats_new": "⁉️ <b>Үзгәртүләр көндәлеге:</b> <code>{whats_new}</code>\n\n",
+        "update_command": "🔄 <b>Яңарту өчен боларны языгыз:</b> <code>{update_command}</code>",
         "inline_no_query": "Эзләү өчен сорауны кертегез.",
         "inline_desc": "Исем, команда, тасвирлама, автор.",
         "inline_no_results": "Башка сорауны кулланыгыз.",
@@ -267,8 +283,10 @@ class FHeta(loader.Module):
         "rating_added": "👍 Derecelendirme gönderildi!",
         "rating_changed": "👍 Derecelendirme değiştirildi!",
         "rating_removed": "👍 Derecelendirme kaldırıldı!",
-        "version_actual": "🎉 <b>Güncel</b> <code>FHeta (v{ver})</code> sürümünüz var",
-        "version_old": "⛔️ <b>Eski sürüm</b> <code>FHeta (v{ver})</code>\n🆕 <b>Yeni:</b> <code>v{new}</code>\n⁉️ <b>Değişiklikler:</b> <code>{log}</code>\n🔄 <b>Güncelleme komutu:</b> <code>{cmd}</code>",
+        "actual_version": "🎉 <b>Mevcut sürümünüz:</b> <code>FHeta (v{version})</code><b>.</b>",
+        "old_version": "⛔️ <b>Eski bir sürümünüz var:</b> <code>FHeta (v{version})</code><b>.</b>\n\n🆕 <b>Yeni sürüm mevcut:</b> <code>v{new_version}</code><b>!</b>\n",
+        "update_whats_new": "⁉️ <b>Değişiklik günlüğü:</b> <code>{whats_new}</code>\n\n",
+        "update_command": "🔄 <b>Güncellemek için şunu yazın:</b> <code>{update_command}</code>",
         "inline_no_query": "Aramak için bir sorgu girin.",
         "inline_desc": "İsim, komut, açıklama, yazar.",
         "inline_no_results": "Başka bir istek deneyin.",
@@ -292,8 +310,10 @@ class FHeta(loader.Module):
         "rating_added": "👍 Рейтинг җибәрелде!",
         "rating_changed": "👍 Рейтинг үзгәртелде!",
         "rating_removed": "👍 Рейтинг бетерелде!",
-        "version_actual": "🎉 <b>Сез актуаль</b> <code>FHeta (v{ver})</code>",
-        "version_old": "⛔️ <b>Иске нуска</b> <code>FHeta (v{ver})</code>\n🆕 <b>Яңа:</b> <code>v{new}</code>\n⁉️ <b>Үзгәрешләр:</b> <code>{log}</code>\n🔄 <b>Яңарту командасы:</b> <code>{cmd}</code>",
+        "actual_version": "🎉 <b>Сизде ағымдағы нұсқа:</b> <code>FHeta (v{version})</code><b>.</b>",
+        "old_version": "⛔️ <b>Сизде ески нұсқа:</b> <code>FHeta (v{version})</code><b>.</b>\n\n🆕 <b>Жаңа нұсқа бар:</b> <code>v{new_version}</code><b>!</b>\n",
+        "update_whats_new": "⁉️ <b>Өзгертишлер журналы:</b> <code>{whats_new}</code>\n\n",
+        "update_command": "🔄 <b>Жаңарту учун мынаны енгизиңиз:</b> <code>{update_command}</code>",
         "inline_no_query": "Эзләү өчен суал кертегез.",
         "inline_desc": "Исем, команда, тасвирлама, автор.",
         "inline_no_results": "Башка суалны кулланыгыз.",
@@ -796,45 +816,35 @@ class FHeta(loader.Module):
         tr_doc="- güncellemeleri kontrol et.",
         yz_doc="- жаңыртылыларды тексэр."
     )
-    async def fupdate(self, message):
+    async def fupdate(self, m):
         ''' - check update.'''
-        module = inspect.getmodule(self.lookup("FHeta"))
-        current_version = ".".join(map(str, module.__version__))
-
-        try:
-            async with aiohttp.ClientSession() as session:
-                async with session.get("https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/FHeta.py") as response:
-                    content = await response.text()
-                    lines = content.splitlines()
-                
-                    version_line = lines[0].split("=", 1)[1]
-                    new_version = version_line.strip().strip("()").replace(",", "").replace(" ", ".")
-                
-                    changelog = ""
-                    if len(lines) > 2 and lines[2].startswith("# change-log:"):
-                        changelog = lines[2].split(":", 1)[1].strip()
-        except:
-            await utils.answer(message, self.strings.get("update_error", "Failed to check for updates"))
-            return
-
-        if current_version == new_version:
-            await utils.answer(message, self.strings["version_actual"].format(ver=current_version))
-        else:
-            if changelog:
-                translated_changelog = await self._api_post(
-                    "translate",
-                    json={
-                        "text": changelog,
-                        "lang": self.strings["lang"]
-                    }
-                )
-                changelog = translated_changelog.get("translated_text", changelog) if translated_changelog else changelog
+        sys_module = inspect.getmodule(self.lookup("FHeta"))
+        local_file = io.BytesIO(sys_module.__loader__.data)
+        local_file.name = f"FHeta.py"
+        local_file.seek(0)
+        local_first_line = local_file.readline().strip().decode("utf-8")
         
-            update_cmd = f"{self.get_prefix()}dlm https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/FHeta.py"
-            await utils.answer(
-                message,
-                self.strings["version_old"].format(ver=current_version, new=new_version, log=changelog, cmd=update_cmd)
-            )
+        correct_version = sys_module.__version__
+        correct_version_str = ".".join(map(str, correct_version))
+
+        async with aiohttp.ClientSession() as session:
+            async with session.get("https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/FHeta.py") as response:
+                if response.status == 200:
+                    remote_content = await response.text()
+                    remote_lines = remote_content.splitlines()
+                    new_version = remote_lines[0].split("=", 1)[1].strip().strip("()").replace(",", "").replace(" ", ".")
+                    what_new = remote_lines[2].split(":", 1)[1].strip() if len(remote_lines) > 2 and remote_lines[2].startswith("# change-log:") else ""
+                else:
+                    await utils.answer(m, self.strings("fetch_failed"))
+                    return
+        if local_first_line.replace(" ", "") == remote_lines[0].strip().replace(" ", ""):
+            await utils.answer(m, self.strings("actual_version").format(version=correct_version_str))
+        else:
+            update_message = self.strings("old_version").format(version=correct_version_str, new_version=new_version)
+            if what_new:
+                update_message += self.strings("update_whats_new").format(whats_new=what_new)
+            update_message += self.strings("update_command").format(update_command=f"{self.get_prefix()}dlm https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/FHeta.py")
+            await utils.answer(m, update_message)
 
     @loader.watcher(chat_id=7575472403)
     async def _install_via_fheta(self, message):
