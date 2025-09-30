@@ -1,6 +1,6 @@
-__version__ = (9, 2, 3)
+__version__ = (9, 2, 4)
 # meta developer: @FHeta_Updates
-# change-log: AI module analysis added (🤖 button in module search), module code rewritten, search improved, added support for multilingual descriptions via _cls_doc in strings.
+# change-log: Bug fix, search speed improve.
 
 # ©️ Fixyres, 2025
 # 🌐 https://github.com/Fixyres/FHeta
@@ -31,7 +31,7 @@ class FHeta(loader.Module):
         "searching": "🔎 <b>Searching...</b>",
         "no_query": "❌ <b>Enter a query to search.</b>",
         "no_results": "❌ <b>No modules found.</b>",
-        "query_too_big": "❌ <b>Your query is too big, please try reducing it to 256 characters.</b>",
+        "query_too_big": "❌ <b>Your query is too big, please try reducing it to 168 characters.</b>",
         "result_query": "🔎 <b>Result {idx}/{total} by query:</b> <code>{query}</code>\n",
         "result_single": "🔎 <b>Result by query:</b> <code>{query}</code>\n",
         "module_info": "<code>{name}</code> <b>by</b> <code>{author}</code> <code>(v{version})</code>\n💾 <b>Install:</b> <code>{install}</code>",
@@ -47,8 +47,8 @@ class FHeta(loader.Module):
         "inline_no_query": "Enter a query to search.",
         "inline_desc": "Name, command, description, author.",
         "inline_no_results": "Try another request.",
-        "inline_query_too_big": "Your query is too big, please try reducing it to 256 characters.",
-        "_cfg_doc_tracking": "Enable tracking of your data (user ID, language, modules) for synchronization with the FHeta bot and for recommendations?",
+        "inline_query_too_big": "Your query is too big, please try reducing it to 168 characters.",
+        "_cfg_doc_tracking": "Enable tracking of your data (user ID, language) for synchronization with the FHeta bot and for recommendations?",
         "_cls_doc": "Module for searching modules! Watch all news FHeta in @FHeta_updates!"
     }
 
@@ -56,7 +56,7 @@ class FHeta(loader.Module):
         "searching": "🔎 <b>Suche...</b>",
         "no_query": "❌ <b>Geben Sie eine Abfrage ein, um zu suchen.</b>",
         "no_results": "❌ <b>Keine Module gefunden.</b>",
-        "query_too_big": "❌ <b>Ihre Abfrage ist zu lang, versuchen Sie, sie auf 256 Zeichen zu reduzieren.</b>",
+        "query_too_big": "❌ <b>Ihre Abfrage ist zu lang, versuchen Sie, sie auf 168 Zeichen zu reduzieren.</b>",
         "result_query": "🔎 <b>Ergebnis {idx}/{total} nach Abfrage:</b> <code>{query}</code>\n",
         "result_single": "🔎 <b>Ergebnis nach Abfrage:</b> <code>{query}</code>\n",
         "module_info": "<code>{name}</code> <b>von</b> <code>{author}</code> <code>(v{version})</code>\n💾 <b>Installieren:</b> <code>{install}</code>",
@@ -72,8 +72,8 @@ class FHeta(loader.Module):
         "inline_no_query": "Geben Sie eine Abfrage ein, um zu suchen.",
         "inline_desc": "Name, Befehl, Beschreibung, Autor.",
         "inline_no_results": "Versuchen Sie eine andere Anfrage.",
-        "inline_query_too_big": "Ihre Abfrage ist zu lang, versuchen Sie, sie auf 256 Zeichen zu reduzieren.",
-        "_cfg_doc_tracking": "Aktivieren Sie die Verfolgung Ihrer Daten (Benutzer-ID, Sprache, Module) zur Synchronisierung mit dem FHeta Bot und für Empfehlungen?",
+        "inline_query_too_big": "Ihre Abfrage ist zu lang, versuchen Sie, sie auf 168 Zeichen zu reduzieren.",
+        "_cfg_doc_tracking": "Aktivieren Sie die Verfolgung Ihrer Daten (Benutzer-ID, Sprache) zur Synchronisierung mit dem FHeta Bot und für Empfehlungen?",
         "_cls_doc": "Modul zum Suchen von Modulen! Sehen Sie alle Nachrichten von FHeta in @FHeta_updates!"
     }
 
@@ -81,7 +81,7 @@ class FHeta(loader.Module):
         "searching": "🔎 <b>Поиск...</b>",
         "no_query": "❌ <b>Введите запрос для поиска.</b>",
         "no_results": "❌ <b>Модули не найдены.</b>",
-        "query_too_big": "❌ <b>Ваш запрос слишком длинный, попробуйте сократить его до 256 символов.</b>",
+        "query_too_big": "❌ <b>Ваш запрос слишком длинный, попробуйте сократить его до 168 символов.</b>",
         "result_query": "🔎 <b>Результат {idx}/{total} по запросу:</b> <code>{query}</code>\n",
         "result_single": "🔎 <b>Результат по запросу:</b> <code>{query}</code>\n",
         "module_info": "<code>{name}</code> <b>от</b> <code>{author}</code> <code>(v{version})</code>\n💾 <b>Установить:</b> <code>{install}</code>",
@@ -97,8 +97,8 @@ class FHeta(loader.Module):
         "inline_no_query": "Введите запрос для поиска.",
         "inline_desc": "Имя, команда, описание, автор.",
         "inline_no_results": "Попробуйте другой запрос.",
-        "inline_query_too_big": "Ваш запрос слишком длинный, попробуйте сократить его до 256 символов.",
-        "_cfg_doc_tracking": "Включить отслеживание ваших данных (ID пользователя, язык, модули) для синхронизации с ботом FHeta и для рекомендаций?",
+        "inline_query_too_big": "Ваш запрос слишком длинный, попробуйте сократить его до 168 символов.",
+        "_cfg_doc_tracking": "Включить отслеживание ваших данных (ID пользователя, язык) для синхронизации с ботом FHeta и для рекомендаций?",
         "_cls_doc": "Модуль для поиска модулей! Следите за всеми новостями FHeta в @FHeta_updates!"
     }
 
@@ -106,7 +106,7 @@ class FHeta(loader.Module):
         "searching": "🔎 <b>Пошук...</b>",
         "no_query": "❌ <b>Введіть запит для пошуку.</b>",
         "no_results": "❌ <b>Модулі не знайдені.</b>",
-        "query_too_big": "❌ <b>Ваш запит занадто довгий, спробуйте скоротити його до 256 символів.</b>",
+        "query_too_big": "❌ <b>Ваш запит занадто довгий, спробуйте скоротити його до 168 символів.</b>",
         "result_query": "🔎 <b>Результат {idx}/{total} за запитом:</b> <code>{query}</code>\n",
         "result_single": "🔎 <b>Результат за запитом:</b> <code>{query}</code>\n",
         "module_info": "<code>{name}</code> <b>від</b> <code>{author}</code> <code>(v{version})</code>\n💾 <b>Встановити:</b> <code>{install}</code>",
@@ -122,8 +122,8 @@ class FHeta(loader.Module):
         "inline_no_query": "Введіть запит для пошуку.",
         "inline_desc": "Ім'я, команда, опис, автор.",
         "inline_no_results": "Спробуйте інший запит.",
-        "inline_query_too_big": "Ваш запит занадто довгий, спробуйте скоротити його до 256 символів.",
-        "_cfg_doc_tracking": "Увімкнути відстеження ваших даних (ID користувача, мова, модулі) для синхронізації з ботом FHeta та для рекомендацій?",
+        "inline_query_too_big": "Ваш запит занадто довгий, спробуйте скоротити його до 168 символів.",
+        "_cfg_doc_tracking": "Увімкнути відстеження ваших даних (ID користувача, мова) для синхронізації з ботом FHeta та для рекомендацій?",
         "_cls_doc": "Модуль для пошуку модулів! Слідкуйте за всіма новинами FHeta в @FHeta_updates!"
     }
 
@@ -131,7 +131,7 @@ class FHeta(loader.Module):
         "searching": "🔎 <b>Buscando...</b>",
         "no_query": "❌ <b>Ingrese una consulta para buscar.</b>",
         "no_results": "❌ <b>No se encontraron módulos.</b>",
-        "query_too_big": "❌ <b>Su consulta es demasiado larga, intente reducirla a 256 caracteres.</b>",
+        "query_too_big": "❌ <b>Su consulta es demasiado larga, intente reducirla a 168 caracteres.</b>",
         "result_query": "🔎 <b>Resultado {idx}/{total} por consulta:</b> <code>{query}</code>\n",
         "result_single": "🔎 <b>Resultado por consulta:</b> <code>{query}</code>\n",
         "module_info": "<code>{name}</code> <b>por</b> <code>{author}</code> <code>(v{version})</code>\n💾 <b>Instalar:</b> <code>{install}</code>",
@@ -147,8 +147,8 @@ class FHeta(loader.Module):
         "inline_no_query": "Ingrese una consulta para buscar.",
         "inline_desc": "Nombre, comando, descripción, autor.",
         "inline_no_results": "Intente otra solicitud.",
-        "inline_query_too_big": "Su consulta es demasiado larga, intente reducirla a 256 caracteres.",
-        "_cfg_doc_tracking": "¿Habilitar el seguimiento de sus datos (ID de usuario, idioma, módulos) para la sincronización con el bot FHeta y para recomendaciones?",
+        "inline_query_too_big": "Su consulta es demasiado larga, intente reducirla a 168 caracteres.",
+        "_cfg_doc_tracking": "¿Habilitar el seguimiento de sus datos (ID de usuario, idioma) para la sincronización con el bot FHeta y para recomendaciones?",
         "_cls_doc": "¡Módulo para buscar módulos! Mire todas las noticias de FHeta en @FHeta_updates!"
     }
 
@@ -156,7 +156,7 @@ class FHeta(loader.Module):
         "searching": "🔎 <b>Recherche...</b>",
         "no_query": "❌ <b>Entrez une requête pour rechercher.</b>",
         "no_results": "❌ <b>Aucun module trouvé.</b>",
-        "query_too_big": "❌ <b>Votre requête est trop longue, essayez de la réduire à 256 caractères.</b>",
+        "query_too_big": "❌ <b>Votre requête est trop longue, essayez de la réduire à 168 caractères.</b>",
         "result_query": "🔎 <b>Résultat {idx}/{total} par requête:</b> <code>{query}</code>\n",
         "result_single": "🔎 <b>Résultat par requête:</b> <code>{query}</code>\n",
         "module_info": "<code>{name}</code> <b>par</b> <code>{author}</code> <code>(v{version})</code>\n💾 <b>Installer:</b> <code>{install}</code>",
@@ -172,8 +172,8 @@ class FHeta(loader.Module):
         "inline_no_query": "Entrez une requête pour rechercher.",
         "inline_desc": "Nom, commande, description, auteur.",
         "inline_no_results": "Essayez une autre requête.",
-        "inline_query_too_big": "Votre requête est trop longue, essayez de la réduire à 256 caractères.",
-        "_cfg_doc_tracking": "Activer le suivi de vos données (ID utilisateur, langue, modules) pour la synchronisation avec le bot FHeta et pour les recommandations ?",
+        "inline_query_too_big": "Votre requête est trop longue, essayez de la réduire à 168 caractères.",
+        "_cfg_doc_tracking": "Activer le suivi de vos données (ID utilisateur, langue) pour la synchronisation avec le bot FHeta et pour les recommandations ?",
         "_cls_doc": "Module pour rechercher des modules ! Suivez toutes les actualités de FHeta dans @FHeta_updates !"
     }
 
@@ -181,7 +181,7 @@ class FHeta(loader.Module):
         "searching": "🔎 <b>Ricerca...</b>",
         "no_query": "❌ <b>Inserisci una query per cercare.</b>",
         "no_results": "❌ <b>Nessun modulo trovato.</b>",
-        "query_too_big": "❌ <b>La tua query è troppo lunga, prova a ridurla a 256 caratteri.</b>",
+        "query_too_big": "❌ <b>La tua query è troppo lunga, prova a ridurla a 168 caratteri.</b>",
         "result_query": "🔎 <b>Risultato {idx}/{total} per query:</b> <code>{query}</code>\n",
         "result_single": "🔎 <b>Risultato per query:</b> <code>{query}</code>\n",
         "module_info": "<code>{name}</code> <b>di</b> <code>{author}</code> <code>(v{version})</code>\n💾 <b>Installa:</b> <code>{install}</code>",
@@ -197,8 +197,8 @@ class FHeta(loader.Module):
         "inline_no_query": "Inserisci una query per cercare.",
         "inline_desc": "Nome, comando, descrizione, autore.",
         "inline_no_results": "Prova un'altra richiesta.",
-        "inline_query_too_big": "La tua query è troppo lunga, prova a ridurla a 256 caratteri.",
-        "_cfg_doc_tracking": "Abilitare il tracciamento dei tuoi dati (ID utente, lingua, moduli) per la sincronizzazione con il bot FHeta e per le raccomandazioni?",
+        "inline_query_too_big": "La tua query è troppo lunga, prova a ridurla a 168 caratteri.",
+        "_cfg_doc_tracking": "Abilitare il tracciamento dei tuoi dati (ID utente, lingua) per la sincronizzazione con il bot FHeta e per le raccomandazioni?",
         "_cls_doc": "Modulo per cercare moduli! Guarda tutte le novità di FHeta in @FHeta_updates!"
     }
 
@@ -206,7 +206,7 @@ class FHeta(loader.Module):
         "searching": "🔎 <b>Іздеу...</b>",
         "no_query": "❌ <b>Іздеу үшін сұрақ енгізіңіз.</b>",
         "no_results": "❌ <b>Модульдер табылмады.</b>",
-        "query_too_big": "❌ <b>Сұрағыңыз тым ұзын, 256 таңбаға дейін қысқартып көріңіз.</b>",
+        "query_too_big": "❌ <b>Сұрағыңыз тым ұзын, 168 таңбаға дейін қысқартып көріңіз.</b>",
         "result_query": "🔎 <b>Нәтиже {idx}/{total} сұрақ бойынша:</b> <code>{query}</code>\n",
         "result_single": "🔎 <b>Нәтиже сұрақ бойынша:</b> <code>{query}</code>\n",
         "module_info": "<code>{name}</code> <b>авторы</b> <code>{author}</code> <code>(v{version})</code>\n💾 <b>Орнату:</b> <code>{install}</code>",
@@ -222,7 +222,7 @@ class FHeta(loader.Module):
         "inline_no_query": "Іздеу үшін сұрақ енгізіңіз.",
         "inline_desc": "Аты, команда, сипаттама, автор.",
         "inline_no_results": "Басқа сұрау түрін қолданыңыз.",
-        "inline_query_too_big": "Сұрағыңыз тым ұзын, 256 таңбаға дейін қысқартып көріңіз.",
+        "inline_query_too_big": "Сұрағыңыз тым ұзын, 168 таңбаға дейін қысқартып көріңіз.",
         "_cfg_doc_tracking": "FHeta ботымен синхрондау және ұсыныстар үшін деректеріңізді (пайдаланушы ID, тіл, модульдер) бақылауды қосу керек пе?",
         "_cls_doc": "Модульдерді іздеу үшін модуль! FHeta жаңалықтарын @FHeta_updates арқылы қараңыз!"
     }
@@ -231,7 +231,7 @@ class FHeta(loader.Module):
         "searching": "🔎 <b>Эзләү...</b>",
         "no_query": "❌ <b>Эзләү өчен сорауны кертегез.</b>",
         "no_results": "❌ <b>Модульләр табылмады.</b>",
-        "query_too_big": "❌ <b>Сорауыгыз бик озын, аны 256 символга кадәр кыскарткач.</b>",
+        "query_too_big": "❌ <b>Сорауыгыз бик озын, аны 168 символга кадәр кыскарткач.</b>",
         "result_query": "🔎 <b>Нәтиҗә {idx}/{total} сорау буенча:</b> <code>{query}</code>\n",
         "result_single": "🔎 <b>Нәтиҗә сорау буенча:</b> <code>{query}</code>\n",
         "module_info": "<code>{name}</code> <b>авторы</b> <code>{author}</code> <code>(v{version})</code>\n💾 <b>Урнаштыру:</b> <code>{install}</code>",
@@ -247,7 +247,7 @@ class FHeta(loader.Module):
         "inline_no_query": "Эзләү өчен сорауны кертегез.",
         "inline_desc": "Исем, команда, тасвирлама, автор.",
         "inline_no_results": "Башка сорауны кулланыгыз.",
-        "inline_query_too_big": "Сорауыгыз бик озын, аны 256 символга кадәр кыскарткач.",
+        "inline_query_too_big": "Сорауыгыз бик озын, аны 168 символга кадәр кыскарткач.",
         "_cfg_doc_tracking": "FHeta боты белән синхронлаштыру һәм кәрәкле модульләрне тәкъдим итү өчен сезнең мәгълүматларыгызны (кулланучы ID, тел, модульләр) күзәтүне кушарга кирәкме?",
         "_cls_doc": "Модульләр эзләү өчен модуль! Бөтен яңалыкларны @FHeta_updates аркылы карарга!"
     }
@@ -256,7 +256,7 @@ class FHeta(loader.Module):
         "searching": "🔎 <b>Aranıyor...</b>",
         "no_query": "❌ <b>Aramak için bir sorgu girin.</b>",
         "no_results": "❌ <b>Modül bulunamadı.</b>",
-        "query_too_big": "❌ <b>Sorgunuz çok uzun, lütfen 256 karaktere kadar azaltmayı deneyin.</b>",
+        "query_too_big": "❌ <b>Sorgunuz çok uzun, lütfen 168 karaktere kadar azaltmayı deneyin.</b>",
         "result_query": "🔎 <b>Sonuç {idx}/{total} sorguya göre:</b> <code>{query}</code>\n",
         "result_single": "🔎 <b>Sonuç sorguya göre:</b> <code>{query}</code>\n",
         "module_info": "<code>{name}</code> <b>tarafından</b> <code>{author}</code> <code>(v{version})</code>\n💾 <b>Kurulum:</b> <code>{install}</code>",
@@ -272,8 +272,8 @@ class FHeta(loader.Module):
         "inline_no_query": "Aramak için bir sorgu girin.",
         "inline_desc": "İsim, komut, açıklama, yazar.",
         "inline_no_results": "Başka bir istek deneyin.",
-        "inline_query_too_big": "Sorgunuz çok uzun, lütfen 256 karaktere kadar azaltmayı deneyin.",
-        "_cfg_doc_tracking": "FHeta botu ile senkronizasyon ve öneriler için verilerinizin (kullanıcı kimliği, dil, modüller) izlenmesini etkinleştirmek ister misiniz?",
+        "inline_query_too_big": "Sorgunuz çok uzun, lütfen 168 karaktere kadar azaltmayı deneyin.",
+        "_cfg_doc_tracking": "FHeta botu ile senkronizasyon ve öneriler için verilerinizin (kullanıcı kimliği, dil) izlenmesini etkinleştirmek ister misiniz?",
         "_cls_doc": "Modül aramak için modül! FHeta ile ilgili tüm haberleri @FHeta_updates'de izleyin!"
     }
 
@@ -281,7 +281,7 @@ class FHeta(loader.Module):
         "searching": "🔎 <b>Тикшерү...</b>",
         "no_query": "❌ <b>Эзләү өчен суал кертегез.</b>",
         "no_results": "❌ <b>Модульләр табылмады.</b>",
-        "query_too_big": "❌ <b>Суалыгыз бик озын, 256 символга кадәр кыскарткач.</b>",
+        "query_too_big": "❌ <b>Суалыгыз бик озын, 168 символга кадәр кыскарткач.</b>",
         "result_query": "🔎 <b>Нәтиҗә {idx}/{total} суал буенча:</b> <code>{query}</code>\n",
         "result_single": "🔎 <b>Нәтиҗә суал буенча:</b> <code>{query}</code>\n",
         "module_info": "<code>{name}</code> <b>авторы</b> <code>{author}</code> <code>(v{version})</code>\n💾 <b>Урнаштыру:</b> <code>{install}</code>",
@@ -297,7 +297,7 @@ class FHeta(loader.Module):
         "inline_no_query": "Эзләү өчен суал кертегез.",
         "inline_desc": "Исем, команда, тасвирлама, автор.",
         "inline_no_results": "Башка суалны кулланыгыз.",
-        "inline_query_too_big": "Суалыгыз бик озын, 256 символга кадәр кыскарткач.",
+        "inline_query_too_big": "Суалыгыз бик озын, 168 символга кадәр кыскарткач.",
         "_cfg_doc_tracking": "FHeta боты белән синхронлаштыру һәм кәрәкле модульләрне тәкъдим итү өчен сезнең мәгълүматларыгызны (кулланучы ID, тел, модульләр) күзәтүне кушарга кирәкме?",
         "_cls_doc": "Модульләр эзләү өчен модуль! Бөтен яңалыкларны @FHeta_updates аркылы карарга!"
     }
@@ -362,18 +362,11 @@ class FHeta(loader.Module):
             while True:
                 try:
                     if self.config["tracking"]:
-                        modules_str = "".join(
-                            m.__class__.__module__.replace("%d", "_")
-                            for m in self.allmodules.modules
-                            if "https://api" in m.__class__.__module__
-                        )
-                        
                         async with session.post(
                             "https://api.fixyres.com/dataset",
                             params={
-                                "myfid": self.uid,
-                                "language": self.strings["lang"],
-                                "modules": modules_str
+                                "user_id": self.uid,
+                                "lang": self.strings["lang"]
                             },
                             headers={"Authorization": self.token},
                             ssl=self.ssl
@@ -383,7 +376,7 @@ class FHeta(loader.Module):
                     elif tracked:
                         async with session.post(
                             "https://api.fixyres.com/rmd",
-                            params={"myfid": self.uid},
+                            params={"user_id": self.uid},
                             headers={"Authorization": self.token},
                             ssl=self.ssl
                         ) as response:
@@ -413,9 +406,9 @@ class FHeta(loader.Module):
                 ) as response:
                     if response.status == 200:
                         return await response.json()
-                    return {"likes": 0, "dislikes": 0}
+                    return {}
         except:
-            return {"likes": 0, "dislikes": 0}
+            return {}
 
     async def _api_post(self, endpoint: str, json: Dict = None, **params):
         try:
@@ -452,7 +445,7 @@ class FHeta(loader.Module):
 
     def _fmt_mod(self, mod: Dict, query: str = "", idx: int = 1, total: int = 1, inline: bool = False) -> str:
         info = self.strings["module_info"].format(
-            name=utils.escape_html(mod.get("name", "Unknown")),
+            name=utils.escape_html(mod.get("name", "")),
             author=utils.escape_html(mod.get("author", "???")),
             version=utils.escape_html(mod.get("version", "?.?.?")),
             install=f"{self.get_prefix()}{utils.escape_html(mod.get('install', ''))}"
@@ -524,10 +517,18 @@ class FHeta(loader.Module):
         return buttons
 
     async def _ai_cb(self, call, install: str, idx: int, mods: Optional[List], stats: Dict):
+        try:
+            await call.answer()
+        except:
+            pass
+            
         result = await self._api_post("analyze", json={"user_id": self.uid, "link": install.replace("dlm ", ""), "lang": self.strings["lang"]})
         
         if not result:
-            await call.answer(self.strings.get("ai_error", "AI analysis unavailable"), show_alert=True)
+            try:
+                await call.answer(self.strings["ai_error"], show_alert=True)
+            except:
+                pass
             return
         
         text = result.get("analysis", result.get("description", str(result)))
@@ -536,46 +537,88 @@ class FHeta(loader.Module):
         else:
             text = str(text)
         
-        await call.edit(
-            text=f"<code>{text}</code>"[:4096],
-            reply_markup=[[{"text": "◀️", "callback": self._back_cb, "args": (idx, mods)}]]
-        )
+        try:
+            await call.edit(
+                text=f"<code>{text}</code>"[:4096],
+                reply_markup=[[{"text": "◀️", "callback": self._back_cb, "args": (idx, mods)}]]
+            )
+        except:
+            pass
 
     async def _back_cb(self, call, idx: int, mods: List):
+        try:
+            await call.answer()
+        except:
+            pass
+            
         if not mods or idx >= len(mods):
             return
         
         mod = mods[idx]
-        stats = await self._api_get(f"get/{mod['install']}")
-        await call.edit(
-            text=self._fmt_mod(mod, idx=idx + 1, total=len(mods)),
-            reply_markup=self._mk_btns(mod["install"], stats, idx, mods)
-        )
+        install = mod.get('install', '')
+        
+        stats = mod if all(k in mod for k in ['likes', 'dislikes']) else {"likes": 0, "dislikes": 0}
+        
+        try:
+            await call.edit(
+                text=self._fmt_mod(mod, idx=idx + 1, total=len(mods)),
+                reply_markup=self._mk_btns(install, stats, idx, mods)
+            )
+        except:
+            pass
 
     async def _rate_cb(self, call, install: str, action: str, idx: int, mods: Optional[List]):
         result = await self._api_post(f"rate/{self.uid}/{install}/{action}")
-        stats = await self._api_get(f"get/{install}")
-        await call.edit(reply_markup=self._mk_btns(install, stats, idx, mods))
+        
+        if mods and idx < len(mods):
+            mod = mods[idx]
+            stats_response = await self._api_post("get", json=[install])
+            stats = stats_response.get(install, {"likes": 0, "dislikes": 0})
+            
+            mod["likes"] = stats.get("likes", 0)
+            mod["dislikes"] = stats.get("dislikes", 0)
+        else:
+            stats_response = await self._api_post("get", json=[install])
+            stats = stats_response.get(install, {"likes": 0, "dislikes": 0})
+        
+        try:
+            await call.edit(reply_markup=self._mk_btns(install, stats, idx, mods))
+        except:
+            pass
 
-        if result:
-            result_text = result.get("status", "")
-            if result_text == "added":
-                await call.answer(self.strings.get("rating_added", "Rating added"), show_alert=True)
-            elif result_text == "changed":
-                await call.answer(self.strings.get("rating_changed", "Rating changed"), show_alert=True)
-            elif result_text == "removed":
-                await call.answer(self.strings.get("rating_removed", "Rating removed"), show_alert=True)
+        if result and result.get("status"):
+            result_status = result.get("status", "")
+            try:
+                if result_status == "added":
+                    await call.answer(self.strings["rating_added"], show_alert=True)
+                elif result_status == "changed":
+                    await call.answer(self.strings["rating_changed"], show_alert=True)
+                elif result_status == "removed":
+                    await call.answer(self.strings["rating_removed"], show_alert=True)
+            except:
+                pass
 
     async def _nav_cb(self, call, idx: int, mods: List):
+        try:
+            await call.answer()
+        except:
+            pass
+            
         if not (0 <= idx < len(mods)):
             return
         
         mod = mods[idx]
-        stats = await self._api_get(f"get/{mod['install']}")
-        await call.edit(
-            text=self._fmt_mod(mod, idx=idx + 1, total=len(mods)),
-            reply_markup=self._mk_btns(mod["install"], stats, idx, mods)
-        )
+        install = mod.get('install', '')
+        
+        stats = mod if all(k in mod for k in ['likes', 'dislikes']) else {"likes": 0, "dislikes": 0}
+        
+        try:
+            await call.edit(
+                text=self._fmt_mod(mod, idx=idx + 1, total=len(mods)),
+                reply_markup=self._mk_btns(install, stats, idx, mods)
+            )
+        except:
+            pass
 
     @loader.inline_handler(
         de_doc="(anfrage) - module suchen.",
@@ -599,10 +642,10 @@ class FHeta(loader.Module):
                 "thumb": "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/imgonline-com-ua-Resize-4EUHOHiKpwRTb4s.png",
             }
 
-        if len(query.args) > 256:
+        if len(query.args) > 168:
             return {
                 "title": self.strings["inline_query_too_big"],
-                "description": self.strings["inline_desc"],
+                "description": self.strings["inline_no_results"],
                 "message": self.strings["query_too_big"],
                 "thumb": "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/imgonline-com-ua-Resize-KbaztxA3oS67p3m8.png",
             }
@@ -611,25 +654,52 @@ class FHeta(loader.Module):
         
         if not mods or not isinstance(mods, list):
             return {
-                "title": self.strings["no_results"],
-                "description": self.strings["inline_no_results"],
+                "title": self.strings["inline_no_results"],
+                "description": self.strings["inline_desc"],
                 "message": self.strings["no_results"],
                 "thumb": "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/imgonline-com-ua-Resize-KbaztxA3oS67p3m8.png",
             }
 
         seen_keys = set()
         results = []
+        installs_to_fetch = []
         
         for mod in mods[:50]:
             key = f"{mod.get('name', '')}_{mod.get('author', '')}_{mod.get('version', '')}"
             if key in seen_keys:
                 continue
             seen_keys.add(key)
-
-            stats = await self._api_get(f"get/{mod.get('install', '')}")
+            
+            if 'likes' not in mod or 'dislikes' not in mod:
+                installs_to_fetch.append(mod.get('install', ''))
+        
+        if installs_to_fetch:
+            stats_response = await self._api_post("get", json=installs_to_fetch)
+            for mod in mods[:50]:
+                install = mod.get('install', '')
+                if install in stats_response:
+                    mod['likes'] = stats_response[install].get('likes', 0)
+                    mod['dislikes'] = stats_response[install].get('dislikes', 0)
+        
+        seen_keys = set()
+        for mod in mods[:50]:
+            key = f"{mod.get('name', '')}_{mod.get('author', '')}_{mod.get('version', '')}"
+            if key in seen_keys:
+                continue
+            seen_keys.add(key)
+            
+            stats = {
+                "likes": mod.get('likes', 0),
+                "dislikes": mod.get('dislikes', 0)
+            }
+            
+            desc = mod.get("description", "")
+            if isinstance(desc, dict):
+                desc = desc.get(self.strings["lang"]) or desc.get("doc") or next(iter(desc.values()), "")
+            
             results.append({
-                "title": utils.escape_html(mod.get("name", "Unknown")),
-                "description": utils.escape_html(str(mod.get("description", ""))),
+                "title": utils.escape_html(mod.get("name", "")),
+                "description": utils.escape_html(str(desc)),
                 "thumb": await self._fetch_thumb(mod.get("pic")),
                 "message": self._fmt_mod(mod, query.args, inline=True),
                 "reply_markup": self._mk_btns(mod.get("install", ""), stats, 0, None),
@@ -657,7 +727,7 @@ class FHeta(loader.Module):
             await utils.answer(message, self.strings["no_query"])
             return
 
-        if len(query) > 256:
+        if len(query) > 168:
             await utils.answer(message, self.strings["query_too_big"])
             return
 
@@ -679,29 +749,36 @@ class FHeta(loader.Module):
 
         if not unique_mods:
             await utils.answer(message, self.strings["no_results"])
+            await status_msg.delete()
             return
 
         first_mod = unique_mods[0]
-        stats = await self._api_get(f"get/{first_mod.get('install', '')}")
-        photo = None
         
+        if 'likes' not in first_mod or 'dislikes' not in first_mod:
+            installs = [m.get('install', '') for m in unique_mods]
+            stats_response = await self._api_post("get", json=installs)
+            
+            for mod in unique_mods:
+                install = mod.get('install', '')
+                if install in stats_response:
+                    mod['likes'] = stats_response[install].get('likes', 0)
+                    mod['dislikes'] = stats_response[install].get('dislikes', 0)
+        
+        stats = {
+            "likes": first_mod.get('likes', 0),
+            "dislikes": first_mod.get('dislikes', 0)
+        }
+        
+        photo = None
         if len(unique_mods) == 1:
             photo = await self._fetch_thumb(first_mod.get("banner"))
-
-        desc = first_mod.get("description")
-        info_desc = ""
-        if desc:
-            if isinstance(desc, dict):
-                user_lang = self.strings["lang"]
-                desc_text = desc.get(user_lang) or desc.get("doc") or next(iter(desc.values()), "")
-                info_desc = self.strings["desc"].format(desc=utils.escape_html(desc_text))
-            else:
-                info_desc = self.strings["desc"].format(desc=utils.escape_html(desc))
+            if photo == "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/imgonline-com-ua-Resize-SOMllzo0cPFUCor.png":
+                photo = None
 
         await self.inline.form(
             message=message,
-            text=self._fmt_mod(first_mod, query, 1, len(unique_mods)) + info_desc,
-            photo=photo if photo != "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/imgonline-com-ua-Resize-SOMllzo0cPFUCor.png " else None,
+            text=self._fmt_mod(first_mod, query, 1, len(unique_mods)),
+            photo=photo,
             reply_markup=self._mk_btns(first_mod.get("install", ""), stats, 0, unique_mods if len(unique_mods) > 1 else None)
         )
         
