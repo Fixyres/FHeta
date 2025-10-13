@@ -1,20 +1,111 @@
 import subprocess
 import sys
 import os
+import platform
+
+def get_python_version():
+    return sys.version_info[:2]
+
+def get_cuda_version():
+    try:
+        result = subprocess.run(
+            ["nvidia-smi"], 
+            capture_output=True, 
+            text=True, 
+            timeout=5
+        )
+        if result.returncode == 0:
+            for line in result.stdout.split('\n'):
+                if 'CUDA Version:' in line:
+                    cuda_version = line.split('CUDA Version:')[1].strip().split()[0]
+                    major = int(cuda_version.split('.')[0])
+                    minor = int(cuda_version.split('.')[1])
+                    return (major, minor)
+    except:
+        pass
+    
+    try:
+        result = subprocess.run(
+            ["nvcc", "--version"], 
+            capture_output=True, 
+            text=True, 
+            timeout=5
+        )
+        if result.returncode == 0:
+            for line in result.stdout.split('\n'):
+                if 'release' in line:
+                    version = line.split('release')[1].strip().split(',')[0]
+                    major = int(version.split('.')[0])
+                    minor = int(version.split('.')[1])
+                    return (major, minor)
+    except:
+        pass
+    
+    return None
 
 def install_dependencies():
-    packages = {
-        "websockets": "websockets==12.0",
-        "transformers": "transformers==4.36.2",
-        "torch": "torch==2.1.2",
-        "numpy": "numpy==1.24.3",
-        "accelerate": "accelerate==0.25.0",
-        "bitsandbytes": "bitsandbytes==0.41.3.post2"
-    }
+    python_version = get_python_version()
+    cuda_version = get_cuda_version()
+    is_windows = platform.system() == "Windows"
+    is_linux = platform.system() == "Linux"
+    
+    if cuda_version is None:
+        print("CUDA not detected, cannot proceed")
+        sys.exit(1)
+    
+    cuda_major, cuda_minor = cuda_version
+    
+    if cuda_major >= 13 or (cuda_major == 12 and cuda_minor >= 6):
+        torch_package = "torch==2.6.0"
+        torch_index = "https://download.pytorch.org/whl/cu126"
+    elif cuda_major == 12 and cuda_minor >= 4:
+        torch_package = "torch==2.5.1"
+        torch_index = "https://download.pytorch.org/whl/cu124"
+    elif cuda_major == 12:
+        torch_package = "torch==2.4.1"
+        torch_index = "https://download.pytorch.org/whl/cu121"
+    elif cuda_major == 11 and cuda_minor >= 8:
+        torch_package = "torch==2.4.1"
+        torch_index = "https://download.pytorch.org/whl/cu118"
+    elif cuda_major == 11:
+        torch_package = "torch==2.0.1"
+        torch_index = "https://download.pytorch.org/whl/cu117"
+    else:
+        print(f"CUDA version {cuda_major}.{cuda_minor} is too old")
+        sys.exit(1)
+    
+    if is_linux:
+        bnb_version = "bitsandbytes==0.44.1"
+    else:
+        bnb_version = "bitsandbytes==0.44.1"
+    
+    if python_version >= (3, 11):
+        packages = {
+            "websockets": "websockets==13.1",
+            "transformers": "transformers==4.46.3",
+            "numpy": "numpy==1.26.4",
+            "accelerate": "accelerate==1.1.1",
+            "bitsandbytes": bnb_version
+        }
+    elif python_version >= (3, 9):
+        packages = {
+            "websockets": "websockets==13.1",
+            "transformers": "transformers==4.46.3",
+            "numpy": "numpy==1.24.4",
+            "accelerate": "accelerate==1.1.1",
+            "bitsandbytes": bnb_version
+        }
+    else:
+        packages = {
+            "websockets": "websockets==12.0",
+            "transformers": "transformers==4.40.2",
+            "numpy": "numpy==1.23.5",
+            "accelerate": "accelerate==0.33.0",
+            "bitsandbytes": "bitsandbytes==0.43.3"
+        }
     
     pip_commands = [
-        [sys.executable, "-m", "pip", "install", "--upgrade", "pip"],
-        [sys.executable, "-m", "pip", "install", "wheel", "setuptools"]
+        [sys.executable, "-m", "pip", "install", "--upgrade", "pip", "setuptools", "wheel"]
     ]
     
     for cmd in pip_commands:
@@ -22,6 +113,32 @@ def install_dependencies():
             subprocess.check_call(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         except:
             pass
+    
+    torch_installed = False
+    try:
+        __import__("torch")
+        import torch
+        if torch.cuda.is_available():
+            torch_installed = True
+    except:
+        pass
+    
+    if not torch_installed:
+        try:
+            subprocess.check_call(
+                [sys.executable, "-m", "pip", "install", torch_package, "--index-url", torch_index],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )
+        except:
+            try:
+                subprocess.check_call(
+                    [sys.executable, "-m", "pip", "install", torch_package],
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL
+                )
+            except:
+                pass
     
     for module_name, package_spec in packages.items():
         installed = False
@@ -32,37 +149,41 @@ def install_dependencies():
             pass
         
         if not installed:
-            try:
-                subprocess.check_call(
-                    [sys.executable, "-m", "pip", "install", package_spec],
-                    stdout=subprocess.DEVNULL,
-                    stderr=subprocess.DEVNULL
-                )
-            except:
+            attempts = [
+                [sys.executable, "-m", "pip", "install", package_spec],
+                [sys.executable, "-m", "pip", "install", "--no-cache-dir", package_spec],
+                [sys.executable, "-m", "pip", "install", "--no-deps", package_spec],
+                [sys.executable, "-m", "pip", "install", "--force-reinstall", "--no-deps", package_spec]
+            ]
+            
+            for attempt in attempts:
                 try:
                     subprocess.check_call(
-                        [sys.executable, "-m", "pip", "install", "--no-deps", package_spec],
+                        attempt,
                         stdout=subprocess.DEVNULL,
                         stderr=subprocess.DEVNULL
                     )
+                    break
                 except:
-                    try:
-                        subprocess.check_call(
-                            [sys.executable, "-m", "pip", "install", "--no-cache-dir", package_spec],
-                            stdout=subprocess.DEVNULL,
-                            stderr=subprocess.DEVNULL
-                        )
-                    except:
-                        pass
+                    continue
     
-    try:
-        subprocess.check_call(
-            [sys.executable, "-m", "pip", "install", "--upgrade", "huggingface-hub"],
-            stdout=subprocess.DEVNULL,
-            stderr=subprocess.DEVNULL
-        )
-    except:
-        pass
+    additional_packages = [
+        "huggingface-hub",
+        "tokenizers",
+        "safetensors",
+        "sentencepiece",
+        "protobuf"
+    ]
+    
+    for package in additional_packages:
+        try:
+            subprocess.check_call(
+                [sys.executable, "-m", "pip", "install", "--upgrade", package],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL
+            )
+        except:
+            pass
 
 install_dependencies()
 
