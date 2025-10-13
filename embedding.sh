@@ -37,9 +37,9 @@ if ! command -v curl &> /dev/null && ! command -v wget &> /dev/null; then
 fi
 
 if command -v curl &> /dev/null; then
-    curl -sL "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/embedding.py" -o "$HOME/.fheta/embedding_service.py"
+    curl -sL "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/embedding.py" -o "$HOME/.fheta/embedding.py"
 else
-    wget -q "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/embedding.py" -O "$HOME/.fheta/embedding_service.py"
+    wget -q "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/embedding.py" -O "$HOME/.fheta/embedding.py"
 fi
 
 if [ $? -ne 0 ] || [ ! -f "$HOME/.fheta/embedding.py" ]; then
