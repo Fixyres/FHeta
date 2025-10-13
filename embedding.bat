@@ -57,7 +57,18 @@ if not exist "C:\ProgramData\fheta\embedding.py" (
     exit /b 1
 )
 
-!python_cmd! -m pip install --upgrade pip >nul 2>&1
+echo Creating virtual environment...
+!python_cmd! -m venv "C:\ProgramData\fheta\venv"
+if errorlevel 1 (
+    echo Error: Failed to create virtual environment
+    pause
+    exit /b 1
+)
+
+call "C:\ProgramData\fheta\venv\Scripts\activate.bat"
+
+echo Upgrading pip...
+pip install --upgrade pip >nul 2>&1
 if errorlevel 1 (
     echo Error: Failed to upgrade pip
     pause
@@ -72,7 +83,7 @@ if not exist "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup" (
 
 (
 echo Set WshShell = CreateObject^("WScript.Shell"^)
-echo WshShell.Run "!python_cmd!w ""C:\ProgramData\fheta\embedding.py""", 0, False
+echo WshShell.Run """C:\ProgramData\fheta\venv\Scripts\pythonw.exe"" ""C:\ProgramData\fheta\embedding.py""", 0, False
 ) > "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\hfheta.vbs"
 
 if errorlevel 1 (
@@ -83,11 +94,10 @@ if errorlevel 1 (
 
 echo Starting service...
 
-where pythonw >nul 2>&1
-if not errorlevel 1 (
-    start "" pythonw "C:\ProgramData\fheta\embedding.py"
+if exist "C:\ProgramData\fheta\venv\Scripts\pythonw.exe" (
+    start "" "C:\ProgramData\fheta\venv\Scripts\pythonw.exe" "C:\ProgramData\fheta\embedding.py"
 ) else (
-    start "" /B !python_cmd! "C:\ProgramData\fheta\embedding.py"
+    start "" /B "C:\ProgramData\fheta\venv\Scripts\python.exe" "C:\ProgramData\fheta\embedding.py"
 )
 
 if errorlevel 1 (
