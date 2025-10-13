@@ -74,26 +74,21 @@ def install_dependencies():
         print(f"CUDA version {cuda_major}.{cuda_minor} is too old")
         sys.exit(1)
     
-    if is_linux:
-        bnb_version = "bitsandbytes==0.44.1"
-    else:
-        bnb_version = "bitsandbytes==0.44.1"
-    
     if python_version >= (3, 11):
         packages = {
             "websockets": "websockets==13.1",
-            "transformers": "transformers==4.46.3",
+            "transformers": "transformers==4.45.2",
             "numpy": "numpy==1.26.4",
             "accelerate": "accelerate==1.1.1",
-            "bitsandbytes": bnb_version
+            "bitsandbytes": "bitsandbytes==0.43.1"
         }
     elif python_version >= (3, 9):
         packages = {
             "websockets": "websockets==13.1",
-            "transformers": "transformers==4.46.3",
+            "transformers": "transformers==4.45.2",
             "numpy": "numpy==1.24.4",
             "accelerate": "accelerate==1.1.1",
-            "bitsandbytes": bnb_version
+            "bitsandbytes": "bitsandbytes==0.43.1"
         }
     else:
         packages = {
@@ -101,7 +96,7 @@ def install_dependencies():
             "transformers": "transformers==4.40.2",
             "numpy": "numpy==1.23.5",
             "accelerate": "accelerate==0.33.0",
-            "bitsandbytes": "bitsandbytes==0.43.3"
+            "bitsandbytes": "bitsandbytes==0.41.3"
         }
     
     pip_commands = [
@@ -169,7 +164,6 @@ def install_dependencies():
     
     additional_packages = [
         "huggingface-hub",
-        "tokenizers",
         "safetensors",
         "sentencepiece",
         "protobuf"
