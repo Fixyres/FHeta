@@ -1,37 +1,76 @@
-import asyncio
-import json
-import random
-import string
 import subprocess
 import sys
 import os
-import ssl
 
 def install_dependencies():
-    required_packages = [
-        "websockets",
-        "transformers",
-        "torch",
-        "numpy",
-        "accelerate",
-        "bitsandbytes"
+    packages = {
+        "websockets": "websockets==12.0",
+        "transformers": "transformers==4.36.2",
+        "torch": "torch==2.1.2",
+        "numpy": "numpy==1.24.3",
+        "accelerate": "accelerate==0.25.0",
+        "bitsandbytes": "bitsandbytes==0.41.3.post2"
+    }
+    
+    pip_commands = [
+        [sys.executable, "-m", "pip", "install", "--upgrade", "pip"],
+        [sys.executable, "-m", "pip", "install", "wheel", "setuptools"]
     ]
     
-    for package in required_packages:
+    for cmd in pip_commands:
         try:
-            __import__(package)
+            subprocess.check_call(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        except:
+            pass
+    
+    for module_name, package_spec in packages.items():
+        installed = False
+        try:
+            __import__(module_name)
+            installed = True
         except ImportError:
+            pass
+        
+        if not installed:
             try:
                 subprocess.check_call(
-                    [sys.executable, "-m", "pip", "install", package],
+                    [sys.executable, "-m", "pip", "install", package_spec],
                     stdout=subprocess.DEVNULL,
                     stderr=subprocess.DEVNULL
                 )
             except:
-                pass
+                try:
+                    subprocess.check_call(
+                        [sys.executable, "-m", "pip", "install", "--no-deps", package_spec],
+                        stdout=subprocess.DEVNULL,
+                        stderr=subprocess.DEVNULL
+                    )
+                except:
+                    try:
+                        subprocess.check_call(
+                            [sys.executable, "-m", "pip", "install", "--no-cache-dir", package_spec],
+                            stdout=subprocess.DEVNULL,
+                            stderr=subprocess.DEVNULL
+                        )
+                    except:
+                        pass
+    
+    try:
+        subprocess.check_call(
+            [sys.executable, "-m", "pip", "install", "--upgrade", "huggingface-hub"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL
+        )
+    except:
+        pass
 
 install_dependencies()
 
+import asyncio
+import json
+import random
+import string
+import ssl
 import websockets
 import numpy as np
 import torch
