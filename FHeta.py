@@ -435,7 +435,7 @@ class FHeta(loader.Module):
                     params=params,
                     headers={"Authorization": self.token},
                     ssl=self.ssl,
-                    timeout=aiohttp.ClientTimeout(total=10)
+                    timeout=aiohttp.ClientTimeout(total=30)
                 ) as response:
                     if response.status == 200:
                         return await response.json()
