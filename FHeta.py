@@ -1,6 +1,6 @@
 __version__ = (9, 2, 7)
 # meta developer: @FHeta_Updates
-# change-log: Search improved.
+# change-log: The search has been improved, but unfortunately only for searching through .fheta. In @your_heroku_bot, fheta now uses more primitive search due to strict Telegram limitations on inline query response time of 15 seconds...
 
 # ©️ Fixyres, 2025
 # 🌐 https://github.com/Fixyres/FHeta
