@@ -1,6 +1,6 @@
-__version__ = (9, 2, 6)
+__version__ = (9, 2, 7)
 # meta developer: @FHeta_Updates
-# change-log: Removed AI analysis (due to lack of need)
+# change-log: Search improved.
 
 # ©️ Fixyres, 2025
 # 🌐 https://github.com/Fixyres/FHeta
