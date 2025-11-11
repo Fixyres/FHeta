@@ -297,7 +297,7 @@ class HSearch(loader.Module):
             ),
             loader.ConfigValue(
                 "only_official_developers",
-                True,
+                False,
                 lambda: self.strings["_cfg_doc_only_official_developers"],
                 validator=loader.validators.Boolean()
             )
@@ -717,7 +717,7 @@ class HSearch(loader.Module):
         
         await status_msg.delete()
 
-    @loader.watcher(chat_id=7575472403)
+    @loader.watcher(chat_id=8232909179)
     async def _install_via_hsearch(self, message):
         link = message.raw_text.strip()
         
