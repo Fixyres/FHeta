@@ -413,10 +413,8 @@ class HSearch(loader.Module):
             return {}
 
     async def _fetch_thumb(self, url: Optional[str]) -> str:
-        default_thumb = "https://raw.githubusercontent.com/Fixyres/HSearch/refs/heads/main/imgonline-com-ua-Resize-SOMllzo0cPFUCor.png"
-        
         if not url:
-            return default_thumb
+            return "https://raw.githubusercontent.com/Fixyres/HSearch/refs/heads/main/imgonline-com-ua-Resize-SOMllzo0cPFUCor.png"
         
         try:
             async with aiohttp.ClientSession() as session:
