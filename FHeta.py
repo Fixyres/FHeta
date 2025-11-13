@@ -563,7 +563,7 @@ class FHeta(loader.Module):
         tr_doc="(sorgu) - modül arama.",
         yz_doc="(соруо) - модулларыты көҥүлүүр."
     )
-    async def hs(self, query):
+    async def fheta(self, query):
         '''(query) - search modules.'''        
         if not query.args:
             return {
@@ -650,7 +650,7 @@ class FHeta(loader.Module):
         tr_doc="(sorgu) - modül arama.",
         yz_doc="(соруо) - модулларыты көҥүлүүр."
     )
-    async def hscmd(self, message):
+    async def fhetacmd(self, message):
         '''(query) - search modules.'''        
         query = utils.get_args_raw(message)
         
