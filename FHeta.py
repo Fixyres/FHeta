@@ -43,7 +43,7 @@ class FHeta(loader.Module):
         "inline_desc": "Name, command, description, author.",
         "inline_no_results": "Try another query.",
         "inline_query_too_big": "Your query is too big, please try reducing it to 168 characters.",
-        "_cfg_doc_tracking": "Enable tracking of your data (user ID, language) for synchronization with the FHeta bot and for recommendations?",
+        "_cfg_doc_tracking": "Enable tracking of your data (user ID, language) for synchronization with the FHeta bot?",
         "_cfg_doc_only_official_developers": "Use only modules from official Heroku developers when searching?"
     }
     
@@ -66,7 +66,7 @@ class FHeta(loader.Module):
         "inline_desc": "Название, команда, описание, автор.",
         "inline_no_results": "Попробуйте другой запрос.",
         "inline_query_too_big": "Ваш запрос слишком большой, пожалуйста, сократите его до 168 символов.",
-        "_cfg_doc_tracking": "Включить отслеживание ваших данных (ID пользователя, язык) для синхронизации с ботом FHeta и для рекомендаций?",
+        "_cfg_doc_tracking": "Включить отслеживание ваших данных (ID пользователя, язык) для синхронизации с ботом FHeta?",
         "_cls_doc": "Модуль для поиска модулей! Следите за всеми новостями FHeta в @FHeta_Updates!",
         "_cfg_doc_only_official_developers": "Использовать только модули официальных разработчиков Heroku при поиске?"
     }
@@ -90,7 +90,7 @@ class FHeta(loader.Module):
         "inline_desc": "Name, Befehl, Beschreibung, Autor.",
         "inline_no_results": "Versuchen Sie eine andere Anfrage.",
         "inline_query_too_big": "Ihre Anfrage ist zu groß, bitte reduzieren Sie sie auf 168 Zeichen.",
-        "_cfg_doc_tracking": "Tracking Ihrer Daten (Benutzer-ID, Sprache) für die Synchronisierung mit dem FHeta-Bot und für Empfehlungen aktivieren?",
+        "_cfg_doc_tracking": "Tracking Ihrer Daten (Benutzer-ID, Sprache) für die Synchronisierung mit dem FHeta-Bot?",
         "_cls_doc": "Modul zum Suchen von Modulen! Verfolgen Sie alle Neuigkeiten von FHeta in @FHeta_Updates!",
         "_cfg_doc_only_official_developers": "Nur Module von offiziellen Entwicklern bei der Suche verwenden?"
     }
@@ -114,9 +114,9 @@ class FHeta(loader.Module):
         "inline_desc": "Назва, команда, опис, автор.",
         "inline_no_results": "Спробуйте інший запит.",
         "inline_query_too_big": "Ваш запит занадто великий, будь ласка, скоротіть його до 168 символів.",
-        "_cfg_doc_tracking": "Увімкнути відстеження ваших даних (ID користувача, мова) для синхронізації з ботом FHeta та для рекомендацій?",
+        "_cfg_doc_tracking": "Увімкнути відстеження ваших даних (ID користувача, мова) для синхронізації з ботом FHeta?",
         "_cls_doc": "Модуль для пошуку модулів! Стежте за всіма новинами FHeta в @FHeta_Updates!",
-       "_cfg_doc_only_official_developers": "Використовувати лише модулі офіційних розробників під час пошуку?"
+        "_cfg_doc_only_official_developers": "Використовувати лише модулі офіційних розробників під час пошуку?"
     }
 
     def __init__(self):
