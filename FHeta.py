@@ -425,8 +425,9 @@ class FHeta(loader.Module):
             }
             
             desc = mod.get("description", "")
-            desc = desc.get(self.strings["lang"]) or desc.get("doc") or next(iter(desc.values()), "")
-            
+            if isinstance(desc, dict):
+                desc = desc.get(self.strings["lang"]) or desc.get("doc") or next(iter(desc.values()), "")
+                
             results.append({
                 "title": utils.escape_html(mod.get("name", "")),
                 "description": utils.escape_html(str(desc)),
