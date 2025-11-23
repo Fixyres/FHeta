@@ -494,7 +494,7 @@ class FHeta(loader.Module):
     async def _install_via_fheta(self, message):
         link = message.raw_text.strip()
         
-        if not link.startswith("https://"):
+        if not link.startswith("https://api.fixyres.com/module/"):
             return
 
         loader_module = self.lookup("loader")
