@@ -251,8 +251,10 @@ class FHeta(loader.Module):
             return {}
 
     async def _fetch_thumb(self, url: Optional[str]) -> str:
+        default_thumb = "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/assets/empty_pic.png"
+
         if not url:
-            return "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/assets/empty_pic.png"
+            return default_thumb
         
         try:
             async with aiohttp.ClientSession() as session:
