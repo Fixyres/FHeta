@@ -305,10 +305,7 @@ class FHeta(loader.Module):
         return default_thumb
 
     def _get_emoji(self, key: str) -> str:
-        theme = self.config["theme"]
-        if theme not in self.THEMES:
-            theme = "ordinary"
-        return self.THEMES[theme].get(key, "❓")
+        return self.THEMES[self.config["theme"]].get(key, "❓")
 
     def _fmt_mod(self, mod: Dict, query: str = "", idx: int = 1, total: int = 1, inline: bool = False) -> str:
         info = self.strings["module_info"].format(
