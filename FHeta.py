@@ -124,7 +124,7 @@ class FHeta(loader.Module):
     }
 
     THEMES = {
-        "ordinary": {
+        "default": {
             "search": "🔎", "error": "❌", "warn": "❌", "result": "🔎", 
             "install": "💾", "description": "📁", "command": "👨‍💻", "inline": "🤖", 
             "like": "👍", "dislike": "👎", "prev": "◀️", "next": "▶️"
@@ -305,7 +305,7 @@ class FHeta(loader.Module):
         return default_thumb
 
     def _get_emoji(self, key: str) -> str:
-        return self.THEMES[self.config["theme"]].get(key, "❓")
+        return self.THEMES[self.config["theme"]][key]
 
     def _fmt_mod(self, mod: Dict, query: str = "", idx: int = 1, total: int = 1, inline: bool = False) -> str:
         info = self.strings["module_info"].format(
