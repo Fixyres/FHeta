@@ -45,7 +45,7 @@ class FHeta(loader.Module):
         "inline_query_too_big": "Your query is too big, please try reducing it to 168 characters.",
         "_cfg_doc_tracking": "Enable tracking of your data (user ID, language) for synchronization with the FHeta bot?",
         "_cfg_doc_only_official_developers": "Use only modules from official Heroku developers when searching?",
-        "_cfg_doc_theme": "Select theme for emojis (ordinary, winter, summer, spring, autumn)."
+        "_cfg_doc_theme": "Select theme for emojis."
     }
     
     strings_ru = {
@@ -70,7 +70,7 @@ class FHeta(loader.Module):
         "_cfg_doc_tracking": "Включить отслеживание ваших данных (ID пользователя, язык) для синхронизации с ботом FHeta?",
         "_cls_doc": "Модуль для поиска модулей! Следите за всеми новостями FHeta в @FHeta_Updates!",
         "_cfg_doc_only_official_developers": "Использовать только модули официальных разработчиков Heroku при поиске?",
-        "_cfg_doc_theme": "Выберите тему для смайликов (ordinary, winter, summer, spring, autumn)."
+        "_cfg_doc_theme": "Выберите тему для смайликов."
     }
     
     strings_de = {
@@ -95,7 +95,7 @@ class FHeta(loader.Module):
         "_cfg_doc_tracking": "Tracking Ihrer Daten (Benutzer-ID, Sprache) für die Synchronisierung mit dem FHeta-Bot?",
         "_cls_doc": "Modul zum Suchen von Modulen! Verfolgen Sie alle Neuigkeiten von FHeta in @FHeta_Updates!",
         "_cfg_doc_only_official_developers": "Nur Module von offiziellen Entwicklern bei der Suche verwenden?",
-        "_cfg_doc_theme": "Wählen Sie ein Thema für Emojis (ordinary, winter, summer, spring, autumn)."
+        "_cfg_doc_theme": "Wählen Sie ein Thema für Emojis."
     }
     
     strings_ua = {
@@ -120,7 +120,7 @@ class FHeta(loader.Module):
         "_cfg_doc_tracking": "Увімкнути відстеження ваших даних (ID користувача, мова) для синхронізації з ботом FHeta?",
         "_cls_doc": "Модуль для пошуку модулів! Стежте за всіма новинами FHeta в @FHeta_Updates!",
         "_cfg_doc_only_official_developers": "Використовувати лише модулі офіційних розробників під час пошуку?",
-        "_cfg_doc_theme": "Виберіть тему для смайликів (ordinary, winter, summer, spring, autumn)."
+        "_cfg_doc_theme": "Виберіть тему для смайликів."
     }
 
     THEMES = {
