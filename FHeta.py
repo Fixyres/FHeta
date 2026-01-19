@@ -246,7 +246,7 @@ class FHeta(loader.Module):
                 except:
                     pass
                     
-                await asyncio.sleep(10)
+                await asyncio.sleep(60)
             
     async def on_dlmod(self, client, db):
         try:
