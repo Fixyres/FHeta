@@ -533,17 +533,10 @@ class FHeta(loader.Module):
             "likes": first_mod.get('likes', 0),
             "dislikes": first_mod.get('dislikes', 0)
         }
-        
-        photo = None
-        if len(mods) == 1:
-            photo = await self._fetch_thumb(first_mod.get("banner"))
-            if photo == "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/assets/empty_pic.png":
-                photo = None
 
         await self.inline.form(
             message=message,
             text=self._fmt_mod(first_mod, query, 1, len(mods)),
-            photo=photo,
             reply_markup=self._mk_btns(first_mod.get("install", ""), stats, 0, mods if len(mods) > 1 else None, query)
         )
         
