@@ -1,4 +1,4 @@
-__version__ = (2, 0, 0)
+__version__ = (9, 2, 8)
 # meta developer: @FHeta_Updates
 
 # ©️ Fixyres, 2025
