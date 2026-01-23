@@ -1,4 +1,4 @@
-__version__ = (9, 2, 9)
+__version__ = (9, 3, 0)
 # meta developer: @FHeta_Updates
 
 # ©️ Fixyres, 2025
@@ -14,10 +14,10 @@ import subprocess
 import sys
 import ssl
 from typing import Optional, Dict, List
+from urllib.parse import unquote
 
 from .. import loader, utils
 from telethon.tl.functions.contacts import UnblockRequest
-
 
 @loader.tds
 class FHeta(loader.Module):
@@ -397,16 +397,18 @@ class FHeta(loader.Module):
     async def _rate_cb(self, call, install: str, action: str, idx: int, mods: Optional[List], query: str = ""):
         result = await self._api_post(f"rate/{self.uid}/{install}/{action}")
         
+        decoded_install = unquote(install)
+        
         if mods and idx < len(mods):
             mod = mods[idx]
-            stats_response = await self._api_post("get", json=[install])
-            stats = stats_response.get(install, {"likes": 0, "dislikes": 0})
+            stats_response = await self._api_post("get", json=[decoded_install])
+            stats = stats_response.get(decoded_install, {"likes": 0, "dislikes": 0})
             
             mod["likes"] = stats.get("likes", 0)
             mod["dislikes"] = stats.get("dislikes", 0)
         else:
-            stats_response = await self._api_post("get", json=[install])
-            stats = stats_response.get(install, {"likes": 0, "dislikes": 0})
+            stats_response = await self._api_post("get", json=[decoded_install])
+            stats = stats_response.get(decoded_install, {"likes": 0, "dislikes": 0})
         
         try:
             await call.edit(reply_markup=self._mk_btns(install, stats, idx, mods, query))
