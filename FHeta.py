@@ -31,7 +31,7 @@ class FHeta(loader.Module):
         "query_too_big": "{emoji} <b>Your query is too big, please try reducing it to 168 characters.</b>",
         "result_query": "{emoji} <b>Result {idx}/{total} by query:</b> <code>{query}</code>\n",
         "result_single": "{emoji} <b>Result by query:</b> <code>{query}</code>\n",
-        "module_info": "<code>{name}</code> <b>by</b> <code>{author}</code> <code>{version}</code>\n{emoji} <b>Command for installation:</b> <code>{install}</code>",
+        "module_info": "<code>{name}</code> <b>by</b> <code>{author}</code> <b>(</b><code>v{version}</code><b>)<b/>\n{emoji} <b>Command for installation:</b> <code>{install}</code>",
         "desc": "\n{emoji} <b>Description:</b> {desc}",
         "cmds": "\n{emoji} <b>Commands:</b>\n{cmds}",
         "inline_cmds": "\n{emoji} <b>Inline commands:</b>\n{cmds}",
@@ -55,7 +55,7 @@ class FHeta(loader.Module):
         "query_too_big": "{emoji} <b>Ваш запрос слишком большой, пожалуйста, сократите его до 168 символов.</b>",
         "result_query": "{emoji} <b>Результат {idx}/{total} по запросу:</b> <code>{query}</code>\n",
         "result_single": "{emoji} <b>Результат по запросу:</b> <code>{query}</code>\n",
-        "module_info": "<code>{name}</code> <b>от</b> <code>{author}</code> <code>{version}</code>\n{emoji} <b>Команда для установки:</b> <code>{install}</code>",
+        "module_info": "<code>{name}</code> <b>от</b> <code>{author}</code> <b>(</b><code>v{version}</code><b>)<b/>\n{emoji} <b>Команда для установки:</b> <code>{install}</code>",
         "desc": "\n{emoji} <b>Описание:</b> {desc}",
         "cmds": "\n{emoji} <b>Команды:</b>\n{cmds}",
         "inline_cmds": "\n{emoji} <b>Инлайн команды:</b>\n{cmds}",
@@ -80,7 +80,7 @@ class FHeta(loader.Module):
         "query_too_big": "{emoji} <b>Ihre Anfrage ist zu groß, bitte reduzieren Sie sie auf 168 Zeichen.</b>",
         "result_query": "{emoji} <b>Ergebnis {idx}/{total} für Anfrage:</b> <code>{query}</code>\n",
         "result_single": "{emoji} <b>Ergebnis für Anfrage:</b> <code>{query}</code>\n",
-        "module_info": "<code>{name}</code> <b>von</b> <code>{author}</code> <code>{version}</code>\n{emoji} <b>Installationsbefehl:</b> <code>{install}</code>",
+        "module_info": "<code>{name}</code> <b>von</b> <code>{author}</code> <b>(</b><code>v{version}</code><b>)<b/>\n{emoji} <b>Installationsbefehl:</b> <code>{install}</code>",
         "desc": "\n{emoji} <b>Beschreibung:</b> {desc}",
         "cmds": "\n{emoji} <b>Befehle:</b>\n{cmds}",
         "inline_cmds": "\n{emoji} <b>Inline-Befehle:</b>\n{cmds}",
@@ -105,7 +105,7 @@ class FHeta(loader.Module):
         "query_too_big": "{emoji} <b>Ваш запит занадто великий, будь ласка, скоротіть його до 168 символів.</b>",
         "result_query": "{emoji} <b>Результат {idx}/{total} за запитом:</b> <code>{query}</code>\n",
         "result_single": "{emoji} <b>Результат за запитом:</b> <code>{query}</code>\n",
-        "module_info": "<code>{name}</code> <b>від</b> <code>{author}</code> <code>{version}</code>\n{emoji} <b>Команда для встановлення:</b> <code>{install}</code>",
+        "module_info": "<code>{name}</code> <b>від</b> <code>{author}</code> <b>(</b><code>v{version}</code><b>)<b/>\n{emoji} <b>Команда для встановлення:</b> <code>{install}</code>",
         "desc": "\n{emoji} <b>Опис:</b> {desc}",
         "cmds": "\n{emoji} <b>Команди:</b>\n{cmds}",
         "inline_cmds": "\n{emoji} <b>Інлайн команди:</b>\n{cmds}",
@@ -122,7 +122,7 @@ class FHeta(loader.Module):
         "_cfg_doc_only_official_developers": "Використовувати лише модулі офіційних розробників під час пошуку?",
         "_cfg_doc_theme": "Тема для смайликів."
     }
-
+    
     THEMES = {
         "default": {
             "search": "🔎", "error": "❌", "warn": "❌", "result": "🔎", 
