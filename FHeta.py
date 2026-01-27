@@ -1,7 +1,7 @@
 __version__ = (9, 3, 0)
 # meta developer: @FModules
 
-# ©️ Fixyres, 2025
+# ©️ Fixyres, 2024-2026
 # 🌐 https://github.com/Fixyres/FHeta
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
