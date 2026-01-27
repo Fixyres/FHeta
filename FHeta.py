@@ -21,7 +21,7 @@ from telethon.tl.functions.contacts import UnblockRequest
 
 @loader.tds
 class FHeta(loader.Module):
-    '''Module for searching modules! Watch all news FHeta in @FHeta_Updates!'''
+    '''Module for searching modules! Watch all FHeta news in @FHeta_Updates!'''
    
     strings = {
         "name": "FHeta",
