@@ -136,17 +136,17 @@ class FHeta(loader.Module):
         },
         "summer": {
             "search": "☀️", "error": "🏖️", "warn": "🏜️", "result": "🌴", 
-            "install": "💾", "description": "🍹", "command": "🏄", "inline": "🏊", 
+            "install": "🍦", "description": "🍹", "command": "🏄", "inline": "🏊", 
             "like": "🍓", "dislike": "🥵", "prev": "⬅️", "next": "➡️"
         },
         "spring": {
             "search": "🌱", "error": "🌷", "warn": "🥀", "result": "🌿", 
-            "install": "💾", "description": "🍃", "command": "🦋", "inline": "🐝", 
+            "install": "🌻", "description": "🍃", "command": "🦋", "inline": "🐝", 
             "like": "🌸", "dislike": "🌧️", "prev": "⏪", "next": "⏩"
         },
         "autumn": {
             "search": "🍂", "error": "🍁", "warn": "🕸️", "result": "🍄", 
-            "install": "💾", "description": "📜", "command": "🧣", "inline": "🦔", 
+            "install": "🧺", "description": "📜", "command": "🧣", "inline": "🦔", 
             "like": "🍎", "dislike": "🌧️", "prev": "👈", "next": "👉"
         }
     }
@@ -312,7 +312,7 @@ class FHeta(loader.Module):
             name=utils.escape_html(mod.get("name", "")),
             author=utils.escape_html(mod.get("author", "???")),
             version=utils.escape_html(mod.get("version", "?.?.?")),
-            install=f"{self.get_prefix()}{utils.escape_html(mod.get('install', ''))}",
+            install = f"{self.get_prefix()}{unquote(mod.get('install', ''))}",
             emoji=self._get_emoji("install")
         )
 
