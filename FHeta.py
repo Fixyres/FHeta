@@ -190,14 +190,15 @@ class FHeta(loader.Module):
         self.uid = (await client.get_me()).id
         self.token = db.get("FHeta", "token")
 
-        try:
-            async with client.conversation("@FHeta_robot") as conv:
-                await conv.send_message('/token')
-                resp = await conv.get_response(timeout=5)
-                self.token = resp.text.strip()
-                db.set("FHeta", "token", self.token)
-        except:
-            pass
+        if not self.token:
+            try:
+                async with client.conversation("@FHeta_robot") as conv:
+                    await conv.send_message('/token')
+                    resp = await conv.get_response(timeout=5)
+                    self.token = resp.text.strip()
+                    db.set("FHeta", "token", self.token)
+            except:
+                pass
             
         asyncio.create_task(self._sync_loop())
         asyncio.create_task(self._certifi_loop())
