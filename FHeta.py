@@ -1,5 +1,5 @@
 __version__ = (9, 3, 0)
-# meta developer: @FHeta_Updates
+# meta developer: @FModules
 
 # ©️ Fixyres, 2025
 # 🌐 https://github.com/Fixyres/FHeta
