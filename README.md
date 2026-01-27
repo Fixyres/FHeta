@@ -1,1 +1,1 @@
-**🔎 FHeta this is [Heroku](https://github.com/coddrago/Heroku) module for searching modules!**
+**🔎 FHeta this is official [Heroku](https://github.com/coddrago/Heroku) module for searching modules!**
