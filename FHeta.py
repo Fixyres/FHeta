@@ -123,6 +123,106 @@ class FHeta(loader.Module):
         "_cfg_doc_theme": "Тема для смайликів."
     }
     
+    strings_fr = {
+        "searching": "{emoji} <b>Recherche...</b>",
+        "no_query": "{emoji} <b>Entrez une requête pour rechercher.</b>",
+        "no_results": "{emoji} <b>Aucun module trouvé.</b>",
+        "query_too_big": "{emoji} <b>Votre requête est trop longue, veuillez la réduire à 168 caractères.</b>",
+        "result_query": "{emoji} <b>Résultat {idx}/{total} pour la requête:</b> <code>{query}</code>\n",
+        "result_single": "{emoji} <b>Résultat pour la requête:</b> <code>{query}</code>\n",
+        "module_info": "<code>{name}</code> <b>par</b> <code>{author}</code> <code>{version}</code>\n{emoji} <b>Commande d'installation:</b> <code>{install}</code>",
+        "desc": "\n{emoji} <b>Description:</b> {desc}",
+        "cmds": "\n{emoji} <b>Commandes:</b>\n{cmds}",
+        "inline_cmds": "\n{emoji} <b>Commandes inline:</b>\n{cmds}",
+        "lang": "fr",
+        "rating_added": "{emoji} Évaluation soumise!",
+        "rating_changed": "{emoji} L'évaluation a été modifiée!",
+        "rating_removed": "{emoji} Évaluation supprimée!",
+        "inline_no_query": "Entrez une requête pour rechercher.",
+        "inline_desc": "Nom, commande, description, auteur.",
+        "inline_no_results": "Essayez une autre requête.",
+        "inline_query_too_big": "Votre requête est trop longue, veuillez la réduire à 168 caractères.",
+        "_cfg_doc_tracking": "Activer le suivi de vos données (ID utilisateur, langue) pour la synchronisation avec le bot FHeta?",
+        "_cls_doc": "Module de recherche de modules! Suivez toutes les actualités FHeta sur @FHeta_Updates!",
+        "_cfg_doc_only_official_developers": "Utiliser uniquement les modules des développeurs officiels Heroku lors de la recherche?",
+        "_cfg_doc_theme": "Thème pour les emojis."
+    }
+    
+    strings_jp = {
+        "searching": "{emoji} <b>検索中...</b>",
+        "no_query": "{emoji} <b>検索するクエリを入力してください。</b>",
+        "no_results": "{emoji} <b>モジュールが見つかりません。</b>",
+        "query_too_big": "{emoji} <b>クエリが長すぎます。168文字以内に短縮してください。</b>",
+        "result_query": "{emoji} <b>検索結果 {idx}/{total} クエリ:</b> <code>{query}</code>\n",
+        "result_single": "{emoji} <b>検索結果 クエリ:</b> <code>{query}</code>\n",
+        "module_info": "<code>{name}</code> <b>作成者:</b> <code>{author}</code> <code>{version}</code>\n{emoji} <b>インストールコマンド:</b> <code>{install}</code>",
+        "desc": "\n{emoji} <b>説明:</b> {desc}",
+        "cmds": "\n{emoji} <b>コマンド:</b>\n{cmds}",
+        "inline_cmds": "\n{emoji} <b>インラインコマンド:</b>\n{cmds}",
+        "lang": "jp",
+        "rating_added": "{emoji} 評価が送信されました！",
+        "rating_changed": "{emoji} 評価が変更されました！",
+        "rating_removed": "{emoji} 評価が削除されました！",
+        "inline_no_query": "検索するクエリを入力してください。",
+        "inline_desc": "名前、コマンド、説明、作成者。",
+        "inline_no_results": "別のクエリを試してください。",
+        "inline_query_too_big": "クエリが長すぎます。168文字以内に短縮してください。",
+        "_cfg_doc_tracking": "FHetaボットとの同期のためにデータ（ユーザーID、言語）の追跡を有効にしますか？",
+        "_cls_doc": "モジュール検索モジュール！@FHeta_UpdatesでFHetaの最新情報をフォローしてください！",
+        "_cfg_doc_only_official_developers": "検索時に公式Heroku開発者のモジュールのみを使用しますか？",
+        "_cfg_doc_theme": "絵文字のテーマ。"
+    }
+    
+    strings_uz = {
+        "searching": "{emoji} <b>Qidirilmoqda...</b>",
+        "no_query": "{emoji} <b>Qidirish uchun so'rov kiriting.</b>",
+        "no_results": "{emoji} <b>Modullar topilmadi.</b>",
+        "query_too_big": "{emoji} <b>So'rovingiz juda katta, iltimos uni 168 belgiga qisqartiring.</b>",
+        "result_query": "{emoji} <b>Natija {idx}/{total} so'rov bo'yicha:</b> <code>{query}</code>\n",
+        "result_single": "{emoji} <b>Natija so'rov bo'yicha:</b> <code>{query}</code>\n",
+        "module_info": "<code>{name}</code> <b>muallif:</b> <code>{author}</code> <code>{version}</code>\n{emoji} <b>O'rnatish buyrug'i:</b> <code>{install}</code>",
+        "desc": "\n{emoji} <b>Tavsif:</b> {desc}",
+        "cmds": "\n{emoji} <b>Buyruqlar:</b>\n{cmds}",
+        "inline_cmds": "\n{emoji} <b>Inline buyruqlar:</b>\n{cmds}",
+        "lang": "uz",
+        "rating_added": "{emoji} Baho yuborildi!",
+        "rating_changed": "{emoji} Baho o'zgartirildi!",
+        "rating_removed": "{emoji} Baho o'chirildi!",
+        "inline_no_query": "Qidirish uchun so'rov kiriting.",
+        "inline_desc": "Nomi, buyruq, tavsif, muallif.",
+        "inline_no_results": "Boshqa so'rov bilan urinib ko'ring.",
+        "inline_query_too_big": "So'rovingiz juda katta, iltimos uni 168 belgiga qisqartiring.",
+        "_cfg_doc_tracking": "FHeta boti bilan sinxronlashtirish uchun ma'lumotlaringizni (foydalanuvchi ID, til) kuzatishni yoqish?",
+        "_cls_doc": "Modullarni qidirish moduli! @FHeta_Updates kanalida FHeta yangiliklari bilan tanishing!",
+        "_cfg_doc_only_official_developers": "Qidirishda faqat rasmiy Heroku dasturchilari modullaridan foydalanish?",
+        "_cfg_doc_theme": "Emojilar uchun mavzu."
+    }
+    
+    strings_kz = {
+        "searching": "{emoji} <b>Іздеу...</b>",
+        "no_query": "{emoji} <b>Іздеу үшін сұраныс енгізіңіз.</b>",
+        "no_results": "{emoji} <b>Модульдер табылмады.</b>",
+        "query_too_big": "{emoji} <b>Сұранысыңыз тым үлкен, оны 168 таңбаға дейін қысқартыңыз.</b>",
+        "result_query": "{emoji} <b>Нәтиже {idx}/{total} сұраныс бойынша:</b> <code>{query}</code>\n",
+        "result_single": "{emoji} <b>Нәтиже сұраныс бойынша:</b> <code>{query}</code>\n",
+        "module_info": "<code>{name}</code> <b>авторы:</b> <code>{author}</code> <code>{version}</code>\n{emoji} <b>Орнату командасы:</b> <code>{install}</code>",
+        "desc": "\n{emoji} <b>Сипаттама:</b> {desc}",
+        "cmds": "\n{emoji} <b>Командалар:</b>\n{cmds}",
+        "inline_cmds": "\n{emoji} <b>Inline командалар:</b>\n{cmds}",
+        "lang": "kz",
+        "rating_added": "{emoji} Баға жіберілді!",
+        "rating_changed": "{emoji} Баға өзгертілді!",
+        "rating_removed": "{emoji} Баға жойылды!",
+        "inline_no_query": "Іздеу үшін сұраныс енгізіңіз.",
+        "inline_desc": "Атауы, команда, сипаттама, автор.",
+        "inline_no_results": "Басқа сұранысты байқап көріңіз.",
+        "inline_query_too_big": "Сұранысыңыз тым үлкен, оны 168 таңбаға дейін қысқартыңыз.",
+        "_cfg_doc_tracking": "FHeta ботымен синхрондау үшін деректеріңізді (пайдаланушы ID, тіл) бақылауды қосу?",
+        "_cls_doc": "Модульдерді іздеу модулі! @FHeta_Updates арнасында FHeta жаңалықтарын бақылаңыз!",
+        "_cfg_doc_only_official_developers": "Іздеу кезінде тек ресми Heroku әзірлеушілерінің модульдерін пайдалану?",
+        "_cfg_doc_theme": "Эмодзилер үшін тақырып."
+    }
+    
     THEMES = {
         "default": {
             "search": "🔎", "error": "❌", "warn": "❌", "result": "🔎", 
