@@ -1,4 +1,4 @@
-__version__ = (9, 3, 0)
+__version__ = (9, 3, 1)
 # meta developer: @FModules
 
 # ©️ Fixyres, 2024-2026
