@@ -408,11 +408,14 @@ class FHeta(loader.Module):
         return self.THEMES[self.config["theme"]][key]
 
     def _fmt_mod(self, mod: Dict, query: str = "", idx: int = 1, total: int = 1, inline: bool = False) -> str:
+        install_cmd = mod.get('install', '')
+        decoded_install = unquote(install_cmd.replace('%20', '___SPACE___')).replace('___SPACE___', '%20')
+        
         info = self.strings["module_info"].format(
             name=utils.escape_html(mod.get("name", "")),
             author=utils.escape_html(mod.get("author", "???")),
             version=utils.escape_html(mod.get("version", "?.?.?")),
-            install = f"{self.get_prefix()}{unquote(mod.get('install', ''))}",
+            install=f"{self.get_prefix()}{utils.escape_html(decoded_install)}",
             emoji=self._get_emoji("install")
         )
 
@@ -498,7 +501,7 @@ class FHeta(loader.Module):
     async def _rate_cb(self, call, install: str, action: str, idx: int, mods: Optional[List], query: str = ""):
         result = await self._api_post(f"rate/{self.uid}/{install}/{action}")
         
-        decoded_install = unquote(install.replace('%20', '___SPACE___')).replace('___SPACE___', '%20')
+        decoded_install = unquote(install)
         
         if mods and idx < len(mods):
             mod = mods[idx]
