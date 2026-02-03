@@ -498,7 +498,7 @@ class FHeta(loader.Module):
     async def _rate_cb(self, call, install: str, action: str, idx: int, mods: Optional[List], query: str = ""):
         result = await self._api_post(f"rate/{self.uid}/{install}/{action}")
         
-        decoded_install = unquote(install)
+        decoded_install = unquote(install.replace('%20', '___SPACE___')).replace('___SPACE___', '%20')
         
         if mods and idx < len(mods):
             mod = mods[idx]
