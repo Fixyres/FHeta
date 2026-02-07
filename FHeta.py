@@ -1,4 +1,4 @@
-__version__ = (9, 3, 1)
+__version__ = (9, 3, 2)
 # meta developer: @FModules
 
 # ©️ Fixyres, 2024-2026
@@ -10,31 +10,27 @@ __version__ = (9, 3, 1)
 
 import asyncio
 import aiohttp
-import subprocess
-import sys
-import ssl
 from typing import Optional, Dict, List
 from urllib.parse import unquote
 
 from .. import loader, utils
 from telethon.tl.functions.contacts import UnblockRequest
 
+
 @loader.tds
 class FHeta(loader.Module):
     '''Module for searching modules! Watch all FHeta news in @FHeta_Updates!'''
-   
+
     strings = {
         "name": "FHeta",
-        "searching": "{emoji} <b>Searching...</b>",
-        "no_query": "{emoji} <b>Enter a query to search.</b>",
-        "no_results": "{emoji} <b>No modules found.</b>",
+        "searching": "{emoji} <b>Searching for <code>{query}</code>...</b>",
+        "no_query": "{emoji} <b>You didn't enter a search query, example: <code>{prefix}fheta your_query</code></b>",
+        "no_results": "{emoji} <b>Nothing found for query <code>{query}</code>.</b>",
         "query_too_big": "{emoji} <b>Your query is too big, please try reducing it to 168 characters.</b>",
-        "result_query": "{emoji} <b>Result {idx}/{total} by query:</b> <code>{query}</code>\n",
-        "result_single": "{emoji} <b>Result by query:</b> <code>{query}</code>\n",
-        "module_info": "<code>{name}</code> <b>by</b> <code>{author}</code> <b>(</b><code>v{version}</code><b>)</b>\n{emoji} <b>Command for installation:</b> <code>{install}</code>",
-        "desc": "\n{emoji} <b>Description:</b> {desc}",
-        "cmds": "\n{emoji} <b>Commands:</b>\n{cmds}",
-        "inline_cmds": "\n{emoji} <b>Inline commands:</b>\n{cmds}",
+        "module_info": "{emoji} <code>{name}</code> <b>by</b> <code>{author}</code>",
+        "module_info_version": "{emoji} <code>{name}</code> <b>by</b> <code>{author}</code> (<code>v{version}</code>)",
+        "desc": "\n\n{emoji} <b>Description:</b>\n<blockquote expandable>{desc}</blockquote>",
+        "cmds": "\n\n{emoji} <b>Commands:</b>\n<blockquote expandable>{cmds}</blockquote>",
         "lang": "en",
         "rating_added": "{emoji} Rating submitted!",
         "rating_changed": "{emoji} Rating has been changed!",
@@ -43,211 +39,262 @@ class FHeta(loader.Module):
         "inline_desc": "Name, command, description, author.",
         "inline_no_results": "Try another query.",
         "inline_query_too_big": "Your query is too big, please try reducing it to 168 characters.",
+        "query_label": "Query",
+        "results_count": "{idx}/{total}",
+        "install_btn": "Install",
+        "url_btn": "URL",
+        "install_success": "{emoji} Successfully installed!",
+        "install_error": "{emoji} Installation error, the module may be broken.",
+        "join_channel": "{emoji} This is the channel with all updates in FHeta!",
+        "modules_list": "{emoji} <b>All found modules:</b>",
         "_cfg_doc_tracking": "Enable tracking of your data (user ID, language) for synchronization with the FHeta bot?",
         "_cfg_doc_only_official_developers": "Use only modules from official Heroku developers when searching?",
         "_cfg_doc_theme": "Theme for emojis."
     }
     
     strings_ru = {
-        "searching": "{emoji} <b>Поиск...</b>",
-        "no_query": "{emoji} <b>Введите запрос для поиска.</b>",
-        "no_results": "{emoji} <b>Модули не найдены.</b>",
+        "_cls_doc": "Модуль для поиска модулей! Следите за всеми новостями FHeta в @FHeta_Updates!",
+        "searching": "{emoji} <b>Поиск по запросу <code>{query}</code>...</b>",
+        "no_query": "{emoji} <b>Вы не ввели запрос для поиска, пример: <code>{prefix}fheta ваш_запрос</code></b>",
+        "no_results": "{emoji} <b>Ничего не найдено по запросу <code>{query}</code>.</b>",
         "query_too_big": "{emoji} <b>Ваш запрос слишком большой, пожалуйста, сократите его до 168 символов.</b>",
-        "result_query": "{emoji} <b>Результат {idx}/{total} по запросу:</b> <code>{query}</code>\n",
-        "result_single": "{emoji} <b>Результат по запросу:</b> <code>{query}</code>\n",
-        "module_info": "<code>{name}</code> <b>от</b> <code>{author}</code> <b>(</b><code>v{version}</code><b>)</b>\n{emoji} <b>Команда для установки:</b> <code>{install}</code>",
-        "desc": "\n{emoji} <b>Описание:</b> {desc}",
-        "cmds": "\n{emoji} <b>Команды:</b>\n{cmds}",
-        "inline_cmds": "\n{emoji} <b>Инлайн команды:</b>\n{cmds}",
+        "module_info": "{emoji} <code>{name}</code> <b>от</b> <code>{author}</code>",
+        "module_info_version": "{emoji} <code>{name}</code> <b>от</b> <code>{author}</code> (<code>v{version}</code>)",
+        "desc": "\n\n{emoji} <b>Описание:</b>\n<blockquote expandable>{desc}</blockquote>",
+        "cmds": "\n\n{emoji} <b>Команды:</b>\n<blockquote expandable>{cmds}</blockquote>",
         "lang": "ru",
-        "rating_added": "{emoji} Оценка отправлена!",
+        "rating_added": "{emoji} Оценка добавлена!",
         "rating_changed": "{emoji} Оценка изменена!",
         "rating_removed": "{emoji} Оценка удалена!",
         "inline_no_query": "Введите запрос для поиска.",
         "inline_desc": "Название, команда, описание, автор.",
         "inline_no_results": "Попробуйте другой запрос.",
         "inline_query_too_big": "Ваш запрос слишком большой, пожалуйста, сократите его до 168 символов.",
+        "query_label": "Запрос",
+        "install_btn": "Установить",
+        "install_success": "{emoji} Успешно установлено!",
+        "install_error": "{emoji} Ошибка установки, возможно модуль сломан.",
+        "join_channel": "{emoji} Это канал со всеми обновлениями FHeta!",
+        "modules_list": "{emoji} <b>Все найденные модули:</b>",
         "_cfg_doc_tracking": "Включить отслеживание ваших данных (ID пользователя, язык) для синхронизации с ботом FHeta?",
-        "_cls_doc": "Модуль для поиска модулей! Следите за всеми новостями FHeta в @FHeta_Updates!",
-        "_cfg_doc_only_official_developers": "Использовать только модули официальных разработчиков Heroku при поиске?",
-        "_cfg_doc_theme": "Тема для смайликов."
-    }
-    
-    strings_de = {
-        "searching": "{emoji} <b>Suche...</b>",
-        "no_query": "{emoji} <b>Geben Sie eine Suchanfrage ein.</b>",
-        "no_results": "{emoji} <b>Keine Module gefunden.</b>",
-        "query_too_big": "{emoji} <b>Ihre Anfrage ist zu groß, bitte reduzieren Sie sie auf 168 Zeichen.</b>",
-        "result_query": "{emoji} <b>Ergebnis {idx}/{total} für Anfrage:</b> <code>{query}</code>\n",
-        "result_single": "{emoji} <b>Ergebnis für Anfrage:</b> <code>{query}</code>\n",
-        "module_info": "<code>{name}</code> <b>von</b> <code>{author}</code> <b>(</b><code>v{version}</code><b>)</b>\n{emoji} <b>Installationsbefehl:</b> <code>{install}</code>",
-        "desc": "\n{emoji} <b>Beschreibung:</b> {desc}",
-        "cmds": "\n{emoji} <b>Befehle:</b>\n{cmds}",
-        "inline_cmds": "\n{emoji} <b>Inline-Befehle:</b>\n{cmds}",
-        "lang": "de",
-        "rating_added": "{emoji} Bewertung eingereicht!",
-        "rating_changed": "{emoji} Bewertung wurde geändert!",
-        "rating_removed": "{emoji} Bewertung gelöscht!",
-        "inline_no_query": "Geben Sie eine Suchanfrage ein.",
-        "inline_desc": "Name, Befehl, Beschreibung, Autor.",
-        "inline_no_results": "Versuchen Sie eine andere Anfrage.",
-        "inline_query_too_big": "Ihre Anfrage ist zu groß, bitte reduzieren Sie sie auf 168 Zeichen.",
-        "_cfg_doc_tracking": "Tracking Ihrer Daten (Benutzer-ID, Sprache) für die Synchronisierung mit dem FHeta-Bot?",
-        "_cls_doc": "Modul zum Suchen von Modulen! Verfolgen Sie alle Neuigkeiten von FHeta in @FHeta_Updates!",
-        "_cfg_doc_only_official_developers": "Nur Module von offiziellen Entwicklern bei der Suche verwenden?",
-        "_cfg_doc_theme": "Thema für Emojis."
+        "_cfg_doc_only_official_developers": "Использовать только модули от официальных разработчиков Heroku при поиске?",
+        "_cfg_doc_theme": "Тема для эмодзи."
     }
     
     strings_ua = {
-        "searching": "{emoji} <b>Пошук...</b>",
-        "no_query": "{emoji} <b>Введіть запит для пошуку.</b>",
-        "no_results": "{emoji} <b>Модулі не знайдені.</b>",
+        "_cls_doc": "Модуль для пошуку модулів! Слідкуйте за всіма новинами FHeta в @FHeta_Updates!",
+        "searching": "{emoji} <b>Пошук за запитом <code>{query}</code>...</b>",
+        "no_query": "{emoji} <b>Ви не ввели запит для пошуку, приклад: <code>{prefix}fheta ваш_запит</code></b>",
+        "no_results": "{emoji} <b>Нічого не знайдено за запитом <code>{query}</code>.</b>",
         "query_too_big": "{emoji} <b>Ваш запит занадто великий, будь ласка, скоротіть його до 168 символів.</b>",
-        "result_query": "{emoji} <b>Результат {idx}/{total} за запитом:</b> <code>{query}</code>\n",
-        "result_single": "{emoji} <b>Результат за запитом:</b> <code>{query}</code>\n",
-        "module_info": "<code>{name}</code> <b>від</b> <code>{author}</code> <b>(</b><code>v{version}</code><b>)</b>\n{emoji} <b>Команда для встановлення:</b> <code>{install}</code>",
-        "desc": "\n{emoji} <b>Опис:</b> {desc}",
-        "cmds": "\n{emoji} <b>Команди:</b>\n{cmds}",
-        "inline_cmds": "\n{emoji} <b>Інлайн команди:</b>\n{cmds}",
+        "module_info": "{emoji} <code>{name}</code> <b>від</b> <code>{author}</code>",
+        "module_info_version": "{emoji} <code>{name}</code> <b>від</b> <code>{author}</code> (<code>v{version}</code>)",
+        "desc": "\n\n{emoji} <b>Опис:</b>\n<blockquote expandable>{desc}</blockquote>",
+        "cmds": "\n\n{emoji} <b>Команди:</b>\n<blockquote expandable>{cmds}</blockquote>",
         "lang": "ua",
-        "rating_added": "{emoji} Оцінку надіслано!",
+        "rating_added": "{emoji} Оцінку додано!",
         "rating_changed": "{emoji} Оцінку змінено!",
         "rating_removed": "{emoji} Оцінку видалено!",
         "inline_no_query": "Введіть запит для пошуку.",
         "inline_desc": "Назва, команда, опис, автор.",
         "inline_no_results": "Спробуйте інший запит.",
         "inline_query_too_big": "Ваш запит занадто великий, будь ласка, скоротіть його до 168 символів.",
+        "query_label": "Запит",
+        "install_btn": "Встановити",
+        "install_success": "{emoji} Успішно встановлено!",
+        "install_error": "{emoji} Помилка встановлення, можливо модуль зламаний.",
+        "join_channel": "{emoji} Це канал з усіма оновленнями FHeta!",
+        "modules_list": "{emoji} <b>Всі знайдені модулі:</b>",
         "_cfg_doc_tracking": "Увімкнути відстеження ваших даних (ID користувача, мова) для синхронізації з ботом FHeta?",
-        "_cls_doc": "Модуль для пошуку модулів! Стежте за всіма новинами FHeta в @FHeta_Updates!",
-        "_cfg_doc_only_official_developers": "Використовувати лише модулі офіційних розробників під час пошуку?",
-        "_cfg_doc_theme": "Тема для смайликів."
+        "_cfg_doc_only_official_developers": "Використовувати тільки модулі від офіційних розробників Heroku при пошуку?",
+        "_cfg_doc_theme": "Тема для емодзі."
+    }
+    
+    strings_kz = {
+        "_cls_doc": "Модульдерді іздеу модулі! FHeta барлық жаңалықтарын @FHeta_Updates арнасында қадағалаңыз!",
+        "searching": "{emoji} <b><code>{query}</code> сұрауы бойынша іздеу...</b>",
+        "no_query": "{emoji} <b>Сіз іздеу сұрауын енгізбедіңіз, мысал: <code>{prefix}fheta сіздің_сұрауыңыз</code></b>",
+        "no_results": "{emoji} <b><code>{query}</code> сұрауы бойынша ештеңе табылмады.</b>",
+        "query_too_big": "{emoji} <b>Сіздің сұрауыңыз тым үлкен, оны 168 таңбаға дейін қысқартыңыз.</b>",
+        "module_info": "{emoji} <code>{name}</code> <b>авторы</b> <code>{author}</code>",
+        "module_info_version": "{emoji} <code>{name}</code> <b>авторы</b> <code>{author}</code> (<code>v{version}</code>)",
+        "desc": "\n\n{emoji} <b>Сипаттама:</b>\n<blockquote expandable>{desc}</blockquote>",
+        "cmds": "\n\n{emoji} <b>Командалар:</b>\n<blockquote expandable>{cmds}</blockquote>",
+        "lang": "kz",
+        "rating_added": "{emoji} Бағалау қосылды!",
+        "rating_changed": "{emoji} Бағалау өзгертілді!",
+        "rating_removed": "{emoji} Бағалау жойылды!",
+        "inline_no_query": "Іздеу үшін сұрау енгізіңіз.",
+        "inline_desc": "Атауы, команда, сипаттама, автор.",
+        "inline_no_results": "Басқа сұрауды қолданып көріңіз.",
+        "inline_query_too_big": "Сіздің сұрауыңыз тым үлкен, оны 168 таңбаға дейін қысқартыңыз.",
+        "query_label": "Сұрау",
+        "install_btn": "Орнату",
+        "install_success": "{emoji} Сәтті орнатылды!",
+        "install_error": "{emoji} Орнату қатесі, мүмкін модуль бұзылған.",
+        "join_channel": "{emoji} Бұл FHeta барлық жаңартулары бар арна!",
+        "modules_list": "{emoji} <b>Барлық табылған модульдер:</b>",
+        "_cfg_doc_tracking": "FHeta ботымен синхрондау үшін деректеріңізді (пайдаланушы идентификаторы, тіл) қадағалауды қосу керек пе?",
+        "_cfg_doc_only_official_developers": "Іздеу кезінде тек ресми Heroku әзірлеушілерінің модульдерін пайдалану керек пе?",
+        "_cfg_doc_theme": "Эмодзилер үшін тақырып."
+    }
+    
+    strings_uz = {
+        "_cls_doc": "Modullarni qidirish moduli! FHeta barcha yangilanishlarini @FHeta_Updates kanalida kuzatib boring!",
+        "searching": "{emoji} <b><code>{query}</code> so'rovi bo'yicha qidiruv...</b>",
+        "no_query": "{emoji} <b>Siz qidiruv so'rovini kiritmadingiz, misol: <code>{prefix}fheta sizning_sorovingiz</code></b>",
+        "no_results": "{emoji} <b><code>{query}</code> so'rovi bo'yicha hech narsa topilmadi.</b>",
+        "query_too_big": "{emoji} <b>Sizning so'rovingiz juda katta, iltimos uni 168 belgigacha qisqartiring.</b>",
+        "module_info": "{emoji} <code>{name}</code> <b>muallif</b> <code>{author}</code>",
+        "module_info_version": "{emoji} <code>{name}</code> <b>muallif</b> <code>{author}</code> (<code>v{version}</code>)",
+        "desc": "\n\n{emoji} <b>Tavsif:</b>\n<blockquote expandable>{desc}</blockquote>",
+        "cmds": "\n\n{emoji} <b>Buyruqlar:</b>\n<blockquote expandable>{cmds}</blockquote>",
+        "lang": "uz",
+        "rating_added": "{emoji} Reyting qo'shildi!",
+        "rating_changed": "{emoji} Reyting o'zgartirildi!",
+        "rating_removed": "{emoji} Reyting o'chirildi!",
+        "inline_no_query": "Qidirish uchun so'rov kiriting.",
+        "inline_desc": "Nomi, buyruq, tavsif, muallif.",
+        "inline_no_results": "Boshqa so'rovni sinab ko'ring.",
+        "inline_query_too_big": "Sizning so'rovingiz juda katta, iltimos uni 168 belgigacha qisqartiring.",
+        "query_label": "So'rov",
+        "install_btn": "O'rnatish",
+        "install_success": "{emoji} Muvaffaqiyatli o'rnatildi!",
+        "install_error": "{emoji} O'rnatish xatosi, ehtimol modul buzilgan.",
+        "join_channel": "{emoji} Bu FHeta barcha yangilanishlari bo'lgan kanal!",
+        "modules_list": "{emoji} <b>Barcha topilgan modullar:</b>",
+        "_cfg_doc_tracking": "FHeta boti bilan sinxronlashtirish uchun ma'lumotlaringizni (foydalanuvchi IDsi, til) kuzatishni yoqish kerakmi?",
+        "_cfg_doc_only_official_developers": "Qidiruv paytida faqat rasmiy Heroku ishlab chiquvchilarining modullaridan foydalanish kerakmi?",
+        "_cfg_doc_theme": "Emojilar uchun mavzu."
     }
     
     strings_fr = {
-        "searching": "{emoji} <b>Recherche...</b>",
-        "no_query": "{emoji} <b>Entrez une requête pour rechercher.</b>",
-        "no_results": "{emoji} <b>Aucun module trouvé.</b>",
+        "_cls_doc": "Module de recherche de modules! Suivez toutes les actualités FHeta sur @FHeta_Updates!",
+        "searching": "{emoji} <b>Recherche pour <code>{query}</code>...</b>",
+        "no_query": "{emoji} <b>Vous n'avez pas entré de requête de recherche, exemple: <code>{prefix}fheta votre_requête</code></b>",
+        "no_results": "{emoji} <b>Rien trouvé pour la requête <code>{query}</code>.</b>",
         "query_too_big": "{emoji} <b>Votre requête est trop longue, veuillez la réduire à 168 caractères.</b>",
-        "result_query": "{emoji} <b>Résultat {idx}/{total} pour la requête:</b> <code>{query}</code>\n",
-        "result_single": "{emoji} <b>Résultat pour la requête:</b> <code>{query}</code>\n",
-        "module_info": "<code>{name}</code> <b>par</b> <code>{author}</code> <code>{version}</code>\n{emoji} <b>Commande d'installation:</b> <code>{install}</code>",
-        "desc": "\n{emoji} <b>Description:</b> {desc}",
-        "cmds": "\n{emoji} <b>Commandes:</b>\n{cmds}",
-        "inline_cmds": "\n{emoji} <b>Commandes inline:</b>\n{cmds}",
+        "module_info": "{emoji} <code>{name}</code> <b>par</b> <code>{author}</code>",
+        "module_info_version": "{emoji} <code>{name}</code> <b>par</b> <code>{author}</code> (<code>v{version}</code>)",
+        "desc": "\n\n{emoji} <b>Description:</b>\n<blockquote expandable>{desc}</blockquote>",
+        "cmds": "\n\n{emoji} <b>Commandes:</b>\n<blockquote expandable>{cmds}</blockquote>",
         "lang": "fr",
-        "rating_added": "{emoji} Évaluation soumise!",
-        "rating_changed": "{emoji} L'évaluation a été modifiée!",
-        "rating_removed": "{emoji} Évaluation supprimée!",
+        "rating_added": "{emoji} Note ajoutée!",
+        "rating_changed": "{emoji} Note modifiée!",
+        "rating_removed": "{emoji} Note supprimée!",
         "inline_no_query": "Entrez une requête pour rechercher.",
         "inline_desc": "Nom, commande, description, auteur.",
         "inline_no_results": "Essayez une autre requête.",
         "inline_query_too_big": "Votre requête est trop longue, veuillez la réduire à 168 caractères.",
+        "query_label": "Requête",
+        "install_btn": "Installer",
+        "install_success": "{emoji} Installé avec succès!",
+        "install_error": "{emoji} Erreur d'installation, le module est peut-être cassé.",
+        "join_channel": "{emoji} C'est le canal avec toutes les mises à jour de FHeta!",
+        "modules_list": "{emoji} <b>Tous les modules trouvés:</b>",
         "_cfg_doc_tracking": "Activer le suivi de vos données (ID utilisateur, langue) pour la synchronisation avec le bot FHeta?",
-        "_cls_doc": "Module de recherche de modules! Suivez toutes les actualités FHeta sur @FHeta_Updates!",
-        "_cfg_doc_only_official_developers": "Utiliser uniquement les modules des développeurs officiels Heroku lors de la recherche?",
+        "_cfg_doc_only_official_developers": "Utiliser uniquement les modules des développeurs Heroku officiels lors de la recherche?",
         "_cfg_doc_theme": "Thème pour les emojis."
     }
     
+    strings_de = {
+        "_cls_doc": "Modul zur Suche nach Modulen! Verfolgen Sie alle FHeta-Neuigkeiten auf @FHeta_Updates!",
+        "searching": "{emoji} <b>Suche nach <code>{query}</code>...</b>",
+        "no_query": "{emoji} <b>Sie haben keine Suchanfrage eingegeben, Beispiel: <code>{prefix}fheta ihre_anfrage</code></b>",
+        "no_results": "{emoji} <b>Nichts gefunden für Anfrage <code>{query}</code>.</b>",
+        "query_too_big": "{emoji} <b>Ihre Anfrage ist zu groß, bitte reduzieren Sie sie auf 168 Zeichen.</b>",
+        "module_info": "{emoji} <code>{name}</code> <b>von</b> <code>{author}</code>",
+        "module_info_version": "{emoji} <code>{name}</code> <b>von</b> <code>{author}</code> (<code>v{version}</code>)",
+        "desc": "\n\n{emoji} <b>Beschreibung:</b>\n<blockquote expandable>{desc}</blockquote>",
+        "cmds": "\n\n{emoji} <b>Befehle:</b>\n<blockquote expandable>{cmds}</blockquote>",
+        "lang": "de",
+        "rating_added": "{emoji} Bewertung hinzugefügt!",
+        "rating_changed": "{emoji} Bewertung geändert!",
+        "rating_removed": "{emoji} Bewertung gelöscht!",
+        "inline_no_query": "Geben Sie eine Suchanfrage ein.",
+        "inline_desc": "Name, Befehl, Beschreibung, Autor.",
+        "inline_no_results": "Versuchen Sie eine andere Anfrage.",
+        "inline_query_too_big": "Ihre Anfrage ist zu groß, bitte reduzieren Sie sie auf 168 Zeichen.",
+        "query_label": "Anfrage",
+        "install_btn": "Installieren",
+        "install_success": "{emoji} Erfolgreich installiert!",
+        "install_error": "{emoji} Installationsfehler, das Modul ist möglicherweise defekt.",
+        "join_channel": "{emoji} Dies ist der Kanal mit allen FHeta-Updates!",
+        "modules_list": "{emoji} <b>Alle gefundenen Module:</b>",
+        "_cfg_doc_tracking": "Tracking Ihrer Daten (Benutzer-ID, Sprache) für die Synchronisierung mit dem FHeta-Bot aktivieren?",
+        "_cfg_doc_only_official_developers": "Nur Module von offiziellen Heroku-Entwicklern bei der Suche verwenden?",
+        "_cfg_doc_theme": "Thema für Emojis."
+    }
+    
     strings_jp = {
-        "searching": "{emoji} <b>検索中...</b>",
-        "no_query": "{emoji} <b>検索するクエリを入力してください。</b>",
-        "no_results": "{emoji} <b>モジュールが見つかりません。</b>",
-        "query_too_big": "{emoji} <b>クエリが長すぎます。168文字以内に短縮してください。</b>",
-        "result_query": "{emoji} <b>検索結果 {idx}/{total} クエリ:</b> <code>{query}</code>\n",
-        "result_single": "{emoji} <b>検索結果 クエリ:</b> <code>{query}</code>\n",
-        "module_info": "<code>{name}</code> <b>作成者:</b> <code>{author}</code> <code>{version}</code>\n{emoji} <b>インストールコマンド:</b> <code>{install}</code>",
-        "desc": "\n{emoji} <b>説明:</b> {desc}",
-        "cmds": "\n{emoji} <b>コマンド:</b>\n{cmds}",
-        "inline_cmds": "\n{emoji} <b>インラインコマンド:</b>\n{cmds}",
+        "_cls_doc": "モジュール検索用モジュール！@FHeta_UpdatesでFHetaのすべてのニュースをフォローしてください！",
+        "searching": "{emoji} <b><code>{query}</code>を検索中...</b>",
+        "no_query": "{emoji} <b>検索クエリを入力していません、例: <code>{prefix}fheta あなたのクエリ</code></b>",
+        "no_results": "{emoji} <b>クエリ<code>{query}</code>で何も見つかりませんでした。</b>",
+        "query_too_big": "{emoji} <b>クエリが大きすぎます。168文字に短縮してください。</b>",
+        "module_info": "{emoji} <code>{name}</code> <b>作成者</b> <code>{author}</code>",
+        "module_info_version": "{emoji} <code>{name}</code> <b>作成者</b> <code>{author}</code> (<code>v{version}</code>)",
+        "desc": "\n\n{emoji} <b>説明:</b>\n<blockquote expandable>{desc}</blockquote>",
+        "cmds": "\n\n{emoji} <b>コマンド:</b>\n<blockquote expandable>{cmds}</blockquote>",
         "lang": "jp",
-        "rating_added": "{emoji} 評価が送信されました！",
+        "rating_added": "{emoji} 評価が追加されました！",
         "rating_changed": "{emoji} 評価が変更されました！",
         "rating_removed": "{emoji} 評価が削除されました！",
         "inline_no_query": "検索するクエリを入力してください。",
         "inline_desc": "名前、コマンド、説明、作成者。",
         "inline_no_results": "別のクエリを試してください。",
-        "inline_query_too_big": "クエリが長すぎます。168文字以内に短縮してください。",
+        "inline_query_too_big": "クエリが大きすぎます。168文字に短縮してください。",
+        "query_label": "クエリ",
+        "install_btn": "インストール",
+        "install_success": "{emoji} 正常にインストールされました！",
+        "install_error": "{emoji} インストールエラー、モジュールが壊れている可能性があります。",
+        "join_channel": "{emoji} これはFHetaのすべての更新があるチャンネルです！",
+        "modules_list": "{emoji} <b>見つかったすべてのモジュール:</b>",
         "_cfg_doc_tracking": "FHetaボットとの同期のためにデータ（ユーザーID、言語）の追跡を有効にしますか？",
-        "_cls_doc": "モジュール検索モジュール！@FHeta_UpdatesでFHetaの最新情報をフォローしてください！",
         "_cfg_doc_only_official_developers": "検索時に公式Heroku開発者のモジュールのみを使用しますか？",
         "_cfg_doc_theme": "絵文字のテーマ。"
     }
     
-    strings_uz = {
-        "searching": "{emoji} <b>Qidirilmoqda...</b>",
-        "no_query": "{emoji} <b>Qidirish uchun so'rov kiriting.</b>",
-        "no_results": "{emoji} <b>Modullar topilmadi.</b>",
-        "query_too_big": "{emoji} <b>So'rovingiz juda katta, iltimos uni 168 belgiga qisqartiring.</b>",
-        "result_query": "{emoji} <b>Natija {idx}/{total} so'rov bo'yicha:</b> <code>{query}</code>\n",
-        "result_single": "{emoji} <b>Natija so'rov bo'yicha:</b> <code>{query}</code>\n",
-        "module_info": "<code>{name}</code> <b>muallif:</b> <code>{author}</code> <code>{version}</code>\n{emoji} <b>O'rnatish buyrug'i:</b> <code>{install}</code>",
-        "desc": "\n{emoji} <b>Tavsif:</b> {desc}",
-        "cmds": "\n{emoji} <b>Buyruqlar:</b>\n{cmds}",
-        "inline_cmds": "\n{emoji} <b>Inline buyruqlar:</b>\n{cmds}",
-        "lang": "uz",
-        "rating_added": "{emoji} Baho yuborildi!",
-        "rating_changed": "{emoji} Baho o'zgartirildi!",
-        "rating_removed": "{emoji} Baho o'chirildi!",
-        "inline_no_query": "Qidirish uchun so'rov kiriting.",
-        "inline_desc": "Nomi, buyruq, tavsif, muallif.",
-        "inline_no_results": "Boshqa so'rov bilan urinib ko'ring.",
-        "inline_query_too_big": "So'rovingiz juda katta, iltimos uni 168 belgiga qisqartiring.",
-        "_cfg_doc_tracking": "FHeta boti bilan sinxronlashtirish uchun ma'lumotlaringizni (foydalanuvchi ID, til) kuzatishni yoqish?",
-        "_cls_doc": "Modullarni qidirish moduli! @FHeta_Updates kanalida FHeta yangiliklari bilan tanishing!",
-        "_cfg_doc_only_official_developers": "Qidirishda faqat rasmiy Heroku dasturchilari modullaridan foydalanish?",
-        "_cfg_doc_theme": "Emojilar uchun mavzu."
-    }
-    
-    strings_kz = {
-        "searching": "{emoji} <b>Іздеу...</b>",
-        "no_query": "{emoji} <b>Іздеу үшін сұраныс енгізіңіз.</b>",
-        "no_results": "{emoji} <b>Модульдер табылмады.</b>",
-        "query_too_big": "{emoji} <b>Сұранысыңыз тым үлкен, оны 168 таңбаға дейін қысқартыңыз.</b>",
-        "result_query": "{emoji} <b>Нәтиже {idx}/{total} сұраныс бойынша:</b> <code>{query}</code>\n",
-        "result_single": "{emoji} <b>Нәтиже сұраныс бойынша:</b> <code>{query}</code>\n",
-        "module_info": "<code>{name}</code> <b>авторы:</b> <code>{author}</code> <code>{version}</code>\n{emoji} <b>Орнату командасы:</b> <code>{install}</code>",
-        "desc": "\n{emoji} <b>Сипаттама:</b> {desc}",
-        "cmds": "\n{emoji} <b>Командалар:</b>\n{cmds}",
-        "inline_cmds": "\n{emoji} <b>Inline командалар:</b>\n{cmds}",
-        "lang": "kz",
-        "rating_added": "{emoji} Баға жіберілді!",
-        "rating_changed": "{emoji} Баға өзгертілді!",
-        "rating_removed": "{emoji} Баға жойылды!",
-        "inline_no_query": "Іздеу үшін сұраныс енгізіңіз.",
-        "inline_desc": "Атауы, команда, сипаттама, автор.",
-        "inline_no_results": "Басқа сұранысты байқап көріңіз.",
-        "inline_query_too_big": "Сұранысыңыз тым үлкен, оны 168 таңбаға дейін қысқартыңыз.",
-        "_cfg_doc_tracking": "FHeta ботымен синхрондау үшін деректеріңізді (пайдаланушы ID, тіл) бақылауды қосу?",
-        "_cls_doc": "Модульдерді іздеу модулі! @FHeta_Updates арнасында FHeta жаңалықтарын бақылаңыз!",
-        "_cfg_doc_only_official_developers": "Іздеу кезінде тек ресми Heroku әзірлеушілерінің модульдерін пайдалану?",
-        "_cfg_doc_theme": "Эмодзилер үшін тақырып."
-    }
-    
     THEMES = {
         "default": {
-            "search": "🔎", "error": "❌", "warn": "❌", "result": "🔎", 
-            "install": "💾", "description": "📁", "command": "👨‍💻", "inline": "🤖", 
-            "like": "👍", "dislike": "👎", "prev": "◀️", "next": "▶️"
+            "search": "🔍", "error": "❌", "warn": "⚠️",
+            "description": "📝", "command": "⚙️", 
+            "like": "👍", "dislike": "👎", "prev": "◀️", "next": "▶️",
+            "module": "📦", "close": "❌",
+            "success": "✅", "install_error": "❌", "channel": "📢", "removed": "🗑️",
+            "modules_list": "📋"
         },
         "winter": {
-            "search": "❄️", "error": "🧊", "warn": "🌨️", "result": "🎄", 
-            "install": "🎁", "description": "📜", "command": "🎅", "inline": "☃️", 
-            "like": "🍊", "dislike": "🥶", "prev": "⏮️", "next": "⏭️"
+            "search": "❄️", "error": "🧊", "warn": "🌨️",
+            "description": "📜", "command": "🎅",
+            "like": "☕", "dislike": "🥶", "prev": "⏮️", "next": "⏭️",
+            "module": "🎁", "close": "❌",
+            "success": "🎄", "install_error": "🌨️", "channel": "📢", "removed": "🗑️",
+            "modules_list": "🎄"
         },
         "summer": {
-            "search": "☀️", "error": "🏖️", "warn": "🏜️", "result": "🌴", 
-            "install": "🍦", "description": "🍹", "command": "🏄", "inline": "🏊", 
-            "like": "🍓", "dislike": "🥵", "prev": "⬅️", "next": "➡️"
+            "search": "🔍", "error": "🌡️", "warn": "⚠️",
+            "description": "🍹", "command": "🏄",
+            "like": "🍓", "dislike": "🥵", "prev": "⬅️", "next": "➡️",
+            "module": "🏖️", "close": "❌",
+            "success": "🌺", "install_error": "🥵", "channel": "📢", "removed": "🗑️",
+            "modules_list": "🏖️"
         },
         "spring": {
-            "search": "🌱", "error": "🌷", "warn": "🥀", "result": "🌿", 
-            "install": "🌻", "description": "🍃", "command": "🦋", "inline": "🐝", 
-            "like": "🌸", "dislike": "🌧️", "prev": "⏪", "next": "⏩"
+            "search": "🌱", "error": "🥀", "warn": "⚠️",
+            "description": "🍃", "command": "🦋",
+            "like": "🌸", "dislike": "🌧️", "prev": "⏪", "next": "⏩",
+            "module": "🌿", "close": "❌",
+            "success": "🌸", "install_error": "🌧️", "channel": "📢", "removed": "🗑️",
+            "modules_list": "🌺"
         },
         "autumn": {
-            "search": "🍂", "error": "🍁", "warn": "🕸️", "result": "🍄", 
-            "install": "🧺", "description": "📜", "command": "🧣", "inline": "🦔", 
-            "like": "🍎", "dislike": "🌧️", "prev": "👈", "next": "👉"
+            "search": "🍂", "error": "🍁", "warn": "⚠️",
+            "description": "📜", "command": "🍂",
+            "like": "🍎", "dislike": "🌧️", "prev": "👈", "next": "👉",
+            "module": "🍄", "close": "❌",
+            "success": "🍎", "install_error": "🌧️", "channel": "📢", "removed": "🗑️",
+            "modules_list": "🍂"
         }
     }
 
@@ -281,12 +328,9 @@ class FHeta(loader.Module):
             
         await self.request_join(
             "FHeta_Updates",
-            "🔥 This is the channel with all updates in FHeta!"
+            self.strings["join_channel"].format(emoji=self._get_emoji("channel"))
         )
 
-        self.ssl = ssl.create_default_context()
-        self.ssl.check_hostname = False
-        self.ssl.verify_mode = ssl.CERT_NONE
         self.uid = (await client.get_me()).id
         self.token = db.get("FHeta", "token")
 
@@ -301,19 +345,6 @@ class FHeta(loader.Module):
                 pass
             
         asyncio.create_task(self._sync_loop())
-        asyncio.create_task(self._certifi_loop())
-
-    async def _certifi_loop(self):
-        while True:
-            try:
-                import certifi
-                assert certifi.__version__ == "2024.08.30"
-            except (ImportError, AssertionError):
-                await asyncio.to_thread(
-                    subprocess.check_call,
-                    [sys.executable, "-m", "pip", "install", "certifi==2024.8.30"]
-                )
-            await asyncio.sleep(60)
             
     async def _sync_loop(self):
         tracked = True
@@ -329,8 +360,7 @@ class FHeta(loader.Module):
                                 "user_id": self.uid,
                                 "lang": self.strings["lang"]
                             },
-                            headers={"Authorization": self.token},
-                            ssl=self.ssl
+                            headers={"Authorization": self.token}
                         ) as response:
                             tracked = True
                             await response.release()
@@ -338,8 +368,7 @@ class FHeta(loader.Module):
                         async with session.post(
                             "https://api.fixyres.com/rmd",
                             params={"user_id": self.uid},
-                            headers={"Authorization": self.token},
-                            ssl=self.ssl
+                            headers={"Authorization": self.token}
                         ) as response:
                             tracked = False
                             await response.release()
@@ -362,7 +391,6 @@ class FHeta(loader.Module):
                     f"https://api.fixyres.com/{endpoint}",
                     params=params,
                     headers={"Authorization": self.token},
-                    ssl=self.ssl,
                     timeout=aiohttp.ClientTimeout(total=180)
                 ) as response:
                     if response.status == 200:
@@ -379,7 +407,6 @@ class FHeta(loader.Module):
                     json=json,
                     params=params,
                     headers={"Authorization": self.token},
-                    ssl=self.ssl,
                     timeout=aiohttp.ClientTimeout(total=180)
                 ) as response:
                     if response.status == 200:
@@ -408,21 +435,21 @@ class FHeta(loader.Module):
         return self.THEMES[self.config["theme"]][key]
 
     def _fmt_mod(self, mod: Dict, query: str = "", idx: int = 1, total: int = 1, inline: bool = False) -> str:
-        install_cmd = mod.get('install', '')
-        decoded_install = unquote(install_cmd.replace('%20', '___SPACE___')).replace('___SPACE___', '%20')
+        version = mod.get("version", "?.?.?")
         
-        info = self.strings["module_info"].format(
-            name=utils.escape_html(mod.get("name", "")),
-            author=utils.escape_html(mod.get("author", "???")),
-            version=utils.escape_html(mod.get("version", "?.?.?")),
-            install=f"{self.get_prefix()}{utils.escape_html(decoded_install)}",
-            emoji=self._get_emoji("install")
-        )
-
-        if total > 1:
-            info = self.strings["result_query"].format(idx=idx, total=total, query=utils.escape_html(query), emoji=self._get_emoji("result")) + info
-        elif query and not inline:
-            info = self.strings["result_single"].format(query=utils.escape_html(query), emoji=self._get_emoji("result")) + info
+        if version and version != "?.?.?":
+            info = self.strings["module_info_version"].format(
+                emoji=self._get_emoji("module"),
+                name=utils.escape_html(mod.get("name", "")),
+                author=utils.escape_html(mod.get("author", "???")),
+                version=utils.escape_html(version)
+            )
+        else:
+            info = self.strings["module_info"].format(
+                emoji=self._get_emoji("module"),
+                name=utils.escape_html(mod.get("name", "")),
+                author=utils.escape_html(mod.get("author", "???"))
+            )
 
         desc = mod.get("description")
         if desc:
@@ -437,8 +464,7 @@ class FHeta(loader.Module):
         return info
 
     def _fmt_cmds(self, cmds: List[Dict], limit: int) -> str:
-        regular_cmds = []
-        inline_cmds = []
+        cmd_lines = []
         lang = self.strings["lang"]
         current_len = 0
 
@@ -457,22 +483,20 @@ class FHeta(loader.Module):
 
             if cmd.get("inline"):
                 line = f"<code>@{self.inline.bot_username} {cmd_name}</code> {cmd_desc}"
-                if current_len + len(line) < limit:
-                    inline_cmds.append(line)
-                    current_len += len(line)
             else:
                 line = f"<code>{self.get_prefix()}{cmd_name}</code> {cmd_desc}"
-                if current_len + len(line) < limit:
-                    regular_cmds.append(line)
-                    current_len += len(line)
-
-        result = ""
-        if regular_cmds:
-            result += self.strings["cmds"].format(cmds="\n".join(regular_cmds), emoji=self._get_emoji("command"))
-        if inline_cmds:
-            result += self.strings["inline_cmds"].format(cmds="\n".join(inline_cmds), emoji=self._get_emoji("inline"))
             
-        return result
+            if current_len + len(line) < limit:
+                cmd_lines.append(line)
+                current_len += len(line)
+
+        if cmd_lines:
+            return self.strings["cmds"].format(cmds="\n".join(cmd_lines), emoji=self._get_emoji("command"))
+            
+        return ""
+
+    async def _nop_cb(self, call):
+        pass
 
     def _mk_btns(self, install: str, stats: Dict, idx: int, mods: Optional[List] = None, query: str = "") -> List[List[Dict]]:
         like_emoji = self._get_emoji("like")
@@ -480,12 +504,25 @@ class FHeta(loader.Module):
         prev_emoji = self._get_emoji("prev")
         next_emoji = self._get_emoji("next")
         
-        buttons = [
-            [
-                {"text": f"{like_emoji} {stats.get('likes', 0)}", "callback": self._rate_cb, "args": (install, "like", idx, mods, query)},
-                {"text": f"{dislike_emoji} {stats.get('dislikes', 0)}", "callback": self._rate_cb, "args": (install, "dislike", idx, mods, query)}
-            ]
-        ]
+        buttons = []
+        
+        decoded_install = unquote(install.replace('%20', '___SPACE___')).replace('___SPACE___', '%20')
+        install_url = decoded_install[4:] if decoded_install.startswith('dlm ') else decoded_install
+        
+        if query:
+            buttons.append([
+                {"text": self.strings["query_label"], "copy": query},
+                {"text": self.strings["install_btn"], "callback": self._install_cb, "args": (install_url, idx, mods, query)},
+                {"text": self.strings["url_btn"], "copy": install_url}
+            ])
+        
+        buttons.append([
+            {"text": f"{like_emoji} {stats.get('likes', 0)}", "callback": self._rate_cb, "args": (install, "like", idx, mods, query)},
+            {"text": f"{dislike_emoji} {stats.get('dislikes', 0)}", "callback": self._rate_cb, "args": (install, "dislike", idx, mods, query)}
+        ])
+        
+        if mods and len(mods) > 1:
+            buttons[-1].insert(1, {"text": self.strings["results_count"].format(idx=idx+1, total=len(mods)), "callback": self._show_list_cb, "args": (idx, mods, query)})
 
         if mods and len(mods) > 1:
             nav_buttons = []
@@ -497,6 +534,119 @@ class FHeta(loader.Module):
                 buttons.append(nav_buttons)
 
         return buttons
+
+    def _mk_list_btns(self, mods: List, query: str, page: int = 0, current_idx: int = 0) -> List[List[Dict]]:
+        prev_emoji = self._get_emoji("prev")
+        next_emoji = self._get_emoji("next")
+        close_emoji = self._get_emoji("close")
+        
+        buttons = []
+        items_per_page = 8
+        total_pages = (len(mods) + items_per_page - 1) // items_per_page
+        
+        start_idx = page * items_per_page
+        end_idx = min(start_idx + items_per_page, len(mods))
+        
+        for i in range(start_idx, end_idx):
+            mod = mods[i]
+            name = mod.get("name", "Unknown")
+            author = mod.get("author", "???")
+            button_text = f"{i + 1}. {name} by {author}"
+            buttons.append([
+                {"text": button_text, "callback": self._select_from_list_cb, "args": (i, mods, query)}
+            ])
+        
+        nav_buttons = []
+        if page > 0:
+            nav_buttons.append({"text": prev_emoji, "callback": self._list_page_cb, "args": (page - 1, mods, query, current_idx)})
+        if page < total_pages - 1:
+            nav_buttons.append({"text": next_emoji, "callback": self._list_page_cb, "args": (page + 1, mods, query, current_idx)})
+        
+        if nav_buttons:
+            buttons.append(nav_buttons)
+        
+        buttons.append([
+            {"text": close_emoji, "callback": self._close_list_cb, "args": (current_idx, mods, query)}
+        ])
+        
+        return buttons
+
+    async def _show_list_cb(self, call, idx: int, mods: List, query: str):
+        try:
+            await call.edit(
+                text=self.strings["modules_list"].format(emoji=self._get_emoji("modules_list")),
+                reply_markup=self._mk_list_btns(mods, query, 0, idx)
+            )
+        except:
+            pass
+
+    async def _list_page_cb(self, call, page: int, mods: List, query: str, current_idx: int):
+        try:
+            await call.edit(
+                text=self.strings["modules_list"].format(emoji=self._get_emoji("modules_list")),
+                reply_markup=self._mk_list_btns(mods, query, page, current_idx)
+            )
+        except:
+            pass
+
+    async def _select_from_list_cb(self, call, idx: int, mods: List, query: str):
+        try:
+            await call.answer()
+        except:
+            pass
+        
+        if not (0 <= idx < len(mods)):
+            return
+        
+        mod = mods[idx]
+        install = mod.get('install', '')
+        
+        stats = mod if all(k in mod for k in ['likes', 'dislikes']) else {"likes": 0, "dislikes": 0}
+        
+        try:
+            await call.edit(
+                text=self._fmt_mod(mod, query, idx + 1, len(mods)),
+                reply_markup=self._mk_btns(install, stats, idx, mods, query)
+            )
+        except:
+            pass
+
+    async def _close_list_cb(self, call, idx: int, mods: List, query: str):
+        try:
+            await call.answer()
+        except:
+            pass
+        
+        if not (0 <= idx < len(mods)):
+            return
+        
+        mod = mods[idx]
+        install = mod.get('install', '')
+        
+        stats = mod if all(k in mod for k in ['likes', 'dislikes']) else {"likes": 0, "dislikes": 0}
+        
+        try:
+            await call.edit(
+                text=self._fmt_mod(mod, query, idx + 1, len(mods)),
+                reply_markup=self._mk_btns(install, stats, idx, mods, query)
+            )
+        except:
+            pass
+
+    async def _install_cb(self, call, install_url: str, idx: int = 0, mods: Optional[List] = None, query: str = ""):
+        lm = self.lookup("loader")
+        
+        try:
+            await lm.download_and_install(install_url, None)
+            
+            await asyncio.sleep(1)
+            
+            if getattr(lm, "fully_loaded", False):
+                lm.update_modules_in_db()
+            
+            await call.answer(self.strings["install_success"].format(emoji=self._get_emoji("success")), show_alert=False)
+        except Exception:
+            await call.answer(self.strings["install_error"].format(emoji=self._get_emoji("install_error")), show_alert=True)
 
     async def _rate_cb(self, call, install: str, action: str, idx: int, mods: Optional[List], query: str = ""):
         result = await self._api_post(f"rate/{self.uid}/{install}/{action}")
@@ -527,7 +677,7 @@ class FHeta(loader.Module):
                 elif result_status == "changed":
                     await call.answer(self.strings["rating_changed"].format(emoji=self._get_emoji("like")), show_alert=True)
                 elif result_status == "removed":
-                    await call.answer(self.strings["rating_removed"].format(emoji="🗑️"), show_alert=True)
+                    await call.answer(self.strings["rating_removed"].format(emoji=self._get_emoji("removed")), show_alert=True)
             except:
                 pass
 
@@ -554,9 +704,13 @@ class FHeta(loader.Module):
             pass
 
     @loader.inline_handler(
+        ru_doc="(запрос) - поиск модулей.",
+        ua_doc="(запит) - пошук модулів.",
+        kz_doc="(сұрау) - модульдерді іздеу.",
+        uz_doc="(so'rov) - modullarni qidirish.",
+        fr_doc="(requête) - rechercher des modules.",
         de_doc="(anfrage) - module suchen.",
-        ru_doc="(запрос) - искать модули.",
-        ua_doc="(запит) - шукати модулі.",
+        jp_doc="(クエリ) - モジュールを検索します。"
     )
     async def fheta(self, query):
         '''(query) - search modules.'''        
@@ -603,33 +757,37 @@ class FHeta(loader.Module):
                 "description": utils.escape_html(str(desc)),
                 "thumb": await self._fetch_thumb(mod.get("pic")),
                 "message": self._fmt_mod(mod, query.args, inline=True),
-                "reply_markup": self._mk_btns(mod.get("install", ""), stats, 0, None),
+                "reply_markup": self._mk_btns(mod.get("install", ""), stats, 0, None, query.args),
             })
 
         return results
 
     @loader.command(
+        ru_doc="(запрос) - поиск модулей.",
+        ua_doc="(запит) - пошук модулів.",
+        kz_doc="(сұрау) - модульдерді іздеу.",
+        uz_doc="(so'rov) - modullarni qidirish.",
+        fr_doc="(requête) - rechercher des modules.",
         de_doc="(anfrage) - module suchen.",
-        ru_doc="(запрос) - искать модули.",
-        ua_doc="(запит) - шукати модулі.",
+        jp_doc="(クエリ) - モジュールを検索します。"
     )
     async def fhetacmd(self, message):
         '''(query) - search modules.'''        
         query = utils.get_args_raw(message)
         
         if not query:
-            await utils.answer(message, self.strings["no_query"].format(emoji=self._get_emoji("error")))
+            await utils.answer(message, self.strings["no_query"].format(emoji=self._get_emoji("error"), prefix=self.get_prefix()))
             return
 
         if len(query) > 168:
             await utils.answer(message, self.strings["query_too_big"].format(emoji=self._get_emoji("warn")))
             return
 
-        status_msg = await utils.answer(message, self.strings["searching"].format(emoji=self._get_emoji("search")))
+        status_msg = await utils.answer(message, self.strings["searching"].format(emoji=self._get_emoji("search"), query=utils.escape_html(query)))
         mods = await self._api_get("search", query=query, inline="false", token=self.token, user_id=self.uid, ood=str(self.config["only_official_developers"]).lower())
 
         if not mods or not isinstance(mods, list):
-            await utils.answer(message, self.strings["no_results"].format(emoji=self._get_emoji("error")))
+            await utils.answer(message, self.strings["no_results"].format(emoji=self._get_emoji("error"), query=utils.escape_html(query)))
             return
 
         first_mod = mods[0]
@@ -654,22 +812,19 @@ class FHeta(loader.Module):
         if not link.startswith("https://api.fixyres.com/module/"):
             return
 
-        loader_module = self.lookup("loader")
+        lm = self.lookup("loader")
         
         try:
-            for _ in range(5):
-                await loader_module.download_and_install(link, None)
-                
-                if getattr(loader_module, "fully_loaded", False):
-                    loader_module.update_modules_in_db()
-                
-                is_loaded = any(mod.__origin__ == link for mod in self.allmodules.modules)
-                
-                if is_loaded:
-                    rose_msg = await message.respond("🌹")
-                    await asyncio.sleep(1)
-                    await rose_msg.delete()
-                    await message.delete()
-                    break
+            await lm.download_and_install(link, None)
+            
+            await asyncio.sleep(1)
+            
+            if getattr(lm, "fully_loaded", False):
+                lm.update_modules_in_db()
+            
+            rose_msg = await message.respond("🌹")
+            await asyncio.sleep(1)
+            await rose_msg.delete()
+            await message.delete()
         except:
             pass
