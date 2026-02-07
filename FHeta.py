@@ -718,7 +718,7 @@ class FHeta(loader.Module):
             return {
                 "title": self.strings["inline_no_query"],
                 "description": self.strings["inline_desc"],
-                "message": self.strings["no_query"].format(emoji=self._get_emoji("error")),
+                "message": self.strings["inline_no_query"],
                 "thumb": "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/assets/magnifying_glass.png",
             }
 
@@ -736,7 +736,7 @@ class FHeta(loader.Module):
             return {
                 "title": self.strings["inline_no_results"],
                 "description": self.strings["inline_desc"],
-                "message": self.strings["no_results"].format(emoji=self._get_emoji("error")),
+                "message": self.strings["inline_no_results"],
                 "thumb": "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/assets/try_other_query.png",
             }
 
