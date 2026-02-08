@@ -1,4 +1,4 @@
-__version__ = (9, 3, 2)
+__version__ = (9, 3, 3)
 # meta developer: @FModules
 
 # ©️ Fixyres, 2024-2030
@@ -24,7 +24,7 @@ class FHeta(loader.Module):
     strings = {
         "name": "FHeta",
         "searching": "{emoji} <b>Searching for <code>{query}</code>...</b>",
-        "no_query": "{emoji} <b>You didn't enter a search query, example: <code>{prefix}fheta your_query</code></b>",
+        "no_query": "{emoji} <b>You didn't enter a search query, example: <code>{prefix}fheta your query</code></b>",
         "no_results": "{emoji} <b>Nothing found for query <code>{query}</code>.</b>",
         "query_too_big": "{emoji} <b>Your query is too big, please try reducing it to 168 characters.</b>",
         "module_info": "{emoji} <code>{name}</code> <b>by</b> <code>{author}</code>",
@@ -40,11 +40,8 @@ class FHeta(loader.Module):
         "inline_no_results": "Try another query.",
         "inline_query_too_big": "Your query is too big, please try reducing it to 168 characters.",
         "query_label": "Query",
-        "results_count": "{idx}/{total}",
         "install_btn": "Install",
-        "url_btn": "URL",
-        "install_success": "{emoji} Successfully installed!",
-        "install_error": "{emoji} Installation error, the module may be broken.",
+        "results_count": "{idx}/{total}",
         "join_channel": "{emoji} This is the channel with all updates in FHeta!",
         "modules_list": "{emoji} <b>All found modules:</b>",
         "_cfg_doc_tracking": "Enable tracking of your data (user ID, language) for synchronization with the FHeta bot?",
@@ -55,7 +52,7 @@ class FHeta(loader.Module):
     strings_ru = {
         "_cls_doc": "Модуль для поиска модулей! Следите за всеми новостями FHeta в @FHeta_Updates!",
         "searching": "{emoji} <b>Поиск по запросу <code>{query}</code>...</b>",
-        "no_query": "{emoji} <b>Вы не ввели запрос для поиска, пример: <code>{prefix}fheta ваш_запрос</code></b>",
+        "no_query": "{emoji} <b>Вы не ввели запрос для поиска, пример: <code>{prefix}fheta ваш запрос</code></b>",
         "no_results": "{emoji} <b>Ничего не найдено по запросу <code>{query}</code>.</b>",
         "query_too_big": "{emoji} <b>Ваш запрос слишком большой, пожалуйста, сократите его до 168 символов.</b>",
         "module_info": "{emoji} <code>{name}</code> <b>от</b> <code>{author}</code>",
@@ -72,8 +69,6 @@ class FHeta(loader.Module):
         "inline_query_too_big": "Ваш запрос слишком большой, пожалуйста, сократите его до 168 символов.",
         "query_label": "Запрос",
         "install_btn": "Установить",
-        "install_success": "{emoji} Успешно установлено!",
-        "install_error": "{emoji} Ошибка установки, возможно модуль сломан.",
         "join_channel": "{emoji} Это канал со всеми обновлениями FHeta!",
         "modules_list": "{emoji} <b>Все найденные модули:</b>",
         "_cfg_doc_tracking": "Включить отслеживание ваших данных (ID пользователя, язык) для синхронизации с ботом FHeta?",
@@ -84,7 +79,7 @@ class FHeta(loader.Module):
     strings_ua = {
         "_cls_doc": "Модуль для пошуку модулів! Слідкуйте за всіма новинами FHeta в @FHeta_Updates!",
         "searching": "{emoji} <b>Пошук за запитом <code>{query}</code>...</b>",
-        "no_query": "{emoji} <b>Ви не ввели запит для пошуку, приклад: <code>{prefix}fheta ваш_запит</code></b>",
+        "no_query": "{emoji} <b>Ви не ввели запит для пошуку, приклад: <code>{prefix}fheta ваш запит</code></b>",
         "no_results": "{emoji} <b>Нічого не знайдено за запитом <code>{query}</code>.</b>",
         "query_too_big": "{emoji} <b>Ваш запит занадто великий, будь ласка, скоротіть його до 168 символів.</b>",
         "module_info": "{emoji} <code>{name}</code> <b>від</b> <code>{author}</code>",
@@ -101,8 +96,6 @@ class FHeta(loader.Module):
         "inline_query_too_big": "Ваш запит занадто великий, будь ласка, скоротіть його до 168 символів.",
         "query_label": "Запит",
         "install_btn": "Встановити",
-        "install_success": "{emoji} Успішно встановлено!",
-        "install_error": "{emoji} Помилка встановлення, можливо модуль зламаний.",
         "join_channel": "{emoji} Це канал з усіма оновленнями FHeta!",
         "modules_list": "{emoji} <b>Всі знайдені модулі:</b>",
         "_cfg_doc_tracking": "Увімкнути відстеження ваших даних (ID користувача, мова) для синхронізації з ботом FHeta?",
@@ -113,7 +106,7 @@ class FHeta(loader.Module):
     strings_kz = {
         "_cls_doc": "Модульдерді іздеу модулі! FHeta барлық жаңалықтарын @FHeta_Updates арнасында қадағалаңыз!",
         "searching": "{emoji} <b><code>{query}</code> сұрауы бойынша іздеу...</b>",
-        "no_query": "{emoji} <b>Сіз іздеу сұрауын енгізбедіңіз, мысал: <code>{prefix}fheta сіздің_сұрауыңыз</code></b>",
+        "no_query": "{emoji} <b>Сіз іздеу сұрауын енгізбедіңіз, мысал: <code>{prefix}fheta сіздің сұрауыңыз</code></b>",
         "no_results": "{emoji} <b><code>{query}</code> сұрауы бойынша ештеңе табылмады.</b>",
         "query_too_big": "{emoji} <b>Сіздің сұрауыңыз тым үлкен, оны 168 таңбаға дейін қысқартыңыз.</b>",
         "module_info": "{emoji} <code>{name}</code> <b>авторы</b> <code>{author}</code>",
@@ -130,8 +123,6 @@ class FHeta(loader.Module):
         "inline_query_too_big": "Сіздің сұрауыңыз тым үлкен, оны 168 таңбаға дейін қысқартыңыз.",
         "query_label": "Сұрау",
         "install_btn": "Орнату",
-        "install_success": "{emoji} Сәтті орнатылды!",
-        "install_error": "{emoji} Орнату қатесі, мүмкін модуль бұзылған.",
         "join_channel": "{emoji} Бұл FHeta барлық жаңартулары бар арна!",
         "modules_list": "{emoji} <b>Барлық табылған модульдер:</b>",
         "_cfg_doc_tracking": "FHeta ботымен синхрондау үшін деректеріңізді (пайдаланушы идентификаторы, тіл) қадағалауды қосу керек пе?",
@@ -142,7 +133,7 @@ class FHeta(loader.Module):
     strings_uz = {
         "_cls_doc": "Modullarni qidirish moduli! FHeta barcha yangilanishlarini @FHeta_Updates kanalida kuzatib boring!",
         "searching": "{emoji} <b><code>{query}</code> so'rovi bo'yicha qidiruv...</b>",
-        "no_query": "{emoji} <b>Siz qidiruv so'rovini kiritmadingiz, misol: <code>{prefix}fheta sizning_sorovingiz</code></b>",
+        "no_query": "{emoji} <b>Siz qidiruv so'rovini kiritmadingiz, misol: <code>{prefix}fheta sizning sorovingiz</code></b>",
         "no_results": "{emoji} <b><code>{query}</code> so'rovi bo'yicha hech narsa topilmadi.</b>",
         "query_too_big": "{emoji} <b>Sizning so'rovingiz juda katta, iltimos uni 168 belgigacha qisqartiring.</b>",
         "module_info": "{emoji} <code>{name}</code> <b>muallif</b> <code>{author}</code>",
@@ -159,8 +150,6 @@ class FHeta(loader.Module):
         "inline_query_too_big": "Sizning so'rovingiz juda katta, iltimos uni 168 belgigacha qisqartiring.",
         "query_label": "So'rov",
         "install_btn": "O'rnatish",
-        "install_success": "{emoji} Muvaffaqiyatli o'rnatildi!",
-        "install_error": "{emoji} O'rnatish xatosi, ehtimol modul buzilgan.",
         "join_channel": "{emoji} Bu FHeta barcha yangilanishlari bo'lgan kanal!",
         "modules_list": "{emoji} <b>Barcha topilgan modullar:</b>",
         "_cfg_doc_tracking": "FHeta boti bilan sinxronlashtirish uchun ma'lumotlaringizni (foydalanuvchi IDsi, til) kuzatishni yoqish kerakmi?",
@@ -171,7 +160,7 @@ class FHeta(loader.Module):
     strings_fr = {
         "_cls_doc": "Module de recherche de modules! Suivez toutes les actualités FHeta sur @FHeta_Updates!",
         "searching": "{emoji} <b>Recherche pour <code>{query}</code>...</b>",
-        "no_query": "{emoji} <b>Vous n'avez pas entré de requête de recherche, exemple: <code>{prefix}fheta votre_requête</code></b>",
+        "no_query": "{emoji} <b>Vous n'avez pas entré de requête de recherche, exemple: <code>{prefix}fheta votre requête</code></b>",
         "no_results": "{emoji} <b>Rien trouvé pour la requête <code>{query}</code>.</b>",
         "query_too_big": "{emoji} <b>Votre requête est trop longue, veuillez la réduire à 168 caractères.</b>",
         "module_info": "{emoji} <code>{name}</code> <b>par</b> <code>{author}</code>",
@@ -188,8 +177,6 @@ class FHeta(loader.Module):
         "inline_query_too_big": "Votre requête est trop longue, veuillez la réduire à 168 caractères.",
         "query_label": "Requête",
         "install_btn": "Installer",
-        "install_success": "{emoji} Installé avec succès!",
-        "install_error": "{emoji} Erreur d'installation, le module est peut-être cassé.",
         "join_channel": "{emoji} C'est le canal avec toutes les mises à jour de FHeta!",
         "modules_list": "{emoji} <b>Tous les modules trouvés:</b>",
         "_cfg_doc_tracking": "Activer le suivi de vos données (ID utilisateur, langue) pour la synchronisation avec le bot FHeta?",
@@ -200,7 +187,7 @@ class FHeta(loader.Module):
     strings_de = {
         "_cls_doc": "Modul zur Suche nach Modulen! Verfolgen Sie alle FHeta-Neuigkeiten auf @FHeta_Updates!",
         "searching": "{emoji} <b>Suche nach <code>{query}</code>...</b>",
-        "no_query": "{emoji} <b>Sie haben keine Suchanfrage eingegeben, Beispiel: <code>{prefix}fheta ihre_anfrage</code></b>",
+        "no_query": "{emoji} <b>Sie haben keine Suchanfrage eingegeben, Beispiel: <code>{prefix}fheta ihre anfrage</code></b>",
         "no_results": "{emoji} <b>Nichts gefunden für Anfrage <code>{query}</code>.</b>",
         "query_too_big": "{emoji} <b>Ihre Anfrage ist zu groß, bitte reduzieren Sie sie auf 168 Zeichen.</b>",
         "module_info": "{emoji} <code>{name}</code> <b>von</b> <code>{author}</code>",
@@ -217,8 +204,6 @@ class FHeta(loader.Module):
         "inline_query_too_big": "Ihre Anfrage ist zu groß, bitte reduzieren Sie sie auf 168 Zeichen.",
         "query_label": "Anfrage",
         "install_btn": "Installieren",
-        "install_success": "{emoji} Erfolgreich installiert!",
-        "install_error": "{emoji} Installationsfehler, das Modul ist möglicherweise defekt.",
         "join_channel": "{emoji} Dies ist der Kanal mit allen FHeta-Updates!",
         "modules_list": "{emoji} <b>Alle gefundenen Module:</b>",
         "_cfg_doc_tracking": "Tracking Ihrer Daten (Benutzer-ID, Sprache) für die Synchronisierung mit dem FHeta-Bot aktivieren?",
@@ -246,8 +231,6 @@ class FHeta(loader.Module):
         "inline_query_too_big": "クエリが大きすぎます。168文字に短縮してください。",
         "query_label": "クエリ",
         "install_btn": "インストール",
-        "install_success": "{emoji} 正常にインストールされました！",
-        "install_error": "{emoji} インストールエラー、モジュールが壊れている可能性があります。",
         "join_channel": "{emoji} これはFHetaのすべての更新があるチャンネルです！",
         "modules_list": "{emoji} <b>見つかったすべてのモジュール:</b>",
         "_cfg_doc_tracking": "FHetaボットとの同期のためにデータ（ユーザーID、言語）の追跡を有効にしますか？",
@@ -261,7 +244,7 @@ class FHeta(loader.Module):
             "description": "📝", "command": "⚙️", 
             "like": "👍", "dislike": "👎", "prev": "◀️", "next": "▶️",
             "module": "📦", "close": "❌",
-            "success": "✅", "install_error": "❌", "channel": "📢", "removed": "🗑️",
+            "channel": "📢", "removed": "🗑️",
             "modules_list": "📋"
         },
         "winter": {
@@ -269,7 +252,7 @@ class FHeta(loader.Module):
             "description": "📜", "command": "🎅",
             "like": "☕", "dislike": "🥶", "prev": "⏮️", "next": "⏭️",
             "module": "🎁", "close": "❌",
-            "success": "🎄", "install_error": "🌨️", "channel": "📢", "removed": "🗑️",
+            "channel": "📢", "removed": "🗑️",
             "modules_list": "🎄"
         },
         "summer": {
@@ -277,7 +260,7 @@ class FHeta(loader.Module):
             "description": "🍹", "command": "🏄",
             "like": "🍓", "dislike": "🥵", "prev": "⬅️", "next": "➡️",
             "module": "🏖️", "close": "❌",
-            "success": "🌺", "install_error": "🥵", "channel": "📢", "removed": "🗑️",
+            "channel": "📢", "removed": "🗑️",
             "modules_list": "🏖️"
         },
         "spring": {
@@ -285,7 +268,7 @@ class FHeta(loader.Module):
             "description": "🍃", "command": "🦋",
             "like": "🌸", "dislike": "🌧️", "prev": "⏪", "next": "⏩",
             "module": "🌿", "close": "❌",
-            "success": "🌸", "install_error": "🌧️", "channel": "📢", "removed": "🗑️",
+            "channel": "📢", "removed": "🗑️",
             "modules_list": "🌺"
         },
         "autumn": {
@@ -293,7 +276,7 @@ class FHeta(loader.Module):
             "description": "📜", "command": "🍂",
             "like": "🍎", "dislike": "🌧️", "prev": "👈", "next": "👉",
             "module": "🍄", "close": "❌",
-            "success": "🍎", "install_error": "🌧️", "channel": "📢", "removed": "🗑️",
+            "channel": "📢", "removed": "🗑️",
             "modules_list": "🍂"
         }
     }
@@ -495,9 +478,6 @@ class FHeta(loader.Module):
             
         return ""
 
-    async def _nop_cb(self, call):
-        pass
-
     def _mk_btns(self, install: str, stats: Dict, idx: int, mods: Optional[List] = None, query: str = "") -> List[List[Dict]]:
         like_emoji = self._get_emoji("like")
         dislike_emoji = self._get_emoji("dislike")
@@ -511,9 +491,11 @@ class FHeta(loader.Module):
         
         if query:
             buttons.append([
-                {"text": self.strings["query_label"], "copy": query},
-                {"text": self.strings["install_btn"], "callback": self._install_cb, "args": (install_url, idx, mods, query)},
-                {"text": self.strings["url_btn"], "copy": install_url}
+                {"text": self.strings["query_label"], "copy": query}
+            ])
+
+            buttons.append([
+                {"text": self.strings["install_btn"], "copy": f"{self.get_prefix()}dlm {install_url}"}
             ])
         
         buttons.append([
@@ -633,21 +615,6 @@ class FHeta(loader.Module):
         except:
             pass
 
-    async def _install_cb(self, call, install_url: str, idx: int = 0, mods: Optional[List] = None, query: str = ""):
-        lm = self.lookup("loader")
-        
-        try:
-            await lm.download_and_install(install_url, None)
-            
-            await asyncio.sleep(1)
-            
-            if getattr(lm, "fully_loaded", False):
-                lm.update_modules_in_db()
-            
-            await call.answer(self.strings["install_success"].format(emoji=self._get_emoji("success")), show_alert=False)
-        except Exception:
-            await call.answer(self.strings["install_error"].format(emoji=self._get_emoji("install_error")), show_alert=True)
-
     async def _rate_cb(self, call, install: str, action: str, idx: int, mods: Optional[List], query: str = ""):
         result = await self._api_post(f"rate/{self.uid}/{install}/{action}")
         
@@ -718,7 +685,7 @@ class FHeta(loader.Module):
             return {
                 "title": self.strings["inline_no_query"],
                 "description": self.strings["inline_desc"],
-                "message": self.strings["inline_no_query"],
+                "message": self.strings["inline_no_query"].format(emoji=self._get_emoji("error")),
                 "thumb": "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/assets/magnifying_glass.png",
             }
 
@@ -736,7 +703,7 @@ class FHeta(loader.Module):
             return {
                 "title": self.strings["inline_no_results"],
                 "description": self.strings["inline_desc"],
-                "message": self.strings["inline_no_results"],
+                "message": self.strings["inline_no_results"].format(emoji=self._get_emoji("error")),
                 "thumb": "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/assets/try_other_query.png",
             }
 
