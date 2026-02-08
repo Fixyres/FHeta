@@ -778,16 +778,14 @@ class FHeta(loader.Module):
         
         if not link.startswith("https://api.fixyres.com/module/"):
             return
-
-        lm = self.lookup("loader")
         
         try:
-            await lm.download_and_install(link, None)
+            await self.lookup("loader").download_and_install(link, None)
             
             await asyncio.sleep(1)
-            
-            if getattr(lm, "fully_loaded", False):
-                lm.update_modules_in_db()
+
+            if self.lookup("loader").fully_loaded:
+                self.lookup("loader").update_modules_in_db()
             
             rose_msg = await message.respond("🌹")
             await asyncio.sleep(1)
