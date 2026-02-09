@@ -923,7 +923,7 @@ class FHeta(loader.Module):
                     filter(
                         lambda x: not x.startswith(("-", "_", ".")),
                         map(
-                            str.strip,
+                            lambda s: s.strip().rstrip(','),
                             loader.VALID_PIP_PACKAGES.search(doc)[1].split(),
                         ),
                     )
@@ -962,7 +962,7 @@ class FHeta(loader.Module):
                     filter(
                         lambda x: not x.startswith(("-", "_", ".")),
                         map(
-                            str.strip,
+                            lambda s: s.strip().rstrip(','),
                             loader.VALID_APT_PACKAGES.search(doc)[1].split(),
                         ),
                     )
