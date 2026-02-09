@@ -409,13 +409,36 @@ class FHeta(loader.Module):
             )
         )
 
-    async def client_ready(self, client, db):
+      async def client_ready(self, client, db):
+        try:
+            await client(UnblockRequest("@FHeta_robot"))
+            await utils.dnd(client, "@FHeta_robot", archive=True)
+        except:
+            pass
+            
+        await self.request_join(
+            "FHeta_Updates",
+            self.strings["join_channel"].format(emoji=self._get_emoji("channel"))
+        )
+
         self.client = client
         self.db = db
         self.uid = (await client.get_me()).id
+        self.token = db.get("FHeta", "token")
+
+        if not self.token:
+            try:
+                async with client.conversation("@FHeta_robot") as conv:
+                    await conv.send_message('/token')
+                    resp = await conv.get_response(timeout=5)
+                    self.token = resp.text.strip()
+                    db.set("FHeta", "token", self.token)
+            except:
+                pass
+            
         self.token = self.db.get("FHeta", "token", "")
         asyncio.create_task(self._sync_loop())
-
+          
     async def _sync_loop(self):
         tracked = True
         timeout = aiohttp.ClientTimeout(total=5)
@@ -446,14 +469,6 @@ class FHeta(loader.Module):
                     pass
                     
                 await asyncio.sleep(60)
-
-    async def on_dlmod(self, client, db):
-        try:
-            from telethon.tl.functions.contacts import UnblockRequest
-            await client(UnblockRequest("@FHeta_robot"))
-            await utils.dnd(client, "@FHeta_robot", archive=True)
-        except:
-            pass
 
     async def _api_get(self, endpoint: str, **params):
         try:
@@ -1195,31 +1210,20 @@ class FHeta(loader.Module):
             
             __import__('importlib').invalidate_caches()
             return "retry"
-        except Exception as e:
-            error_type = type(e).__name__
-            if "CoreOverwriteError" in error_type or "CoreOverwrite" in str(e):
-                with __import__('contextlib').suppress(Exception):
-                    try:
-                        await lm.allmodules.unload_module(instance.__class__.__name__)
-                    except:
-                        pass
-                with __import__('contextlib').suppress(Exception):
-                    try:
-                        lm.allmodules.modules.remove(instance)
-                    except:
-                        pass
-                return "overwrite"
             
+        except CoreOverwriteError:
             with __import__('contextlib').suppress(Exception):
-                try:
-                    await lm.allmodules.unload_module(instance.__class__.__name__)
-                except:
-                    pass
+                await lm.allmodules.unload_module(instance.__class__.__name__)
             with __import__('contextlib').suppress(Exception):
-                try:
-                    lm.allmodules.modules.remove(instance)
-                except:
-                    pass
+                lm.allmodules.modules.remove(instance)
+            return "overwrite"
+        except (loader.LoadError, ScamDetectionError):
+            with __import__('contextlib').suppress(Exception):
+                await lm.allmodules.unload_module(instance.__class__.__name__)
+            with __import__('contextlib').suppress(Exception):
+                lm.allmodules.modules.remove(instance)
+            return "error"
+        except Exception:
             return "error"
         
         try:
@@ -1230,31 +1234,19 @@ class FHeta(loader.Module):
                 no_self_unload=True,
                 from_dlmod=False,
             )
-        except Exception as e:
-            error_type = type(e).__name__
-            if "CoreOverwriteError" in error_type or "CoreOverwrite" in str(e):
-                with __import__('contextlib').suppress(Exception):
-                    try:
-                        await lm.allmodules.unload_module(instance.__class__.__name__)
-                    except:
-                        pass
-                with __import__('contextlib').suppress(Exception):
-                    try:
-                        lm.allmodules.modules.remove(instance)
-                    except:
-                        pass
-                return "overwrite"
-            
+        except CoreOverwriteError:
             with __import__('contextlib').suppress(Exception):
-                try:
-                    await lm.allmodules.unload_module(instance.__class__.__name__)
-                except:
-                    pass
+                await lm.allmodules.unload_module(instance.__class__.__name__)
             with __import__('contextlib').suppress(Exception):
-                try:
-                    lm.allmodules.modules.remove(instance)
-                except:
-                    pass
+                lm.allmodules.modules.remove(instance)
+            return "overwrite"
+        except (loader.LoadError, ScamDetectionError, loader.SelfUnload, loader.SelfSuspend):
+            with __import__('contextlib').suppress(Exception):
+                await lm.allmodules.unload_module(instance.__class__.__name__)
+            with __import__('contextlib').suppress(Exception):
+                lm.allmodules.modules.remove(instance)
+            return "error"
+        except Exception:
             return "error"
         
         return "success"
