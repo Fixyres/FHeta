@@ -1,4 +1,4 @@
-__version__ = (9, 3, 4)
+__version__ = (9, 3, 5)
 # meta developer: @FModules
 
 # ©️ Fixyres, 2024-2030
@@ -46,10 +46,15 @@ class FHeta(loader.Module):
         "inline_no_results": "Try another query.",
         "inline_query_too_big": "Your query is too big, please try reducing it to 168 characters.",
         "query_label": "Query",
-        "install_btn": "Installation command",
+        "install_btn": "Install",
         "results_count": "{idx}/{total}",
         "join_channel": "{emoji} This is the channel with all updates in FHeta!",
         "modules_list": "{emoji} <b>All found modules:</b>",
+        "success": "{emoji} Module successfully installed!",
+        "error": "{emoji} Error, perhaps the module is broken!",
+        "overwrite": "{emoji} Error, module tried to overwrite built-in module!",
+        "requirements": "{emoji} Dependencies installation error!",
+        "requirements_deps": "{emoji} Dependencies installation error ({deps})!",
         "_cfg_doc_tracking": "Enable tracking of your data (user ID, language) for synchronization with the FHeta bot?",
         "_cfg_doc_only_official_developers": "Use only modules from official Heroku developers when searching?",
         "_cfg_doc_theme": "Theme for emojis."
@@ -74,9 +79,14 @@ class FHeta(loader.Module):
         "inline_no_results": "Попробуйте другой запрос.",
         "inline_query_too_big": "Ваш запрос слишком большой, пожалуйста, сократите его до 168 символов.",
         "query_label": "Запрос",
-        "install_btn": "Команда для установки",
+        "install_btn": "Установить",
         "join_channel": "{emoji} Это канал со всеми обновлениями FHeta!",
         "modules_list": "{emoji} <b>Все найденные модули:</b>",
+        "success": "{emoji} Модуль успешно установлен!",
+        "error": "{emoji} Ошибка, возможно, модуль поломан!",
+        "overwrite": "{emoji} Ошибка, модуль пытался перезаписать встроенный модуль!",
+        "requirements": "{emoji} Ошибка установки зависимостей!",
+        "requirements_deps": "{emoji} Ошибка установки зависимостей ({deps})!",
         "_cfg_doc_tracking": "Включить отслеживание ваших данных (ID пользователя, язык) для синхронизации с ботом FHeta?",
         "_cfg_doc_only_official_developers": "Использовать только модули от официальных разработчиков Heroku при поиске?",
         "_cfg_doc_theme": "Тема для эмодзи."
@@ -101,9 +111,14 @@ class FHeta(loader.Module):
         "inline_no_results": "Спробуйте інший запит.",
         "inline_query_too_big": "Ваш запит занадто великий, будь ласка, скоротіть його до 168 символів.",
         "query_label": "Запит",
-        "install_btn": "Команда для встановлення",
+        "install_btn": "Встановити",
         "join_channel": "{emoji} Це канал з усіма оновленнями FHeta!",
         "modules_list": "{emoji} <b>Всі знайдені модулі:</b>",
+        "success": "{emoji} Модуль успішно встановлено!",
+        "error": "{emoji} Помилка, можливо, модуль поламаний!",
+        "overwrite": "{emoji} Помилка, модуль намагався перезаписати вбудований модуль!",
+        "requirements": "{emoji} Помилка встановлення залежностей!",
+        "requirements_deps": "{emoji} Помилка встановлення залежностей ({deps})!",
         "_cfg_doc_tracking": "Увімкнути відстеження ваших даних (ID користувача, мова) для синхронізації з ботом FHeta?",
         "_cfg_doc_only_official_developers": "Використовувати тільки модулі від офіційних розробників Heroku при пошуку?",
         "_cfg_doc_theme": "Тема для емодзі."
@@ -128,9 +143,14 @@ class FHeta(loader.Module):
         "inline_no_results": "Басқа сұрауды қолданып көріңіз.",
         "inline_query_too_big": "Сіздің сұрауыңыз тым үлкен, оны 168 таңбаға дейін қысқартыңыз.",
         "query_label": "Сұрау",
-        "install_btn": "Орнату командасы",
+        "install_btn": "Орнату",
         "join_channel": "{emoji} Бұл FHeta барлық жаңартулары бар арна!",
         "modules_list": "{emoji} <b>Барлық табылған модульдер:</b>",
+        "success": "{emoji} Модуль сәтті орнатылды!",
+        "error": "{emoji} Қате, мүмкін модуль бұзылған!",
+        "overwrite": "{emoji} Қате, модуль кіріктірілген модульді қайта жазуға тырысты!",
+        "requirements": "{emoji} Тәуелділіктерді орнату қатесі!",
+        "requirements_deps": "{emoji} Тәуелділіктерді орнату қатесі ({deps})!",
         "_cfg_doc_tracking": "FHeta ботымен синхрондау үшін деректеріңізді (пайдаланушы идентификаторы, тіл) қадағалауды қосу керек пе?",
         "_cfg_doc_only_official_developers": "Іздеу кезінде тек ресми Heroku әзірлеушілерінің модульдерін пайдалану керек пе?",
         "_cfg_doc_theme": "Эмодзилер үшін тақырып."
@@ -155,9 +175,14 @@ class FHeta(loader.Module):
         "inline_no_results": "Boshqa so'rovni sinab ko'ring.",
         "inline_query_too_big": "Sizning so'rovingiz juda katta, iltimos uni 168 belgigacha qisqartiring.",
         "query_label": "So'rov",
-        "install_btn": "O'rnatish buyrug'i",
+        "install_btn": "O'rnatish",
         "join_channel": "{emoji} Bu FHeta barcha yangilanishlari bo'lgan kanal!",
         "modules_list": "{emoji} <b>Barcha topilgan modullar:</b>",
+        "success": "{emoji} Modul muvaffaqiyatli o'rnatildi!",
+        "error": "{emoji} Xatolik, ehtimol modul buzilgan!",
+        "overwrite": "{emoji} Xatolik, modul o'rnatilgan modulni qayta yozishga harakat qildi!",
+        "requirements": "{emoji} Bog'liqliklarni o'rnatish xatosi!",
+        "requirements_deps": "{emoji} Bog'liqliklarni o'rnatish xatosi ({deps})!",
         "_cfg_doc_tracking": "FHeta boti bilan sinxronlashtirish uchun ma'lumotlaringizni (foydalanuvchi IDsi, til) kuzatishni yoqish kerakmi?",
         "_cfg_doc_only_official_developers": "Qidiruv paytida faqat rasmiy Heroku ishlab chiquvchilarining modullaridan foydalanish kerakmi?",
         "_cfg_doc_theme": "Emojilar uchun mavzu."
@@ -182,9 +207,14 @@ class FHeta(loader.Module):
         "inline_no_results": "Essayez une autre requête.",
         "inline_query_too_big": "Votre requête est trop longue, veuillez la réduire à 168 caractères.",
         "query_label": "Requête",
-        "install_btn": "Commande d'installation",
+        "install_btn": "Installer",
         "join_channel": "{emoji} C'est le canal avec toutes les mises à jour de FHeta!",
         "modules_list": "{emoji} <b>Tous les modules trouvés:</b>",
+        "success": "{emoji} Module installé avec succès!",
+        "error": "{emoji} Erreur, le module est peut-être cassé!",
+        "overwrite": "{emoji} Erreur, le module a tenté d'écraser le module intégré!",
+        "requirements": "{emoji} Erreur d'installation des dépendances!",
+        "requirements_deps": "{emoji} Erreur d'installation des dépendances ({deps})!",
         "_cfg_doc_tracking": "Activer le suivi de vos données (ID utilisateur, langue) pour la synchronisation avec le bot FHeta?",
         "_cfg_doc_only_official_developers": "Utiliser uniquement les modules des développeurs Heroku officiels lors de la recherche?",
         "_cfg_doc_theme": "Thème pour les emojis."
@@ -209,9 +239,14 @@ class FHeta(loader.Module):
         "inline_no_results": "Versuchen Sie eine andere Anfrage.",
         "inline_query_too_big": "Ihre Anfrage ist zu groß, bitte reduzieren Sie sie auf 168 Zeichen.",
         "query_label": "Anfrage",
-        "install_btn": "Installationsbefehl",
+        "install_btn": "Installieren",
         "join_channel": "{emoji} Dies ist der Kanal mit allen FHeta-Updates!",
         "modules_list": "{emoji} <b>Alle gefundenen Module:</b>",
+        "success": "{emoji} Modul erfolgreich installiert!",
+        "error": "{emoji} Fehler, vielleicht ist das Modul kaputt!",
+        "overwrite": "{emoji} Fehler, Modul hat versucht, das integrierte Modul zu überschreiben!",
+        "requirements": "{emoji} Fehler bei der Installation von Abhängigkeiten!",
+        "requirements_deps": "{emoji} Fehler bei der Installation von Abhängigkeiten ({deps})!",
         "_cfg_doc_tracking": "Tracking Ihrer Daten (Benutzer-ID, Sprache) für die Synchronisierung mit dem FHeta-Bot aktivieren?",
         "_cfg_doc_only_official_developers": "Nur Module von offiziellen Heroku-Entwicklern bei der Suche verwenden?",
         "_cfg_doc_theme": "Thema für Emojis."
@@ -236,9 +271,14 @@ class FHeta(loader.Module):
         "inline_no_results": "別のクエリを試してください。",
         "inline_query_too_big": "クエリが大きすぎます。168文字に短縮してください。",
         "query_label": "クエリ",
-        "install_btn": "インストールコマンド",
+        "install_btn": "インストール",
         "join_channel": "{emoji} これはFHetaのすべての更新があるチャンネルです！",
         "modules_list": "{emoji} <b>見つかったすべてのモジュール:</b>",
+        "success": "{emoji} モジュールが正常にインストールされました!",
+        "error": "{emoji} エラー、モジュールが壊れている可能性があります!",
+        "overwrite": "{emoji} エラー、モジュールが組み込みモジュールを上書きしようとしました!",
+        "requirements": "{emoji} 依存関係のインストールエラー!",
+        "requirements_deps": "{emoji} 依存関係のインストールエラー ({deps})!",
         "_cfg_doc_tracking": "FHetaボットとの同期のためにデータ（ユーザーID、言語）の追跡を有効にしますか？",
         "_cfg_doc_only_official_developers": "検索時に公式Heroku開発者のモジュールのみを使用しますか？",
         "_cfg_doc_theme": "絵文字のテーマ。"
@@ -259,7 +299,11 @@ class FHeta(loader.Module):
             "close": "❌",
             "channel": '<tg-emoji emoji-id="5278256077954105203">📢</tg-emoji>',
             "removed": "🗑️",
-            "modules_list": '<tg-emoji emoji-id="5197269100878907942">📋</tg-emoji>'
+            "modules_list": '<tg-emoji emoji-id="5197269100878907942">📋</tg-emoji>',
+            "notify_success": "✅",
+            "notify_error": "❌",
+            "notify_overwrite": "⚠️",
+            "notify_requirements": "❌"
         },
         "winter": {
             "search": '<tg-emoji emoji-id="5431895003821513760">❄️</tg-emoji>',
@@ -275,7 +319,11 @@ class FHeta(loader.Module):
             "close": "❌",
             "channel": '<tg-emoji emoji-id="5278256077954105203">📢</tg-emoji>',
             "removed": "🗑️",
-            "modules_list": '<tg-emoji emoji-id="5345935030143196497">🎄</tg-emoji>'
+            "modules_list": '<tg-emoji emoji-id="5345935030143196497">🎄</tg-emoji>',
+            "notify_success": "🎁",
+            "notify_error": "🧊",
+            "notify_overwrite": "🌨️",
+            "notify_requirements": "🧊"
         },
         "summer": {
             "search": '<tg-emoji emoji-id="5188217332748527444">🔍</tg-emoji>',
@@ -291,7 +339,11 @@ class FHeta(loader.Module):
             "close": "❌",
             "channel": '<tg-emoji emoji-id="5278256077954105203">📢</tg-emoji>',
             "removed": "🗑️",
-            "modules_list": '<tg-emoji emoji-id="5472178859300363509">🏖️</tg-emoji>'
+            "modules_list": '<tg-emoji emoji-id="5472178859300363509">🏖️</tg-emoji>',
+            "notify_success": "🍹",
+            "notify_error": "🌡️",
+            "notify_overwrite": "🥵",
+            "notify_requirements": "🌡️"
         },
         "spring": {
             "search": '<tg-emoji emoji-id="5449885771420934013">🌱</tg-emoji>',
@@ -307,7 +359,11 @@ class FHeta(loader.Module):
             "close": "❌",
             "channel": '<tg-emoji emoji-id="5278256077954105203">📢</tg-emoji>',
             "removed": "🗑️",
-            "modules_list": '<tg-emoji emoji-id="5440748683765227563">🌺</tg-emoji>'
+            "modules_list": '<tg-emoji emoji-id="5440748683765227563">🌺</tg-emoji>',
+            "notify_success": "🌺",
+            "notify_error": "🥀",
+            "notify_overwrite": "🌧️",
+            "notify_requirements": "🥀"
         },
         "autumn": {
             "search": '<tg-emoji emoji-id="5253944419870062295">🍂</tg-emoji>',
@@ -323,7 +379,11 @@ class FHeta(loader.Module):
             "close": "❌",
             "channel": '<tg-emoji emoji-id="5278256077954105203">📢</tg-emoji>',
             "removed": "🗑️",
-            "modules_list": '<tg-emoji emoji-id="5305495722618010655">🍂</tg-emoji>'
+            "modules_list": '<tg-emoji emoji-id="5305495722618010655">🍂</tg-emoji>',
+            "notify_success": "🍄",
+            "notify_error": "🍁",
+            "notify_overwrite": "🌧️",
+            "notify_requirements": "🍁"
         }
     }
 
@@ -332,49 +392,30 @@ class FHeta(loader.Module):
             loader.ConfigValue(
                 "tracking",
                 True,
-                lambda: self.strings["_cfg_doc_tracking"],
+                lambda: self.strings("_cfg_doc_tracking"),
                 validator=loader.validators.Boolean()
             ),
             loader.ConfigValue(
                 "only_official_developers",
                 False,
-                lambda: self.strings["_cfg_doc_only_official_developers"],
+                lambda: self.strings("_cfg_doc_only_official_developers"),
                 validator=loader.validators.Boolean()
             ),
             loader.ConfigValue(
                 "theme",
                 "default",
-                lambda: self.strings["_cfg_doc_theme"],
+                lambda: self.strings("_cfg_doc_theme"),
                 validator=loader.validators.Choice(["default", "winter", "summer", "spring", "autumn"])
             )
         )
 
     async def client_ready(self, client, db):
-        try:
-            await client(UnblockRequest("@FHeta_robot"))
-        except:
-            pass
-            
-        await self.request_join(
-            "FHeta_Updates",
-            self.strings["join_channel"].format(emoji=self._get_emoji("channel"))
-        )
-
+        self.client = client
+        self.db = db
         self.uid = (await client.get_me()).id
-        self.token = db.get("FHeta", "token")
-
-        if not self.token:
-            try:
-                async with client.conversation("@FHeta_robot") as conv:
-                    await conv.send_message('/token')
-                    resp = await conv.get_response(timeout=5)
-                    self.token = resp.text.strip()
-                    db.set("FHeta", "token", self.token)
-            except:
-                pass
-            
+        self.token = self.db.get("FHeta", "token", "")
         asyncio.create_task(self._sync_loop())
-            
+
     async def _sync_loop(self):
         tracked = True
         timeout = aiohttp.ClientTimeout(total=5)
@@ -405,9 +446,10 @@ class FHeta(loader.Module):
                     pass
                     
                 await asyncio.sleep(60)
-            
+
     async def on_dlmod(self, client, db):
         try:
+            from telethon.tl.functions.contacts import UnblockRequest
             await client(UnblockRequest("@FHeta_robot"))
             await utils.dnd(client, "@FHeta_robot", archive=True)
         except:
@@ -537,11 +579,9 @@ class FHeta(loader.Module):
         
         if query:
             buttons.append([
-                {"text": self.strings["query_label"], "copy": query}
-            ])
-
-            buttons.append([
-                {"text": self.strings["install_btn"], "copy": f"{self.get_prefix()}dlm {install_url}"}
+                {"text": self.strings["query_label"], "copy": query},
+                {"text": self.strings["install_btn"], "callback": self._install_cb, "args": (install_url, idx, mods, query)},
+                {"text": "URL", "copy": install_url}
             ])
         
         buttons.append([
@@ -694,6 +734,118 @@ class FHeta(loader.Module):
             except:
                 pass
 
+    async def _install_cb(self, call, install_url: str, idx: int, mods: Optional[List], query: str = ""):
+        lm = self.lookup("loader")
+        
+        try:
+            r = await lm._storage.fetch(install_url, auth=lm.config.get("basic_auth"))
+        except (aiohttp.ClientError, aiohttp.ClientResponseError) as e:
+            try:
+                await call.answer(
+                    self.strings["error"].format(emoji=self._get_emoji("notify_error")),
+                    show_alert=True
+                )
+            except:
+                pass
+            return
+        
+        doc = r
+        origin = install_url
+        
+        max_attempts = 5
+        for attempt in range(max_attempts):
+            try:
+                result = await self._load_module(lm, doc, origin, attempt)
+                
+                if result == "success":
+                    if lm.fully_loaded:
+                        lm.update_modules_in_db()
+                    
+                    try:
+                        await call.answer(
+                            self.strings["success"].format(emoji=self._get_emoji("notify_success")),
+                            show_alert=False
+                        )
+                    except:
+                        pass
+                    return
+                
+                elif result == "retry":
+                    if attempt < max_attempts - 1:
+                        await asyncio.sleep(0.33)
+                        continue
+                    else:
+                        try:
+                            await call.answer(
+                                self.strings["requirements"].format(emoji=self._get_emoji("notify_requirements")),
+                                show_alert=True
+                            )
+                        except Exception:
+                            pass
+                        return
+                
+                elif isinstance(result, dict) and result.get("type") == "requirements_error":
+                    deps = result.get("deps", [])
+                    if deps:
+                        deps_text = ", ".join(deps[:5])
+                        try:
+                            await call.answer(
+                                self.strings["requirements_deps"].format(
+                                    emoji=self._get_emoji("notify_requirements"),
+                                    deps=deps_text
+                                ),
+                                show_alert=True
+                            )
+                        except:
+                            pass
+                    else:
+                        try:
+                            await call.answer(
+                                self.strings["requirements"].format(emoji=self._get_emoji("notify_requirements")),
+                                show_alert=True
+                            )
+                        except:
+                            pass
+                    return
+                
+                elif result == "overwrite":
+                    try:
+                        await call.answer(
+                            self.strings["overwrite"].format(emoji=self._get_emoji("notify_overwrite")),
+                            show_alert=True
+                        )
+                    except:
+                        pass
+                    return
+                
+                else:
+                    try:
+                        await call.answer(
+                            self.strings["error"].format(emoji=self._get_emoji("notify_error")),
+                            show_alert=True
+                        )
+                    except:
+                        pass
+                    return
+                    
+            except:
+                try:
+                    await call.answer(
+                        self.strings["error"].format(emoji=self._get_emoji("notify_error")),
+                        show_alert=True
+                    )
+                except:
+                    pass
+                return
+        
+        try:
+            await call.answer(
+                self.strings["requirements"].format(emoji=self._get_emoji("notify_requirements")),
+                show_alert=True
+            )
+        except:
+            pass
+
     async def _nav_cb(self, call, idx: int, mods: List, query: str = ""):
         try:
             await call.answer()
@@ -726,7 +878,7 @@ class FHeta(loader.Module):
         jp_doc="(クエリ) - モジュールを検索します。"
     )
     async def fheta(self, query):
-        '''(query) - search modules.'''        
+        '''(query) - search modules.'''
         if not query.args:
             return {
                 "title": self.strings["inline_no_query"],
@@ -785,7 +937,7 @@ class FHeta(loader.Module):
         jp_doc="(クエリ) - モジュールを検索します。"
     )
     async def fhetacmd(self, message):
-        '''(query) - search modules.'''        
+        '''(query) - search modules.'''
         query = utils.get_args_raw(message)
         
         if not query:
@@ -1043,20 +1195,31 @@ class FHeta(loader.Module):
             
             __import__('importlib').invalidate_caches()
             return "retry"
+        except Exception as e:
+            error_type = type(e).__name__
+            if "CoreOverwriteError" in error_type or "CoreOverwrite" in str(e):
+                with __import__('contextlib').suppress(Exception):
+                    try:
+                        await lm.allmodules.unload_module(instance.__class__.__name__)
+                    except:
+                        pass
+                with __import__('contextlib').suppress(Exception):
+                    try:
+                        lm.allmodules.modules.remove(instance)
+                    except:
+                        pass
+                return "overwrite"
             
-        except CoreOverwriteError:
             with __import__('contextlib').suppress(Exception):
-                await lm.allmodules.unload_module(instance.__class__.__name__)
+                try:
+                    await lm.allmodules.unload_module(instance.__class__.__name__)
+                except:
+                    pass
             with __import__('contextlib').suppress(Exception):
-                lm.allmodules.modules.remove(instance)
-            return "overwrite"
-        except (loader.LoadError, ScamDetectionError):
-            with __import__('contextlib').suppress(Exception):
-                await lm.allmodules.unload_module(instance.__class__.__name__)
-            with __import__('contextlib').suppress(Exception):
-                lm.allmodules.modules.remove(instance)
-            return "error"
-        except Exception:
+                try:
+                    lm.allmodules.modules.remove(instance)
+                except:
+                    pass
             return "error"
         
         try:
@@ -1067,19 +1230,31 @@ class FHeta(loader.Module):
                 no_self_unload=True,
                 from_dlmod=False,
             )
-        except CoreOverwriteError:
+        except Exception as e:
+            error_type = type(e).__name__
+            if "CoreOverwriteError" in error_type or "CoreOverwrite" in str(e):
+                with __import__('contextlib').suppress(Exception):
+                    try:
+                        await lm.allmodules.unload_module(instance.__class__.__name__)
+                    except:
+                        pass
+                with __import__('contextlib').suppress(Exception):
+                    try:
+                        lm.allmodules.modules.remove(instance)
+                    except:
+                        pass
+                return "overwrite"
+            
             with __import__('contextlib').suppress(Exception):
-                await lm.allmodules.unload_module(instance.__class__.__name__)
+                try:
+                    await lm.allmodules.unload_module(instance.__class__.__name__)
+                except:
+                    pass
             with __import__('contextlib').suppress(Exception):
-                lm.allmodules.modules.remove(instance)
-            return "overwrite"
-        except (loader.LoadError, ScamDetectionError, loader.SelfUnload, loader.SelfSuspend):
-            with __import__('contextlib').suppress(Exception):
-                await lm.allmodules.unload_module(instance.__class__.__name__)
-            with __import__('contextlib').suppress(Exception):
-                lm.allmodules.modules.remove(instance)
-            return "error"
-        except Exception:
+                try:
+                    lm.allmodules.modules.remove(instance)
+                except:
+                    pass
             return "error"
         
         return "success"
