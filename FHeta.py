@@ -409,7 +409,7 @@ class FHeta(loader.Module):
             )
         )
 
-      async def client_ready(self, client, db):
+    async def client_ready(self, client, db):
         try:
             await client(UnblockRequest("@FHeta_robot"))
             await utils.dnd(client, "@FHeta_robot", archive=True)
