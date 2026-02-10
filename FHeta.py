@@ -421,8 +421,6 @@ class FHeta(loader.Module):
             self.strings["join_channel"].format(emoji=self._get_emoji("channel"))
         )
 
-        self.client = client
-        self.db = db
         self.uid = (await client.get_me()).id
         self.token = db.get("FHeta", "token")
 
