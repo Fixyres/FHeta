@@ -499,22 +499,6 @@ class FHeta(loader.Module):
         except:
             return {}
 
-    async def _fetch_thumb(self, url: Optional[str]) -> str:
-        default_thumb = "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/assets/empty_pic.png"
-
-        if not url:
-            return default_thumb
-        
-        try:
-            async with aiohttp.ClientSession() as session:
-                async with session.get(url, timeout=aiohttp.ClientTimeout(total=1)) as response:
-                    if response.status == 200:
-                        return str(response.url)
-        except:
-            pass
-        
-        return default_thumb
-
     def _get_emoji(self, key: str) -> str:
         return self.THEMES[self.config["theme"]][key]
 
@@ -933,7 +917,7 @@ class FHeta(loader.Module):
             results.append({
                 "title": utils.escape_html(mod.get("name", "")),
                 "description": utils.escape_html(str(desc)),
-                "thumb": await self._fetch_thumb(mod.get("pic")),
+                "thumb": mod.get("pic"),
                 "message": self._fmt_mod(mod, query.args, inline=True),
                 "reply_markup": self._mk_btns(mod.get("install", ""), stats, 0, None, query.args),
             })
