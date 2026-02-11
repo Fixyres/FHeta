@@ -542,20 +542,16 @@ class FHeta(loader.Module):
             else:
                 text = desc
             
-            info += self.strings["desc"].format(desc=utils.escape_html(text[:800]), emoji=self._get_emoji("description"))
+            info += self.strings["desc"].format(desc=utils.escape_html(text), emoji=self._get_emoji("description"))
 
-        info += self._fmt_cmds(mod.get("commands", []), limit=3800 - len(info))
+        info += self._fmt_cmds(mod.get("commands", []), limit=3700 - len(info))
         return info
 
     def _fmt_cmds(self, cmds: List[Dict], limit: int) -> str:
         cmd_lines = []
         lang = self.strings["lang"]
-        current_len = 0
-
+        
         for cmd in cmds:
-            if current_len >= limit:
-                break
-
             desc_dict = cmd.get("description", {})
             desc_text = desc_dict.get(lang) or desc_dict.get("doc") or ""
             
@@ -570,9 +566,13 @@ class FHeta(loader.Module):
             else:
                 line = f"<code>{self.get_prefix()}{cmd_name}</code> {cmd_desc}"
             
-            if current_len + len(line) < limit:
-                cmd_lines.append(line)
-                current_len += len(line)
+            current_text = "\n".join(cmd_lines)
+            test_text = current_text + ("\n" if current_text else "") + line
+            
+            if len(test_text) > limit:
+                break
+            
+            cmd_lines.append(line)
 
         if cmd_lines:
             return self.strings["cmds"].format(cmds="\n".join(cmd_lines), emoji=self._get_emoji("command"))
