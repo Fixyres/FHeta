@@ -917,7 +917,7 @@ class FHeta(loader.Module):
             results.append({
                 "title": utils.escape_html(mod.get("name", "")),
                 "description": utils.escape_html(str(desc)),
-                "thumb": mod.get("pic") or "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/assets/no_pic.png",
+                "thumb": mod.get("pic") or "https://raw.githubusercontent.com/Fixyres/FHeta/refs/heads/main/assets/empty_pic.png",
                 "message": self._fmt_mod(mod, query.args, inline=True),
                 "reply_markup": self._mk_btns(mod.get("install", ""), stats, 0, None, query.args),
             })
