@@ -424,24 +424,23 @@ class FHeta(loader.Module):
         asyncio.create_task(self._sync_loop())
           
     async def _sync_loop(self):
-        last_lang = None
-        timeout = aiohttp.ClientTimeout(total=5)
+        ll = None
 
-        async with aiohttp.ClientSession(timeout=timeout) as session:
+        async with aiohttp.ClientSession(timeout=aiohttp.ClientTimeout(total=5)) as session:
             while True:
                 try:
-                    current_lang = self.strings["lang"]
-                    if current_lang != last_lang:
+                    cl = self.strings["lang"]
+                    if cl != ll:
                         async with session.post(
                             "https://api.fixyres.com/dataset",
                             params={
                                 "user_id": self.uid,
-                                "lang": current_lang
+                                "lang": cl
                             },
                             headers={"Authorization": self.token}
                         ) as response:
                             await response.release()
-                        last_lang = current_lang
+                        ll = cl
                 except:
                     pass
 
