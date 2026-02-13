@@ -55,7 +55,6 @@ class FHeta(loader.Module):
         "overwrite": "{emoji} Error, module tried to overwrite built-in module!",
         "requirements": "{emoji} Dependencies installation error!",
         "requirements_deps": "{emoji} Dependencies installation error ({deps})!",
-        "_cfg_doc_tracking": "Enable tracking of your data (user ID, language) for synchronization with the FHeta bot?",
         "_cfg_doc_only_official_developers": "Use only modules from official Heroku developers when searching?",
         "_cfg_doc_theme": "Theme for emojis."
     }
@@ -87,7 +86,6 @@ class FHeta(loader.Module):
         "overwrite": "{emoji} Ошибка, модуль пытался перезаписать встроенный модуль!",
         "requirements": "{emoji} Ошибка установки зависимостей!",
         "requirements_deps": "{emoji} Ошибка установки зависимостей ({deps})!",
-        "_cfg_doc_tracking": "Включить отслеживание ваших данных (ID пользователя, язык) для синхронизации с ботом FHeta?",
         "_cfg_doc_only_official_developers": "Использовать только модули от официальных разработчиков Heroku при поиске?",
         "_cfg_doc_theme": "Тема для эмодзи."
     }
@@ -119,7 +117,6 @@ class FHeta(loader.Module):
         "overwrite": "{emoji} Помилка, модуль намагався перезаписати вбудований модуль!",
         "requirements": "{emoji} Помилка встановлення залежностей!",
         "requirements_deps": "{emoji} Помилка встановлення залежностей ({deps})!",
-        "_cfg_doc_tracking": "Увімкнути відстеження ваших даних (ID користувача, мова) для синхронізації з ботом FHeta?",
         "_cfg_doc_only_official_developers": "Використовувати тільки модулі від офіційних розробників Heroku при пошуку?",
         "_cfg_doc_theme": "Тема для емодзі."
     }
@@ -151,7 +148,6 @@ class FHeta(loader.Module):
         "overwrite": "{emoji} Қате, модуль кіріктірілген модульді қайта жазуға тырысты!",
         "requirements": "{emoji} Тәуелділіктерді орнату қатесі!",
         "requirements_deps": "{emoji} Тәуелділіктерді орнату қатесі ({deps})!",
-        "_cfg_doc_tracking": "FHeta ботымен синхрондау үшін деректеріңізді (пайдаланушы идентификаторы, тіл) қадағалауды қосу керек пе?",
         "_cfg_doc_only_official_developers": "Іздеу кезінде тек ресми Heroku әзірлеушілерінің модульдерін пайдалану керек пе?",
         "_cfg_doc_theme": "Эмодзилер үшін тақырып."
     }
@@ -183,7 +179,6 @@ class FHeta(loader.Module):
         "overwrite": "{emoji} Xatolik, modul o'rnatilgan modulni qayta yozishga harakat qildi!",
         "requirements": "{emoji} Bog'liqliklarni o'rnatish xatosi!",
         "requirements_deps": "{emoji} Bog'liqliklarni o'rnatish xatosi ({deps})!",
-        "_cfg_doc_tracking": "FHeta boti bilan sinxronlashtirish uchun ma'lumotlaringizni (foydalanuvchi IDsi, til) kuzatishni yoqish kerakmi?",
         "_cfg_doc_only_official_developers": "Qidiruv paytida faqat rasmiy Heroku ishlab chiquvchilarining modullaridan foydalanish kerakmi?",
         "_cfg_doc_theme": "Emojilar uchun mavzu."
     }
@@ -215,7 +210,6 @@ class FHeta(loader.Module):
         "overwrite": "{emoji} Erreur, le module a tenté d'écraser le module intégré!",
         "requirements": "{emoji} Erreur d'installation des dépendances!",
         "requirements_deps": "{emoji} Erreur d'installation des dépendances ({deps})!",
-        "_cfg_doc_tracking": "Activer le suivi de vos données (ID utilisateur, langue) pour la synchronisation avec le bot FHeta?",
         "_cfg_doc_only_official_developers": "Utiliser uniquement les modules des développeurs Heroku officiels lors de la recherche?",
         "_cfg_doc_theme": "Thème pour les emojis."
     }
@@ -247,7 +241,6 @@ class FHeta(loader.Module):
         "overwrite": "{emoji} Fehler, Modul hat versucht, das integrierte Modul zu überschreiben!",
         "requirements": "{emoji} Fehler bei der Installation von Abhängigkeiten!",
         "requirements_deps": "{emoji} Fehler bei der Installation von Abhängigkeiten ({deps})!",
-        "_cfg_doc_tracking": "Tracking Ihrer Daten (Benutzer-ID, Sprache) für die Synchronisierung mit dem FHeta-Bot aktivieren?",
         "_cfg_doc_only_official_developers": "Nur Module von offiziellen Heroku-Entwicklern bei der Suche verwenden?",
         "_cfg_doc_theme": "Thema für Emojis."
     }
@@ -279,7 +272,6 @@ class FHeta(loader.Module):
         "overwrite": "{emoji} エラー、モジュールが組み込みモジュールを上書きしようとしました!",
         "requirements": "{emoji} 依存関係のインストールエラー!",
         "requirements_deps": "{emoji} 依存関係のインストールエラー ({deps})!",
-        "_cfg_doc_tracking": "FHetaボットとの同期のためにデータ（ユーザーID、言語）の追跡を有効にしますか？",
         "_cfg_doc_only_official_developers": "検索時に公式Heroku開発者のモジュールのみを使用しますか？",
         "_cfg_doc_theme": "絵文字のテーマ。"
     }
@@ -390,12 +382,6 @@ class FHeta(loader.Module):
     def __init__(self):
         self.config = loader.ModuleConfig(
             loader.ConfigValue(
-                "tracking",
-                True,
-                lambda: self.strings("_cfg_doc_tracking"),
-                validator=loader.validators.Boolean()
-            ),
-            loader.ConfigValue(
                 "only_official_developers",
                 False,
                 lambda: self.strings("_cfg_doc_only_official_developers"),
@@ -438,35 +424,28 @@ class FHeta(loader.Module):
         asyncio.create_task(self._sync_loop())
           
     async def _sync_loop(self):
-        tracked = True
+        last_lang = None
         timeout = aiohttp.ClientTimeout(total=5)
-        
+
         async with aiohttp.ClientSession(timeout=timeout) as session:
             while True:
                 try:
-                    if self.config["tracking"]:
+                    current_lang = self.strings["lang"]
+                    if current_lang != last_lang:
                         async with session.post(
                             "https://api.fixyres.com/dataset",
                             params={
                                 "user_id": self.uid,
-                                "lang": self.strings["lang"]
+                                "lang": current_lang
                             },
                             headers={"Authorization": self.token}
                         ) as response:
-                            tracked = True
                             await response.release()
-                    elif tracked:
-                        async with session.post(
-                            "https://api.fixyres.com/rmd",
-                            params={"user_id": self.uid},
-                            headers={"Authorization": self.token}
-                        ) as response:
-                            tracked = False
-                            await response.release()
+                        last_lang = current_lang
                 except:
                     pass
-                    
-                await asyncio.sleep(60)
+
+                await asyncio.sleep(3)
 
     async def _api_get(self, endpoint: str, **params):
         try:
