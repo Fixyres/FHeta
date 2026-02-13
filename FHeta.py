@@ -434,7 +434,7 @@ class FHeta(loader.Module):
             except:
                 pass
             
-        self.token = self.db.get("FHeta", "token", "")
+        self.token = db.get("FHeta", "token")
         asyncio.create_task(self._sync_loop())
           
     async def _sync_loop(self):
